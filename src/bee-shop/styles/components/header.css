@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+}
+
+.logo {
+  width: 22.4rem;
+}
+
+.nav {
+  font-size: 1.5rem;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.nav__link {
+  font-weight: bold;
+  margin: 3.4rem 2.5rem 3.4rem 1.9rem;
+}
+
+.nav__link:hover {
+  border-bottom: 2px solid #222222;
+}
