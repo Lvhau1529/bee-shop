@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderComponent from "../components/header";
 import BannerComponent from "../components/banner";
-import DistanceComponent from "../components/distance";
+import DistanceComponent from "../layouts/distance";
 import PolicyComponent from "../components/policy";
 
 function HomePage() {

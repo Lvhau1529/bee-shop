@@ -45,12 +45,19 @@ function HeaderComponent() {
 						</nav>
 					</Col>
 					<Col span={8}>
-						<div className="search"></div>
+						<div className="nav__search">
+							<div className="search">
+								<i className="search__icon"></i>
+								<div className="search__form">
+								</div>
+							</div>
+							<div className="cart"></div>
+							<div className="account"></div>
+							<div className="my-account"></div>
+						</div>
 					</Col>
 				</header>
 			</Row>
-
-			
 		</>
 	);
 }
