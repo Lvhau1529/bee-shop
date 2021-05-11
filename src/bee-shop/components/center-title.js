@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/components/center-title.css";
 
-function TitleBlock(props) {
+function Title(props) {
 	return (
 		<>
 			<div className="title-block">
@@ -16,4 +16,4 @@ function TitleBlock(props) {
 	);
 }
 
-export default React.memo(TitleBlock);
+export default React.memo(Title);

@@ -1,0 +1,26 @@
+/* Story */
+.story {
+	display: flex;
+	padding: 20rem 0 20rem 0;
+}
+.story__content--title {
+	font-size: 3rem;
+	font-weight: 600;
+}
+.story__content--sub-title {
+	margin: 2.8rem 0 4.6rem 0;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.story__content--desc {
+	line-height: 2.4rem;
+	margin-bottom: 11.7rem;
+}
+.story__left--button a {
+	padding: 1.5rem 5.7rem;
+	background-color: rgb(228, 181, 35);
+	font-size: 1.6rem;
+	font-weight: 600;
+	/* border-radius: ; */
+}
+/* ./Story */
