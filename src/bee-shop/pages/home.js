@@ -2,15 +2,17 @@ import React from "react";
 import HeaderComponent from "../components/header";
 import BannerComponent from "../components/banner";
 import DistanceComponent from "../layouts/distance";
-import PolicyComponent from "../components/policy";
+import PolicyComponent from "../layouts/policy";
+import Footer from "../layouts/footer";
 
 function HomePage() {
 	return (
 		<>
 			<HeaderComponent />
-      <BannerComponent />
-      <DistanceComponent />
-      <PolicyComponent />
+			<BannerComponent />
+			<DistanceComponent />
+			<PolicyComponent />
+			<Footer />
 		</>
 	);
 }
