@@ -9,17 +9,19 @@ function Footer() {
 		<>
 			<footer>
 				<div class="footer__block">
-					<Row justify="center">
+					<Row>
 						<div class="footer__top-block">
-							<Col span={24} class="footer__top col-md-12">
-								<div class="footer__content">
-									<div class="footer__title">Join Newsletter Now</div>
-									<div class="footer__sub-title">
-										Stay updated on sales, new items and more
-									</div>
-									<div class="footer__mail">
-										<input type="email" placeholder="Your Email Adress" />
-										<button type="submit"></button>
+							<Col>
+								<div class="footer__top col-md-12">
+									<div class="footer__content">
+										<div class="footer__title">Join Newsletter Now</div>
+										<div class="footer__sub-title">
+											Stay updated on sales, new items and more
+										</div>
+										<div class="footer__mail">
+											<input type="email" placeholder="Your Email Adress" />
+											<button type="submit"></button>
+										</div>
 									</div>
 								</div>
 							</Col>

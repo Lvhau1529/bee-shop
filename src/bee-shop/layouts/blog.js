@@ -14,7 +14,7 @@ function Blog() {
 					{/* <!-- ./Title --> */}
 					<div class="blog row">
 						<Row>
-							<Col>
+							<Col span={12}>
 								<div class="block__content col-md-6">
 									<div class="block__image">
 										<img src={img} alt="" />
@@ -40,7 +40,7 @@ function Blog() {
 								</div>
 							</Col>
 
-              <Col>
+              <Col span={12}>
 								<div class="block__content col-md-6">
 									<div class="block__image">
 										<img src={img} alt="" />
