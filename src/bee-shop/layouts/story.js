@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
+import Button from "../components/button";
 import "../styles/layouts/story.css";
 import img from "../assets/images/4_850x.webp";
 
@@ -27,9 +28,7 @@ function Story() {
 											in libero commodo rhon cus. Nullam a nunc libero. Donec
 											non arcu arcu.
 										</div>
-										<div class="story__left--button">
-											<a href>Read More</a>
-										</div>
+										<Button title="Read More" />
 									</div>
 								</div>
 							</Col>
