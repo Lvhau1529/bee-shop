@@ -13,7 +13,7 @@ function Banner() {
 		slidesToScroll: 2,
 		autoplay: true,
 		speed: 1000,
-		autoplaySpeed: 1000,
+		autoplaySpeed: 2000
 	};
 	return (
 		<>

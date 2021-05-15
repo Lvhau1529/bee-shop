@@ -6,14 +6,14 @@ import { Row, Col } from "antd";
 function HeaderComponent() {
 	return (
 		<>
-			<Row>
-				<header className="header">
-					<Col span={8}>
+			<header className="header">
+				<Row>
+					<Col span={6}>
 						<div className="logo">
 							<img src={logo} alt="logo" />
 						</div>
 					</Col>
-					<Col span={8}>
+					<Col span={10}>
 						<nav className="nav">
 							<ul className="nav__list">
 								<li className="nav__item">
@@ -44,20 +44,19 @@ function HeaderComponent() {
 							</ul>
 						</nav>
 					</Col>
-					<Col span={8}>
+					<Col span={6}>
 						<div className="nav__search">
 							<div className="search">
 								<i className="search__icon"></i>
-								<div className="search__form">
-								</div>
+								<div className="search__form"></div>
 							</div>
 							<div className="cart"></div>
 							<div className="account"></div>
 							<div className="my-account"></div>
 						</div>
 					</Col>
-				</header>
-			</Row>
+				</Row>
+			</header>
 		</>
 	);
 }
