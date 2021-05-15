@@ -22,14 +22,14 @@ function Banner() {
 					<div class="banner__content">
 						<div class="banner__bg">
 							<img alt="banner" src={img} />
-							<div class="content">
-								<div class="content__title">
+							<div class="content animate__animated">
+								<div class="content__title animate__animated animate__fadeInRight">
 									<p>Honey Yoghurt</p>
 								</div>
-								<div class="content__sub">
+								<div class="content__sub animate__animated animate__fadeInUp">
 									<p>Hot trending</p>
 								</div>
-								<div class="content__desc">
+								<div class="content__desc  animate__fadeInUp">
 									<p>
 										Maecenas varius urna et diam ultrices luctus. Sed lobortis,
 										nulla viverra hendrerit auctor, ipsum est feugiat nisi, eget
@@ -37,7 +37,7 @@ function Banner() {
 										pretium.
 									</p>
 								</div>
-								<Button title="Buy Now" />
+								<Button className="animate__animated animate__slideInDown" title="Buy Now" />
 							</div>
 						</div>
 					</div>
@@ -46,13 +46,13 @@ function Banner() {
 						<div class="banner__bg--2">
 							<img alt="banner" src={img2} />
 							<div class="content--2">
-								<div class="content__title">
+								<div class="content__title animate__animated animate__bounceInDown">
 									<p>Honey Yoghurt</p>
 								</div>
-								<div class="content__sub">
+								<div class="content__sub animate__animated animate__flipInX">
 									<p>Hot trending</p>
 								</div>
-								<div class="content__desc">
+								<div class="content__desc animate__animated animate__fadeInDown">
 									<p>
 										Maecenas varius urna et diam ultrices luctus. Sed lobortis,
 										nulla viverra hendrerit auctor, ipsum est feugiat nisi, eget
@@ -60,7 +60,7 @@ function Banner() {
 										pretium.
 									</p>
 								</div>
-								<Button title="Buy Now" />
+								<Button className="animate__animated animate__lightSpeedInRight" title="Buy Now" />
 							</div>
 						</div>
 					</div>

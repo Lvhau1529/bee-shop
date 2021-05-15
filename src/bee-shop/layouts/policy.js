@@ -11,7 +11,7 @@ function Policy() {
 		<>
 			<div class="policy__block">
 				<div class="container">
-					<div class="policy row">
+					<div class="policy animate__animated animate__fadeInDown">
 						<Row>
 							<NumberPolicy
 								img={img1}
