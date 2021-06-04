@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import 'animate.css'
-import "./bee-shop/assets/styles/main.css"
+import "./bee-shop/assets/styles/main.scss"
 
 function App() {
   return (
