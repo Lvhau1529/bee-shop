@@ -1,12 +1,14 @@
-import React from 'react'
-import HomePage from "./includes/pages/home/index"
+import React from "react";
+// import HomePage from "./includes/pages/home/index"
+import ProductsDetail from "./includes/pages/product/detail"
+// import Cart from "./includes/pages/cart/index";
 
 function Welcome() {
-  return (
-    <>
-      <HomePage />
-    </>
-  )
+	return (
+		<>
+			<ProductsDetail />
+		</>
+	);
 }
 
-export default React.memo(Welcome)
+export default React.memo(Welcome);

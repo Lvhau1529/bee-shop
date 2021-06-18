@@ -1,4 +1,8 @@
-@import "./setting/reset.scss";
+@import "./setting/index.scss";
+@import "./common/index.scss";
 @import "./components/index.scss";
+@import "./utilities/index.scss";
 @import "./layouts/index.scss";
 @import "./pages/home/index.scss";
+@import "./pages/cart/index.scss";
+@import "./pages/product/index.scss";

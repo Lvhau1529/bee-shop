@@ -1,13 +1,16 @@
 import React from "react";
 import logo from "../../assets/images/logo_300x.jpg";
-// import "../../assets/styles/layouts/header.js";
 import { Row, Col } from "antd";
+import { FaSearch } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { AiFillSetting } from "react-icons/ai";
 
 function HeaderComponent() {
 	return (
 		<>
 			<header className="header">
-				<Row>
+				<Row className="d-flex justify-content-center align-items-center">
 					<Col span={6}>
 						<div className="logo">
 							<img src={logo} alt="logo" />
@@ -15,44 +18,69 @@ function HeaderComponent() {
 					</Col>
 					<Col span={10}>
 						<nav className="nav">
-							<ul className="nav__list">
-								<li className="nav__item">
-									<a className="nav__link" href>
-										Home
-									</a>
-								</li>
-								<li className="nav__item">
-									<a className="nav__link" href>
-										Shop
-									</a>
-								</li>
-								<li className="nav__item">
-									<a className="nav__link" href>
-										Pages
-									</a>
-								</li>
-								<li className="nav__item">
-									<a className="nav__link" href>
-										Blog
-									</a>
-								</li>
-								<li className="nav__item">
-									<a className="nav__link" href>
-										Contact
-									</a>
-								</li>
-							</ul>
+							<div className="nav__menu">
+								<ul className="nav__menu-list d-flex justify-content-center">
+									<li className="list__item">
+										<a href className="list__item-link">
+											Home
+										</a>
+										{/* <ul className="list__item-dropdown">
+											<li className="dropdown__item">
+												<a href className="dropdown__item-link">
+													Home Shop 1
+												</a>
+											</li>
+											<li className="dropdown__item">
+												<a href className="dropdown__item-link">
+													Home Shop 2
+												</a>
+											</li>
+											<li className="dropdown__item">
+												<a href className="dropdown__item-link">
+													Home Shop 3
+												</a>
+											</li>
+										</ul> */}
+									</li>
+									<li className="list__item">
+										<a href className="list__item-link">
+											Shop
+										</a>
+									</li>
+									<li className="list__item">
+										<a href className="list__item-link">
+											Page
+										</a>
+									</li>
+									<li className="list__item">
+										<a href className="list__item-link">
+											Blog
+										</a>
+									</li>
+									<li className="list__item">
+										<a href className="list__item-link">
+											Contact
+										</a>
+									</li>
+								</ul>
+							</div>
 						</nav>
 					</Col>
 					<Col span={6}>
-						<div className="nav__search">
+						<div className="nav__search d-flex justify-content-end">
 							<div className="search">
-								<i className="search__icon"></i>
+								<FaSearch />
 								<div className="search__form"></div>
 							</div>
-							<div className="cart"></div>
-							<div className="account"></div>
-							<div className="my-account"></div>
+							<div className="cart">
+								<FaShoppingCart />
+							</div>
+							<div className="account">
+								<FaUser />
+							</div>
+							<div className="my-account">
+								<AiFillSetting />
+							</div>
 						</div>
 					</Col>
 				</Row>

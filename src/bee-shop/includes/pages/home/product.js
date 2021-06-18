@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import TitleBlock from "../../components/home/center-title";
-// import "../styles/layouts/product.css";
+import ProductItem from "../../components/product";
 import img from "../../../assets/images/4_507f6fba-f388-4083-9fb4-e2da9dfda4ee_425x.webp";
 
 function Product() {
@@ -17,88 +17,39 @@ function Product() {
 					<div className="product__detail">
 						<Row>
 							<Col span={6}>
-								<div class="product__item col-md-3">
-									<div class="product__img img-fluid">
-										<a href>
-											<img src={img} alt="" />
-										</a>
-									</div>
-									<div class="product__info">
-										<div class="product__name">Proin nulla dui</div>
-										<div class="product__price">
-											<div class="product__price--regular">
-												<span>$140.000</span>
-											</div>
-											<div class="product__price--sale">
-												<span>$280.000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</Col>
-              
-							<Col span={6}>
-								<div class="product__item col-md-3">
-									<div class="product__img img-fluid">
-										<a href>
-											<img src={img} alt="" />
-										</a>
-									</div>
-									<div class="product__info">
-										<div class="product__name">Proin nulla dui</div>
-										<div class="product__price">
-											<div class="product__price--regular">
-												<span>$140.000</span>
-											</div>
-											<div class="product__price--sale">
-												<span>$280.000</span>
-											</div>
-										</div>
-									</div>
-								</div>
+								<ProductItem
+									img={img}
+									name="Proin nulla dui"
+									price="$140.000"
+									sale="$280.000"
+								/>
 							</Col>
 
 							<Col span={6}>
-								<div class="product__item col-md-3">
-									<div class="product__img img-fluid">
-										<a href>
-											<img src={img} alt="" />
-										</a>
-									</div>
-									<div class="product__info">
-										<div class="product__name">Proin nulla dui</div>
-										<div class="product__price">
-											<div class="product__price--regular">
-												<span>$140.000</span>
-											</div>
-											<div class="product__price--sale">
-												<span>$280.000</span>
-											</div>
-										</div>
-									</div>
-								</div>
+							<ProductItem
+									img={img}
+									name="Proin nulla dui"
+									price="$140.000"
+								/>
 							</Col>
 
-              <Col span={6}>
-                <div class="product__item col-md-3">
-									<div class="product__img img-fluid">
-										<a href>
-											<img src={img} alt="" />
-										</a>
-									</div>
-									<div class="product__info">
-										<div class="product__name">Proin nulla dui</div>
-										<div class="product__price">
-											<div class="product__price--regular">
-												<span>$140.000</span>
-											</div>
-											<div class="product__price--sale">
-												<span>$280.000</span>
-											</div>
-										</div>
-									</div>
-                  </div>
-								</Col>
+							<Col span={6}>
+							<ProductItem
+									img={img}
+									name="Proin nulla dui"
+									price="$140.000"
+									sale="$280.000"
+								/>
+							</Col>
+
+							<Col span={6}>
+							<ProductItem
+									img={img}
+									name="Proin nulla dui"
+									price="$140.000"
+									sale="$280.000"
+								/>
+							</Col>
 						</Row>
 					</div>
 				</div>
