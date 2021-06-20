@@ -50,14 +50,12 @@ function DeltailProduct() {
 										</Radio.Group>
 									</div>
 									<div className="detail__product-cart d-flex align-items-center">
-										<div className="cart__quantity ">
-											<InputNumber
-												min={1}
-												max={10}
-												defaultValue={1}
-												onChange={onChange}
-											/>
-										</div>
+										<InputNumber
+											min={1}
+											max={10}
+											defaultValue={1}
+											onChange={onChange}
+										/>
 										<div className="cart__button">
 											<a href>Add to Cart</a>
 										</div>

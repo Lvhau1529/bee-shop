@@ -1,15 +1,15 @@
 import React from "react";
 import Layout from "../../layouts/index";
-import CartEmpty from "./cart-empty";
+import Cart from "./cart";
 
-function Cart() {
+function CartPage() {
 	return (
 		<>
 			<Layout>
-				<CartEmpty />
+				<Cart />
 			</Layout>
 		</>
 	);
 }
 
-export default React.memo(Cart);
+export default React.memo(CartPage);
