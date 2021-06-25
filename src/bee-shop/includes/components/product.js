@@ -1,17 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function ProductItem(props) {
 	return (
 		<>
 			<div class="product__item col-md-3">
 				<div class="product__img img-fluid">
-					<a href>
+					<Link to="/detail">
 						<img src={props.img} alt="" />
-					</a>
+					</Link>
 				</div>
 				<div class="product__info">
 					<div class="product__name">
-						<a href>{props.name}</a>
+						<Link to="/detail">{props.name}</Link>
 					</div>
 					<div class="product__price">
 						<div class="product__price--regular">
@@ -22,9 +23,9 @@ function ProductItem(props) {
 						</div>
 					</div>
 					<div className="product__cart">
-						<a href>
+						<Link>
 							<span>Add to Cart</span>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

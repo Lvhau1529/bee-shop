@@ -26,7 +26,7 @@ function Product() {
 							</Col>
 
 							<Col span={6}>
-							<ProductItem
+								<ProductItem
 									img={img}
 									name="Proin nulla dui"
 									price="$140.000"
@@ -34,7 +34,7 @@ function Product() {
 							</Col>
 
 							<Col span={6}>
-							<ProductItem
+								<ProductItem
 									img={img}
 									name="Proin nulla dui"
 									price="$140.000"
@@ -43,7 +43,7 @@ function Product() {
 							</Col>
 
 							<Col span={6}>
-							<ProductItem
+								<ProductItem
 									img={img}
 									name="Proin nulla dui"
 									price="$140.000"

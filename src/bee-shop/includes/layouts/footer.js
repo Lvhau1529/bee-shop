@@ -1,8 +1,20 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Row, Col, BackTop } from "antd";
 import FooterMenu from "../components/home/menu-footer";
 import logo from "../../assets/images/logo_footer_150x.png";
-// import "assets/styles/layouts/footer.css";
+import { BiArrowToTop } from "react-icons/bi";
+
+const style = {
+	height: 40,
+	width: 40,
+	lineHeight: "45px",
+	border: "1px solid #FDC826",
+	borderRadius: "50%",
+	backgroundColor: "white",
+	color: "black",
+	textAlign: "center",
+	fontSize: 20,
+};
 
 function Footer() {
 	return (
@@ -90,6 +102,11 @@ function Footer() {
 						</div>
 					</div>
 				</div>
+				<BackTop style={{ right: "1rem" }}>
+					<div style={style}>
+						<BiArrowToTop />
+					</div>
+				</BackTop>
 			</footer>
 		</>
 	);

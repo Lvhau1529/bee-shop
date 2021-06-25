@@ -12,7 +12,13 @@ function DeltailProduct() {
 	return (
 		<>
 			<Layout>
-				<Breadcrumb title="Products" link1="Home" link2="Products" />
+				<Breadcrumb
+					title="Products"
+					link1="/home"
+					link2="/detail"
+					name1="Home"
+					name2="Detail"
+				/>
 				<div className="detail">
 					<div className="container">
 						<Row>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import logo from "../../assets/images/logo_300x.jpg";
+import { NavLink, Link } from "react-router-dom";
 import { Row, Col } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { AiFillSetting } from "react-icons/ai";
 import { RiDeleteBinLine } from "react-icons/ri";
+import logo from "../../assets/images/logo_300x.jpg";
 import img1 from "../../assets/images/4_2da966d0-5f84-4f25-b7ed-bcc6189053a4_155x.jpg";
 
 function HeaderComponent() {
@@ -20,7 +21,9 @@ function HeaderComponent() {
 				<Row className="d-flex justify-content-center align-items-center">
 					<Col span={6}>
 						<div className="logo">
-							<img src={logo} alt="logo" />
+							<NavLink to="/home">
+								<img src={logo} alt="logo" />
+							</NavLink>
 						</div>
 					</Col>
 					<Col span={10}>
@@ -28,29 +31,29 @@ function HeaderComponent() {
 							<div className="nav__menu">
 								<ul className="nav__menu-list d-flex justify-content-center">
 									<li className="list__item">
-										<a href className="list__item-link">
+										<NavLink className="list__item-link" to="/home" activeClassName="active">
 											Home
-										</a>
+										</NavLink>
 									</li>
 									<li className="list__item">
-										<a href className="list__item-link">
+										<NavLink className="list__item-link" to="/product">
 											Shop
-										</a>
+										</NavLink>
 									</li>
 									<li className="list__item">
-										<a href className="list__item-link">
+										<NavLink className="list__item-link" to="#">
 											Page
-										</a>
+										</NavLink>
 									</li>
 									<li className="list__item">
-										<a href className="list__item-link">
+										<NavLink className="list__item-link" to="#">
 											Blog
-										</a>
+										</NavLink>
 									</li>
 									<li className="list__item">
-										<a href className="list__item-link">
+										<NavLink className="list__item-link" to="#">
 											Contact
-										</a>
+										</NavLink>
 									</li>
 								</ul>
 							</div>
@@ -124,7 +127,7 @@ function HeaderComponent() {
 										<p>Shipping & taxes calculated at checkout</p>
 										<div className="payment__button d-flex justify-content-center">
 											<div className="payment__button-viewcart">
-												<a href>View Cart</a>
+												<Link to="/cart">View Cart</Link>
 											</div>
 											<div className="payment__button-checkout">
 												<a href>Check out</a>

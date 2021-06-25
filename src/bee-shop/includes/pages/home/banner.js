@@ -13,7 +13,7 @@ function Banner() {
 		slidesToScroll: 2,
 		autoplay: true,
 		speed: 1000,
-		autoplaySpeed: 2000
+		autoplaySpeed: 2000,
 	};
 	return (
 		<>
@@ -37,7 +37,11 @@ function Banner() {
 										pretium.
 									</p>
 								</div>
-								<Button className="animate__animated animate__slideInDown" title="Buy Now" />
+								<Button
+									className="animate__animated animate__slideInDown"
+									title="Buy Now"
+									link="/product"
+								/>
 							</div>
 						</div>
 					</div>
@@ -60,7 +64,11 @@ function Banner() {
 										pretium.
 									</p>
 								</div>
-								<Button className="animate__animated animate__lightSpeedInRight" title="Buy Now" />
+								<Button
+									className="animate__animated animate__lightSpeedInRight"
+									title="Buy Now"
+									link="/product"
+								/>
 							</div>
 						</div>
 					</div>

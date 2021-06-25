@@ -10,14 +10,20 @@ import img from "../../../assets/images/4_507f6fba-f388-4083-9fb4-e2da9dfda4ee_4
 const { Option } = Select;
 
 function handleChange(value) {
-  console.log(`selected ${value}`);
+	console.log(`selected ${value}`);
 }
 
 function Products() {
 	return (
 		<>
 			<Layout>
-				<Breadcrumb title="Products" link1="Home" link2="Products" />
+				<Breadcrumb
+					title="Products"
+					link1="/home"
+					link2="/product"
+					name1="Home"
+					name2="Product"
+				/>
 				<div className="product">
 					<div className="container">
 						<Row>
@@ -79,7 +85,7 @@ function Products() {
 									/>
 								</Col>
 
-                <Col span={6}>
+								<Col span={6}>
 									<ProductItem
 										img={img}
 										name="Proin nulla dui"

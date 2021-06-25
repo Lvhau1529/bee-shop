@@ -1,5 +1,6 @@
 import React from "react";
 import Breadcrumb from "../../components/breadcrumb";
+import { Link } from "react-router-dom";
 import { Row, Col, InputNumber, Input } from "antd";
 import { RiDeleteBinLine } from "react-icons/ri";
 import img1 from "../../../assets/images/4_2da966d0-5f84-4f25-b7ed-bcc6189053a4_155x.jpg";
@@ -13,7 +14,13 @@ const { TextArea } = Input;
 function Cart() {
 	return (
 		<>
-			<Breadcrumb title="Your Cart" link1="Home" link2="Your cart" />
+			<Breadcrumb
+				title="Your Cart"
+				link1="/home"
+				link2="/cart"
+				name1="Home"
+				name2="Your Cart"
+			/>
 			<div className="cart">
 				<div className="container">
 					<Row>
@@ -35,14 +42,14 @@ function Cart() {
 												</div>
 												<div className="table__detail">
 													<div className="table__detail-name">
-														<a href>Morbi viverra hend</a>
+														<Link to="">Morbi viverra hend</Link>
 													</div>
 													<div className="table__detail-size">Size: 50ml</div>
 												</div>
 												<div className="table__button">
-													<a href>
+													<Link to="">
 														<RiDeleteBinLine />
-													</a>
+													</Link>
 												</div>
 											</td>
 											{/* Price */}
@@ -58,7 +65,7 @@ function Cart() {
 											{/* Total */}
 											<td className="total">$130</td>
 										</tr>
-										
+
 										{/* Product 2 */}
 										<tr className="product-cart__content">
 											<td className="product-cart d-flex align-items-center">
@@ -67,14 +74,14 @@ function Cart() {
 												</div>
 												<div className="table__detail">
 													<div className="table__detail-name">
-														<a href>Pellentesque lacinia</a>
+														<Link to="">Pellentesque lacinia</Link>
 													</div>
 													<div className="table__detail-size">Size: 150ml</div>
 												</div>
 												<div className="table__button">
-													<a href>
+													<Link to="">
 														<RiDeleteBinLine />
-													</a>
+													</Link>
 												</div>
 											</td>
 											{/* Price */}
@@ -107,9 +114,9 @@ function Cart() {
 							</div>
 							<p>Shipping & taxes calculated at checkout</p>
 							<div className="check__button">
-								<a href>Continue Shopping</a>
-								<a href>Update</a>
-								<a href>Check out</a>
+								<Link to="/product">Continue Shopping</Link>
+								<Link to="">Update</Link>
+								<Link to="">Check out</Link>
 							</div>
 						</Col>
 					</Row>
