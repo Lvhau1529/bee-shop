@@ -19,7 +19,7 @@ function Products() {
 			<Layout>
 				<Breadcrumb
 					title="Products"
-					link1="/home"
+					link1="/"
 					link2="/product"
 					name1="Home"
 					name2="Product"

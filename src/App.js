@@ -1,4 +1,4 @@
-import Welcome from "./bee-shop/index"
+import BeeShop from "./bee-shop/index"
 import 'antd/dist/antd.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -9,7 +9,7 @@ import "./bee-shop/assets/js/main"
 function App() {
   return (
     <div className="App">
-      <Welcome />
+      <BeeShop />
     </div>
   );
 }

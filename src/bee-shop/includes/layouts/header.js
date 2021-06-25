@@ -21,7 +21,7 @@ function HeaderComponent() {
 				<Row className="d-flex justify-content-center align-items-center">
 					<Col span={6}>
 						<div className="logo">
-							<NavLink to="/home">
+							<NavLink to="/">
 								<img src={logo} alt="logo" />
 							</NavLink>
 						</div>
@@ -31,7 +31,7 @@ function HeaderComponent() {
 							<div className="nav__menu">
 								<ul className="nav__menu-list d-flex justify-content-center">
 									<li className="list__item">
-										<NavLink className="list__item-link" to="/home" activeClassName="active">
+										<NavLink className="list__item-link" to="/" activeClassName="active">
 											Home
 										</NavLink>
 									</li>
@@ -65,6 +65,7 @@ function HeaderComponent() {
 								<IoSearchOutline />
 								<div className="search__form"></div>
 							</li>
+							{/* Cart count */}
 							<li className="nav__cart" onClick={toggleClass}>
 								<a href>
 									<IoCartOutline />
@@ -81,13 +82,13 @@ function HeaderComponent() {
 									{/* Item 1 */}
 									<div className="cart__quantity-product">
 										<div className="product__img">
-											<a href>
+											<Link to="/detail">
 												<img src={img1} alt="" />
-											</a>
+											</Link>
 										</div>
 										<div className="product__info">
 											<div className="product__info-name">
-												<a href>Morbi viverra hend</a>
+												<Link to="/detail">Morbi viverra hend</Link>
 											</div>
 											<div className="product__info-size">50ml</div>
 											<div className="product__info-price">$130 x 1</div>
@@ -102,13 +103,13 @@ function HeaderComponent() {
 									{/* Item 2 */}
 									<div className="cart__quantity-product">
 										<div className="product__img">
-											<a href>
+											<Link to="/detail">
 												<img src={img1} alt="" />
-											</a>
+											</Link>
 										</div>
 										<div className="product__info">
 											<div className="product__info-name">
-												<a href>Proin nulla dui</a>
+												<Link to="/detail">Proin nulla dui</Link>
 											</div>
 											<div className="product__info-size">150ml</div>
 											<div className="product__info-price">$200 x 1</div>
@@ -136,6 +137,7 @@ function HeaderComponent() {
 									</div>
 								</div>
 							</li>
+							{/* ./Cart count  */}
 							<li className="account">
 								<FaUser />
 							</li>

@@ -14,7 +14,7 @@ function DeltailProduct() {
 			<Layout>
 				<Breadcrumb
 					title="Products"
-					link1="/home"
+					link1="/"
 					link2="/detail"
 					name1="Home"
 					name2="Detail"

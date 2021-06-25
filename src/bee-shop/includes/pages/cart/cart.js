@@ -16,7 +16,7 @@ function Cart() {
 		<>
 			<Breadcrumb
 				title="Your Cart"
-				link1="/home"
+				link1="/"
 				link2="/cart"
 				name1="Home"
 				name2="Your Cart"
@@ -42,7 +42,7 @@ function Cart() {
 												</div>
 												<div className="table__detail">
 													<div className="table__detail-name">
-														<Link to="">Morbi viverra hend</Link>
+														<Link to="/detail">Morbi viverra hend</Link>
 													</div>
 													<div className="table__detail-size">Size: 50ml</div>
 												</div>
@@ -74,7 +74,7 @@ function Cart() {
 												</div>
 												<div className="table__detail">
 													<div className="table__detail-name">
-														<Link to="">Pellentesque lacinia</Link>
+														<Link to="/detail">Pellentesque lacinia</Link>
 													</div>
 													<div className="table__detail-size">Size: 150ml</div>
 												</div>

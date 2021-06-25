@@ -7,13 +7,13 @@ const CartComponent = lazy(() => import("./includes/pages/cart/index"));
 const ProductComponent = lazy(() => import("./includes/pages/product/index"));
 const ProductDetail = lazy(() => import("./includes/pages/product/detail"))
 
-function Welcome() {
+function BeeShop() {
 	return (
 		<>
 			<Router>
 				<Suspense fallback={<Skeleton active />}>
 					<Switch>
-						<Route path="/home">
+						<Route exact path="/">
 							<HomeComponent />
 						</Route>
 
@@ -29,14 +29,14 @@ function Welcome() {
 							<ProductDetail />
 						</Route>
 
-						<Route extract path="/">
+						<Route exact path="*">
 							<Result
 								status="404"
 								title="404"
 								subTitle="Sorry, the page you visited does not exist."
 								extra={
 									<Button type="primary">
-										<Link to="/home">Back Home</Link>
+										<Link to="/">Back Home</Link>
 									</Button>
 								}
 							/>
@@ -48,4 +48,4 @@ function Welcome() {
 	);
 }
 
-export default React.memo(Welcome);
+export default React.memo(BeeShop);

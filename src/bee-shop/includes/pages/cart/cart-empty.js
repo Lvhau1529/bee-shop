@@ -5,7 +5,13 @@ import Breadcrumb from "../../components/breadcrumb";
 function CartEmpty() {
 	return (
 		<>
-			<Breadcrumb title="Your Cart" link1="Home" link2="Your cart" />
+			<Breadcrumb
+				title="Your Cart"
+				link1="/"
+				link2="/cart"
+				name1="Home"
+				name2="Your Cart"
+			/>
 			<div className="cart-empty">
 				<div className="container">
 					<Row>
