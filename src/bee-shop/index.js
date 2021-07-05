@@ -1,13 +1,18 @@
-import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Skeleton, Result, Button } from "antd";
+import React, { lazy, Suspense } from "react"
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom"
+import { Skeleton, Result, Button } from "antd"
 
-const HomeComponent = lazy(() => import("./includes/pages/home/index"));
-const CartComponent = lazy(() => import("./includes/pages/cart/index"));
-const ProductComponent = lazy(() => import("./includes/pages/product/index"));
+import useUserAuth from "../hooks/useUserAuth"
+
+const HomeComponent = lazy(() => import("./includes/pages/home/index"))
+const CartComponent = lazy(() => import("./includes/pages/cart/index"))
+const ProductComponent = lazy(() => import("./includes/pages/product/index"))
 const ProductDetail = lazy(() => import("./includes/pages/product/detail"))
 
 function BeeShop() {
+	const history = useHistory()
+	useUserAuth(null, () => history.push("/login"))
+
 	return (
 		<>
 			<Router>
@@ -45,7 +50,7 @@ function BeeShop() {
 				</Suspense>
 			</Router>
 		</>
-	);
+	)
 }
 
-export default React.memo(BeeShop);
+export default React.memo(BeeShop)
