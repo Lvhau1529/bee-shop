@@ -1,19 +1,62 @@
-import React from "react";
-import Layout from "../../layouts/index";
-import Breadcrumb from "../../components/breadcrumb";
-import ProductItem from "../../components/product";
-import { Row, Col, Select, Pagination } from "antd";
-import { FaThList } from "react-icons/fa";
-import { FaThLarge } from "react-icons/fa";
-import img from "../../../assets/images/4_507f6fba-f388-4083-9fb4-e2da9dfda4ee_425x.webp";
+import React, { useEffect, useMemo, useState } from "react"
+import Layout from "../../layouts/index"
+import Breadcrumb from "../../components/breadcrumb"
+import ProductItem from "../../components/product"
+import { Row, Col, Select, Pagination } from "antd"
+import { FaThList } from "react-icons/fa"
+import { FaThLarge } from "react-icons/fa"
 
-const { Option } = Select;
+import { getProducts, countProducts } from "../../../../services/firebaseService"
 
-function handleChange(value) {
-	console.log(`selected ${value}`);
-}
-
+const { Option } = Select
+const limit = 10
 function Products() {
+	const [total, setTotal] = useState(0)
+	const [products, setProducts] = useState([])
+	const [page, setPage] = useState(1)
+
+	const [sort, setSort] = useState({
+		sortBy: "name",
+		sortOrder: "asc"
+	})
+
+	const offset = useMemo(() => {
+		return (page - 1) * limit
+	}, [page])
+
+	const get = async () => {
+		const data = await getProducts(offset, sort.sortBy, sort.sortOrder)
+		setProducts(data)
+	}
+
+	const count = async () => {
+		const data = await countProducts()
+		setTotal(data)
+	}
+
+	useEffect(() => {
+		get()
+	}, [sort, offset])
+
+	useEffect(() => {
+		count()
+	}, [])
+
+	const onChangeFilter = (value) => {
+		switch (value) {
+			case "lowToHigh":
+				return setSort({ sortBy: "price", sortOrder: "asc" })
+			case "hightoLow":
+				return setSort({ sortBy: "price", sortOrder: "desc" })
+			case "nameAtoZ":
+				return setSort({ sortBy: "name", sortOrder: "desc" })
+			case "nameZtoA":
+				return setSort({ sortBy: "name", sortOrder: "desc" })
+			default:
+				return
+		}
+	}
+
 	return (
 		<>
 			<Layout>
@@ -40,7 +83,7 @@ function Products() {
 									<Select
 										defaultValue="Price, low to high"
 										style={{ width: 200 }}
-										onChange={handleChange}
+										onChange={onChangeFilter}
 									>
 										<Option value="lowToHigh">Price, low to high</Option>
 										<Option value="hightoLow">Price, high to low</Option>
@@ -52,77 +95,20 @@ function Products() {
 						</Row>
 						<div className="product__items">
 							<Row>
-								<Col span={6}>
+								{products.map(product => <Col span={6} key={product.id}>
 									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
+										img={product.img}
+										name={product.name}
+										price={`$${product.price}`}
+										sale={`$${product.sale}`}
 									/>
-								</Col>
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
-
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
-								<Col span={6}>
-									<ProductItem
-										img={img}
-										name="Proin nulla dui"
-										price="$140.000"
-										sale="$280.000"
-									/>
-								</Col>
+								</Col>)}
 							</Row>
 						</div>
 						<div className="product__pagination">
 							<Row>
 								<Col span={24}>
-									<Pagination defaultCurrent={1} total={50} />
+									<Pagination current={page} pageSize={limit} total={total} onChange={(page, pageSize) => setPage(page)} />
 								</Col>
 							</Row>
 						</div>
@@ -130,7 +116,7 @@ function Products() {
 				</div>
 			</Layout>
 		</>
-	);
+	)
 }
 
-export default React.memo(Products);
+export default React.memo(Products)

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import BeeShop from "./bee-shop/index"
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'antd/dist/antd.css'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
