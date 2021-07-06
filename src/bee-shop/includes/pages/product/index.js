@@ -6,7 +6,7 @@ import { Row, Col, Select, Pagination } from "antd"
 import { FaThList } from "react-icons/fa"
 import { FaThLarge } from "react-icons/fa"
 import { ProductContext } from "../../../../contexts/ProductContext"
-import firebase from "../../../../configs/firebase"
+import useUserAuth from "../../../../hooks/useUserAuth"
 const { Option } = Select
 const limit = 10
 function Products() {
@@ -24,11 +24,11 @@ function Products() {
 		setSort
 	} = productContext
 
-	const user = firebase.auth().currentUser
+	useUserAuth(get, null)
 
 	useEffect(() => {
-		user && get()
-	}, [sort, offset, user])
+		get()
+	}, [sort, offset])
 
 	useEffect(() => {
 		count()

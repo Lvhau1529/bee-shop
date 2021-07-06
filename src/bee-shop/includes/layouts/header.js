@@ -8,7 +8,7 @@ import { AiFillSetting } from "react-icons/ai"
 import logo from "../../assets/images/logo_300x.jpg"
 import CartItem from "../components/CartItem"
 import { ProductContext } from "../../../contexts/ProductContext"
-import firebase from "../../../configs/firebase"
+import useUserAuth from "../../../hooks/useUserAuth"
 function HeaderComponent() {
 	const productContext = useContext(ProductContext)
 	const {
@@ -24,11 +24,7 @@ function HeaderComponent() {
 		setActive(!isActive)
 	}
 
-	const user = firebase.auth().currentUser
-
-	useEffect(() => {
-		user && getCartProducts()
-	}, [user])
+	useUserAuth(getCartProducts, null)
 
 	return (
 		<>

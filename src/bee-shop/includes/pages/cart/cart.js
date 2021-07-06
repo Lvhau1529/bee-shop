@@ -5,10 +5,7 @@ import { Row, Col, InputNumber, Input } from "antd"
 import { RiDeleteBinLine } from "react-icons/ri"
 
 import { ProductContext } from "../../../../contexts/ProductContext"
-import firebase from "../../../../configs/firebase"
-function onChange(value) {
-	console.log("changed", value)
-}
+import useUserAuth from "../../../../hooks/useUserAuth"
 
 const { TextArea } = Input
 
@@ -18,14 +15,15 @@ function Cart() {
 		cartProducts,
 		cartTotal,
 		removeCart,
-		getCartProducts
+		getCartProducts,
+		changeCountNumber
 	} = productContext
 
-	const user = firebase.auth().currentUser
+	useUserAuth(getCartProducts, null)
 
-	useEffect(() => {
-		user && getCartProducts()
-	}, [user])
+	const onChange = productId => value => {
+		changeCountNumber(productId)(value)
+	}
 
 	return (
 		<>
@@ -72,8 +70,8 @@ function Cart() {
 												<InputNumber
 													min={1}
 													max={10}
-													value={product.count}
-													onChange={onChange}
+													defaultValue={product.count}
+													onChange={onChange(product.id)}
 												/>
 											</td>
 											{/* Total */}

@@ -56,6 +56,17 @@ export const ProductProvider = ({ children }) => {
         }
     }
 
+    const changeCountNumber = productId => async (number) => {
+        console.log({ productId, number })
+        try {
+            await addToCart(productId, number, true)
+            await getCartProducts()
+        } catch (err) {
+            alert(err.response?.data || err.message)
+            console.error(err)
+        }
+    }
+
     const removeCart = productId => async () => {
         try {
             await removeProductInCart(productId)
@@ -81,7 +92,8 @@ export const ProductProvider = ({ children }) => {
         count,
         add,
         setSort,
-        removeCart
+        removeCart,
+        changeCountNumber
     }
 
     return <ProductContext.Provider value={values}>

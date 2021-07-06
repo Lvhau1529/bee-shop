@@ -28,7 +28,7 @@ export const getProducts = async (offset, sortBy, sortOrder) => {
     }))
 }
 
-export const addToCart = async (productId, number) => {
+export const addToCart = async (productId, number, isAll = false) => {
     const userId = firebase.auth().currentUser?.uid
     if (!userId) return
 
@@ -47,7 +47,7 @@ export const addToCart = async (productId, number) => {
             .firestore()
             .collection(collections.carts)
             .doc(item.id)
-            .update({ count: item.data().count + number })
+            .update({ count: isAll ? number : item.data().count + number })
 
         return
     }
