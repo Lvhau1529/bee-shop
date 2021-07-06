@@ -1,17 +1,30 @@
-import React from "react";
-import Breadcrumb from "../../components/breadcrumb";
-import { Link } from "react-router-dom";
-import { Row, Col, InputNumber, Input } from "antd";
-import { RiDeleteBinLine } from "react-icons/ri";
-import img1 from "../../../assets/images/4_2da966d0-5f84-4f25-b7ed-bcc6189053a4_155x.jpg";
+import React, { useContext, useEffect } from "react"
+import Breadcrumb from "../../components/breadcrumb"
+import { Link } from "react-router-dom"
+import { Row, Col, InputNumber, Input } from "antd"
+import { RiDeleteBinLine } from "react-icons/ri"
 
-function onChange(value) {
-	console.log("changed", value);
-}
+import { ProductContext } from "../../../../contexts/ProductContext"
+import useUserAuth from "../../../../hooks/useUserAuth"
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
 function Cart() {
+	const productContext = useContext(ProductContext)
+	const {
+		cartProducts,
+		cartTotal,
+		removeCart,
+		getCartProducts,
+		changeCountNumber
+	} = productContext
+
+	useUserAuth(getCartProducts, null)
+
+	const onChange = productId => value => {
+		changeCountNumber(productId)(value)
+	}
+
 	return (
 		<>
 			<Breadcrumb
@@ -34,69 +47,36 @@ function Cart() {
 											<th>Quantity</th>
 											<th>Total</th>
 										</tr>
-										{/* Product 1 */}
-										<tr className="product-cart__content">
+										{cartProducts.map(product => <tr key={product.id} className="product-cart__content">
 											<td className="product-cart d-flex align-items-center">
 												<div className="table__img">
-													<img src={img1} alt="" />
+													<img src={product.img} alt="" />
 												</div>
 												<div className="table__detail">
 													<div className="table__detail-name">
-														<Link to="/detail">Morbi viverra hend</Link>
+														<Link to="/detail">{product.name}</Link>
 													</div>
-													<div className="table__detail-size">Size: 50ml</div>
+													{/* <div className="table__detail-size">Size: 50ml</div> */}
 												</div>
-												<div className="table__button">
+												<div className="table__button" onClick={removeCart(product.id)}>
 													<Link to="">
 														<RiDeleteBinLine />
 													</Link>
 												</div>
 											</td>
 											{/* Price */}
-											<td className="price">$130</td>
+											<td className="price">${product.price}</td>
 											<td>
 												<InputNumber
 													min={1}
 													max={10}
-													defaultValue={1}
-													onChange={onChange}
+													defaultValue={product.count}
+													onChange={onChange(product.id)}
 												/>
 											</td>
 											{/* Total */}
-											<td className="total">$130</td>
-										</tr>
-
-										{/* Product 2 */}
-										<tr className="product-cart__content">
-											<td className="product-cart d-flex align-items-center">
-												<div className="table__img">
-													<img src={img1} alt="" />
-												</div>
-												<div className="table__detail">
-													<div className="table__detail-name">
-														<Link to="/detail">Pellentesque lacinia</Link>
-													</div>
-													<div className="table__detail-size">Size: 150ml</div>
-												</div>
-												<div className="table__button">
-													<Link to="">
-														<RiDeleteBinLine />
-													</Link>
-												</div>
-											</td>
-											{/* Price */}
-											<td className="price">$200</td>
-											<td>
-												<InputNumber
-													min={1}
-													max={10}
-													defaultValue={1}
-													onChange={onChange}
-												/>
-											</td>
-											{/* Total */}
-											<td className="total">$200</td>
-										</tr>
+											<td className="total">${product.price * product.count}</td>
+										</tr>)}
 									</table>
 								</form>
 							</div>
@@ -110,7 +90,7 @@ function Cart() {
 						<Col span={12} className="cart__footer-check">
 							<div className="check__total d-flex justify-content-end">
 								<div className="check__total-title">Total:</div>
-								<div className="check__total-price">$330</div>
+								<div className="check__total-price">${cartTotal}</div>
 							</div>
 							<p>Shipping & taxes calculated at checkout</p>
 							<div className="check__button">
@@ -123,7 +103,7 @@ function Cart() {
 				</div>
 			</div>
 		</>
-	);
+	)
 }
 
-export default React.memo(Cart);
+export default React.memo(Cart)
