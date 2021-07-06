@@ -13,4 +13,6 @@ const useUserAuth = (onAuth, onUnAuth) => {
     }, [])
 }
 
+// firebase.auth().signOut()
+
 export default useUserAuth

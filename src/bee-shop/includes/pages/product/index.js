@@ -6,7 +6,7 @@ import { Row, Col, Select, Pagination } from "antd"
 import { FaThList } from "react-icons/fa"
 import { FaThLarge } from "react-icons/fa"
 
-import { getProducts, countProducts } from "../../../../services/firebaseService"
+import { getProducts, countProducts, addToCart } from "../../../../services/firebaseService"
 
 const { Option } = Select
 const limit = 10
@@ -32,6 +32,15 @@ function Products() {
 	const count = async () => {
 		const data = await countProducts()
 		setTotal(data)
+	}
+
+	const add = productId => async () => {
+		try {
+			await addToCart(productId, 1)
+			alert("added")
+		} catch (err) {
+			alert(err.response?.data || err.message)
+		}
 	}
 
 	useEffect(() => {
@@ -101,6 +110,7 @@ function Products() {
 										name={product.name}
 										price={`$${product.price}`}
 										sale={`$${product.sale}`}
+										add={add(product.id)}
 									/>
 								</Col>)}
 							</Row>

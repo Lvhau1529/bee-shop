@@ -1,5 +1,5 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 function ProductItem(props) {
 	return (
@@ -22,15 +22,13 @@ function ProductItem(props) {
 							<span>{props.sale}</span>
 						</div>
 					</div>
-					<div className="product__cart">
-						<Link>
-							<span>Add to Cart</span>
-						</Link>
+					<div className="product__cart" onClick={props.add}>
+						<span>Add to Cart</span>
 					</div>
 				</div>
 			</div>
 		</>
-	);
+	)
 }
 
 export default React.memo(ProductItem)
