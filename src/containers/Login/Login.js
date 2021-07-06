@@ -17,6 +17,7 @@ const Login = () => {
             history.push("/")
         } catch (err) {
             alert(err.response?.data || err.message)
+            console.error(err)
         }
     }
 

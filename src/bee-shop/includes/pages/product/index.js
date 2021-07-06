@@ -1,51 +1,34 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useContext } from "react"
 import Layout from "../../layouts/index"
 import Breadcrumb from "../../components/breadcrumb"
 import ProductItem from "../../components/product"
 import { Row, Col, Select, Pagination } from "antd"
 import { FaThList } from "react-icons/fa"
 import { FaThLarge } from "react-icons/fa"
-
-import { getProducts, countProducts, addToCart } from "../../../../services/firebaseService"
-
+import { ProductContext } from "../../../../contexts/ProductContext"
+import firebase from "../../../../configs/firebase"
 const { Option } = Select
 const limit = 10
 function Products() {
-	const [total, setTotal] = useState(0)
-	const [products, setProducts] = useState([])
-	const [page, setPage] = useState(1)
+	const productContext = useContext(ProductContext)
+	const {
+		total,
+		products,
+		offset,
+		page,
+		sort,
+		setPage,
+		get,
+		count,
+		add,
+		setSort
+	} = productContext
 
-	const [sort, setSort] = useState({
-		sortBy: "name",
-		sortOrder: "asc"
-	})
-
-	const offset = useMemo(() => {
-		return (page - 1) * limit
-	}, [page])
-
-	const get = async () => {
-		const data = await getProducts(offset, sort.sortBy, sort.sortOrder)
-		setProducts(data)
-	}
-
-	const count = async () => {
-		const data = await countProducts()
-		setTotal(data)
-	}
-
-	const add = productId => async () => {
-		try {
-			await addToCart(productId, 1)
-			alert("added")
-		} catch (err) {
-			alert(err.response?.data || err.message)
-		}
-	}
+	const user = firebase.auth().currentUser
 
 	useEffect(() => {
-		get()
-	}, [sort, offset])
+		user && get()
+	}, [sort, offset, user])
 
 	useEffect(() => {
 		count()

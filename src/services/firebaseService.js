@@ -29,7 +29,8 @@ export const getProducts = async (offset, sortBy, sortOrder) => {
 }
 
 export const addToCart = async (productId, number) => {
-    const userId = firebase.auth().currentUser.uid
+    const userId = firebase.auth().currentUser?.uid
+    if (!userId) return
 
     let query = firebase
         .firestore()
@@ -58,7 +59,8 @@ export const addToCart = async (productId, number) => {
 }
 
 export const getCart = async () => {
-    const userId = firebase.auth().currentUser.uid
+    const userId = firebase.auth().currentUser?.uid
+    if (!userId) return []
 
     let query = firebase
         .firestore()
@@ -94,4 +96,18 @@ export const getCart = async () => {
             count: thisProduct.count
         }
     }).filter(Boolean)
+}
+
+export const removeProductInCart = async (productId) => {
+    const userId = firebase.auth().currentUser?.uid
+    if (!userId) return
+
+    let query = firebase
+        .firestore()
+        .collection(collections.carts)
+        .where("userId", "==", userId)
+    query = query.where("productId", "==", productId)
+
+    const snapshot = await query.get()
+    snapshot.forEach(doc => doc.ref.delete())
 }

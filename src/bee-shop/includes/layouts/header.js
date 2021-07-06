@@ -1,43 +1,34 @@
-import React, { useEffect, useState, useMemo } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { NavLink, Link } from "react-router-dom"
 import { Row, Col } from "antd"
 import { IoSearchOutline } from "react-icons/io5"
 import { IoCartOutline } from "react-icons/io5"
 import { FaUser } from "react-icons/fa"
 import { AiFillSetting } from "react-icons/ai"
-import { RiDeleteBinLine } from "react-icons/ri"
 import logo from "../../assets/images/logo_300x.jpg"
-import img1 from "../../assets/images/4_2da966d0-5f84-4f25-b7ed-bcc6189053a4_155x.jpg"
 import CartItem from "../components/CartItem"
-
-import { getCart } from "../../../services/firebaseService"
-
+import { ProductContext } from "../../../contexts/ProductContext"
+import firebase from "../../../configs/firebase"
 function HeaderComponent() {
+	const productContext = useContext(ProductContext)
+	const {
+		cartProducts,
+		getCartProducts,
+		cartTotal,
+		removeCart
+	} = productContext
+
 	const [isActive, setActive] = useState(false)
-	const [products, setProducts] = useState([])
 
 	const toggleClass = () => {
 		setActive(!isActive)
 	}
 
-	const get = async () => {
-		try {
-			const data = await getCart()
-			setProducts(data)
-		} catch (err) {
-			alert(err.response?.data || err.message)
-		}
-	}
-
-	const total = useMemo(() => {
-		return products.reduce((total, product) => {
-			return total + product.price * product.count
-		}, 0)
-	}, [products])
+	const user = firebase.auth().currentUser
 
 	useEffect(() => {
-		get()
-	}, [])
+		user && getCartProducts()
+	}, [user])
 
 	return (
 		<>
@@ -94,7 +85,7 @@ function HeaderComponent() {
 								<a href>
 									<IoCartOutline />
 									<div className="cart__count">
-										<div className="cart__count-number">{products.length}</div>
+										<div className="cart__count-number">{cartProducts.length}</div>
 									</div>
 								</a>
 
@@ -103,55 +94,15 @@ function HeaderComponent() {
 										isActive ? "cart__quantity show" : "cart__quantity"
 									}
 								>
-									{products.map(product => <CartItem
+									{cartProducts.map(product => <CartItem
 										key={product.id}
 										product={product}
+										onDelete={removeCart(product.id)}
 									/>)}
-									{/* Item 1 */}
-									{/* <div className="cart__quantity-product">
-										<div className="product__img">
-											<Link to="/detail">
-												<img src={img1} alt="" />
-											</Link>
-										</div>
-										<div className="product__info">
-											<div className="product__info-name">
-												<Link to="/detail">Morbi viverra hend</Link>
-											</div>
-											<div className="product__info-size">50ml</div>
-											<div className="product__info-price">$130 x 1</div>
-											<div className="product__info-delete">
-												<a href>
-													<RiDeleteBinLine />
-												</a>
-											</div>
-										</div>
-									</div> */}
-
-									{/* Item 2 */}
-									{/* <div className="cart__quantity-product">
-										<div className="product__img">
-											<Link to="/detail">
-												<img src={img1} alt="" />
-											</Link>
-										</div>
-										<div className="product__info">
-											<div className="product__info-name">
-												<Link to="/detail">Proin nulla dui</Link>
-											</div>
-											<div className="product__info-size">150ml</div>
-											<div className="product__info-price">$200 x 1</div>
-											<div className="product__info-delete">
-												<a href>
-													<RiDeleteBinLine />
-												</a>
-											</div>
-										</div>
-									</div> */}
 									<div className="cart__quantity-payment">
 										<div className="payment__total d-flex">
 											<label htmlFor="">TOTAL:</label>
-											<span>${total}</span>
+											<span>${cartTotal}</span>
 										</div>
 										<p>Shipping & taxes calculated at checkout</p>
 										<div className="payment__button d-flex justify-content-center">
