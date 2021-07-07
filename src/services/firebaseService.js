@@ -14,15 +14,15 @@ export const countProducts = async () => {
     return data.size
 }
 
-export const getProducts = async (offset, sortBy, sortOrder) => {
-    const data = await firebase
+export const getProducts = async (offset, sortBy, sortOrder, limit) => {
+    let query = firebase
         .firestore()
         .collection(collections.products)
-        .orderBy(sortBy || "createdAt", sortOrder || "desc")
-        .startAfter(offset)
-        .get()
+        .orderBy(sortBy, sortOrder)
 
-    return data.docs.map(doc => ({
+    const data = await query.get()
+
+    return data.docs.slice(offset, offset + limit).map(doc => ({
         id: doc.id,
         ...doc.data()
     }))

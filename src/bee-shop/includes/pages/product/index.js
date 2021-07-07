@@ -8,11 +8,11 @@ import { FaThLarge } from "react-icons/fa"
 import { ProductContext } from "../../../../contexts/ProductContext"
 import useUserAuth from "../../../../hooks/useUserAuth"
 const { Option } = Select
-const limit = 10
 function Products() {
 	const productContext = useContext(ProductContext)
 	const {
 		total,
+		limit,
 		products,
 		offset,
 		page,
@@ -41,7 +41,7 @@ function Products() {
 			case "hightoLow":
 				return setSort({ sortBy: "price", sortOrder: "desc" })
 			case "nameAtoZ":
-				return setSort({ sortBy: "name", sortOrder: "desc" })
+				return setSort({ sortBy: "name", sortOrder: "asc" })
 			case "nameZtoA":
 				return setSort({ sortBy: "name", sortOrder: "desc" })
 			default:

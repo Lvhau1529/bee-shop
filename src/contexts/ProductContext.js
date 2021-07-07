@@ -4,7 +4,7 @@ import { getProducts, countProducts, addToCart, getCart, removeProductInCart } f
 export const ProductContext = React.createContext()
 
 export const ProductProvider = ({ children }) => {
-    const limit = 10
+    const limit = 4
     const [total, setTotal] = useState(0)
     const [products, setProducts] = useState([])
     const [page, setPage] = useState(1)
@@ -36,7 +36,7 @@ export const ProductProvider = ({ children }) => {
     }, [page])
 
     const get = async () => {
-        const data = await getProducts(offset, sort.sortBy, sort.sortOrder)
+        const data = await getProducts(offset, sort.sortBy, sort.sortOrder, limit)
         setProducts(data)
     }
 
@@ -57,7 +57,6 @@ export const ProductProvider = ({ children }) => {
     }
 
     const changeCountNumber = productId => async (number) => {
-        console.log({ productId, number })
         try {
             await addToCart(productId, number, true)
             await getCartProducts()
@@ -79,6 +78,7 @@ export const ProductProvider = ({ children }) => {
     }
 
     const values = {
+        limit,
         total,
         products,
         offset,
