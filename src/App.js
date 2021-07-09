@@ -8,6 +8,7 @@ import 'animate.css'
 import "./bee-shop/assets/styles/main.scss"
 import "./bee-shop/assets/js/main"
 import Login from "./containers/Login/Login"
+import Signup from "./containers/Signup/Signup"
 import { ProductProvider } from "./contexts/ProductContext"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
             <Route path="/" component={BeeShop} />
           </Switch>
         </Router>
