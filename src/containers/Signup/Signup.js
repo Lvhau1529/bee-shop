@@ -83,6 +83,9 @@ const Signup = () => {
                 <Button type="primary" htmlType="submit">
                     Sign up
                 </Button>
+                <Button type="link" onClick={() => history.push("/login")}>
+                    Back to login
+                </Button>
             </Form.Item>
         </Form>
     </div>

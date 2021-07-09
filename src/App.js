@@ -9,6 +9,7 @@ import "./bee-shop/assets/styles/main.scss"
 import "./bee-shop/assets/js/main"
 import Login from "./containers/Login/Login"
 import Signup from "./containers/Signup/Signup"
+import ForgotPassword from "./containers/ForgotPassword/ForgotPassword"
 import { ProductProvider } from "./contexts/ProductContext"
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/forgot-password" component={ForgotPassword} />
             <Route path="/" component={BeeShop} />
           </Switch>
         </Router>
