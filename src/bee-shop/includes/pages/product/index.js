@@ -89,6 +89,7 @@ function Products() {
 							<Row>
 								{products.map(product => <Col span={6} key={product.id}>
 									<ProductItem
+										id={product.id}
 										img={product.img}
 										name={product.name}
 										price={`$${product.price}`}

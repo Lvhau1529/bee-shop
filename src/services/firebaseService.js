@@ -5,6 +5,10 @@ const collections = {
     carts: "carts"
 }
 
+export const addProduct = async (data) => {
+    await firebase.firestore().collection(collections.products).add(data)
+}
+
 export const countProducts = async () => {
     const data = await firebase
         .firestore()

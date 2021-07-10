@@ -6,7 +6,7 @@ function ProductItem(props) {
 		<>
 			<div class="product__item col-md-3">
 				<div class="product__img img-fluid">
-					<Link to="/detail">
+					<Link to={`/product/${props.id}`}>
 						<img src={props.img} alt="" />
 					</Link>
 				</div>

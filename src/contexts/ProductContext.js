@@ -27,7 +27,7 @@ export const ProductProvider = ({ children }) => {
     }, [cartProducts])
 
     const [sort, setSort] = useState({
-        sortBy: "name",
+        sortBy: "price",
         sortOrder: "asc"
     })
 
