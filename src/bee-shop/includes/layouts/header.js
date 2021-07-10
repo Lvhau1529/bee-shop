@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useHistory } from "react-router-dom"
 import { Row, Col } from "antd"
 import { IoSearchOutline } from "react-icons/io5"
 import { IoCartOutline } from "react-icons/io5"
@@ -15,8 +15,22 @@ function HeaderComponent() {
 		cartProducts,
 		getCartProducts,
 		cartTotal,
-		removeCart
+		removeCart,
+		sendEmail
 	} = productContext
+
+	const history = useHistory()
+
+	const checkout = async () => {
+		try {
+			await sendEmail()
+			alert("Checkout successfully. We will contact you soon")
+			history.push("/product")
+		} catch (err) {
+			console.error(err)
+			alert(err.message)
+		}
+	}
 
 	const [isActive, setActive] = useState(false)
 
@@ -105,8 +119,8 @@ function HeaderComponent() {
 											<div className="payment__button-viewcart">
 												<Link to="/cart">View Cart</Link>
 											</div>
-											<div className="payment__button-checkout">
-												<a href>Check out</a>
+											<div className="payment__button-checkout cursor-pointer" onClick={checkout}>
+												<span>Check out</span>
 											</div>
 										</div>
 									</div>

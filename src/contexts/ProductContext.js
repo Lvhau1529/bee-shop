@@ -1,5 +1,11 @@
 import React, { useState, useMemo } from "react"
+import emailjs from "emailjs-com"
 import { getProducts, countProducts, addToCart, getCart, removeProductInCart } from "../services/firebaseService"
+import firebase from "../configs/firebase"
+
+const serviceId = "service_lzswpee"
+const templateId = "template_m0baksd"
+const userId = "user_dzZaUT0SuH6nEj4IpTGhD"
 
 export const ProductContext = React.createContext()
 
@@ -10,6 +16,10 @@ export const ProductProvider = ({ children }) => {
     const [page, setPage] = useState(1)
     const [cartProducts, setCartProducts] = useState([])
 
+    const sendEmail = async () => {
+        await emailjs.send(serviceId, templateId, { message: generateOrderMessage() }, userId)
+    }
+
     const getCartProducts = async () => {
         try {
             const data = await getCart()
@@ -18,6 +28,17 @@ export const ProductProvider = ({ children }) => {
             alert(err.response?.data || err.message)
             console.error("Error get cart", err)
         }
+    }
+
+    const generateOrderMessage = () => {
+        const user = firebase.auth().currentUser
+        if (!user) return ""
+        const { email } = user
+        const productInformations = cartProducts
+            .map(item => `${item.count} ${item.name}`)
+            .join(", ")
+
+        return `Customer with email ${email} has ordered ${productInformations}. Total bill is $${cartTotal}`
     }
 
     const cartTotal = useMemo(() => {
@@ -93,7 +114,8 @@ export const ProductProvider = ({ children }) => {
         add,
         setSort,
         removeCart,
-        changeCountNumber
+        changeCountNumber,
+        sendEmail
     }
 
     return <ProductContext.Provider value={values}>
