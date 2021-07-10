@@ -45,9 +45,9 @@ export const ProductProvider = ({ children }) => {
         setTotal(data)
     }
 
-    const add = productId => async () => {
+    const add = (productId, number) => async () => {
         try {
-            await addToCart(productId, 1)
+            await addToCart(productId, number)
             await getCartProducts()
             alert("product is added to cart")
         } catch (err) {

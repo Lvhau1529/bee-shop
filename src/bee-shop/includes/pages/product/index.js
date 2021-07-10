@@ -94,7 +94,7 @@ function Products() {
 										name={product.name}
 										price={`$${product.price}`}
 										sale={`$${product.sale}`}
-										add={add(product.id)}
+										add={add(product.id, 1)}
 									/>
 								</Col>)}
 							</Row>

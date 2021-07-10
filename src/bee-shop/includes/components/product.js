@@ -22,7 +22,7 @@ function ProductItem(props) {
 							<span>{props.sale}</span>
 						</div>
 					</div>
-					<div className="product__cart" onClick={props.add}>
+					<div className="product__cart cursor-pointer" onClick={props.add}>
 						<span>Add to Cart</span>
 					</div>
 				</div>

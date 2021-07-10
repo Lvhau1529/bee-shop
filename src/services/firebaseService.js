@@ -32,6 +32,16 @@ export const getProducts = async (offset, sortBy, sortOrder, limit) => {
     }))
 }
 
+export const getProductById = async (id) => {
+    const doc = await firebase
+        .firestore()
+        .collection(collections.products)
+        .doc(id)
+        .get()
+
+    return doc.data()
+}
+
 export const addToCart = async (productId, number, isAll = false) => {
     const userId = firebase.auth().currentUser?.uid
     if (!userId) return
