@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react"
 import emailjs from "emailjs-com"
-import { getProducts, countProducts, addToCart, getCart, removeProductInCart } from "../services/firebaseService"
+import { getProducts, countProducts, addToCart, getCart, removeProductInCart, removeAllProductInCart } from "../services/firebaseService"
 import firebase from "../configs/firebase"
 
 const serviceId = "service_lzswpee"
@@ -18,6 +18,7 @@ export const ProductProvider = ({ children }) => {
 
     const sendEmail = async () => {
         await emailjs.send(serviceId, templateId, { message: generateOrderMessage() }, userId)
+        await removeAllCart()
     }
 
     const getCartProducts = async () => {
@@ -95,6 +96,15 @@ export const ProductProvider = ({ children }) => {
         } catch (err) {
             alert(err.response?.data || err.message)
             console.error(err)
+        }
+    }
+
+    const removeAllCart = async () => {
+        try {
+            await removeAllProductInCart()
+            await getCartProducts()
+        } catch (err) {
+            alert(err.response?.data || err.message)
         }
     }
 

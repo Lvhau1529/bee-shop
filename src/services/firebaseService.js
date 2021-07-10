@@ -125,3 +125,16 @@ export const removeProductInCart = async (productId) => {
     const snapshot = await query.get()
     snapshot.forEach(doc => doc.ref.delete())
 }
+
+export const removeAllProductInCart = async () => {
+    const userId = firebase.auth().currentUser?.uid
+    if (!userId) return
+
+    let query = firebase
+        .firestore()
+        .collection(collections.carts)
+        .where("userId", "==", userId)
+
+    const snapshot = await query.get()
+    snapshot.forEach(doc => doc.ref.delete())
+}
