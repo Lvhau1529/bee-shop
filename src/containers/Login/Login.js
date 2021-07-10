@@ -83,6 +83,16 @@ const Login = () => {
                 <Button type="primary" htmlType="submit">
                     Login
                 </Button>
+            </Form.Item>
+            <Form.Item
+                wrapperCol={{
+                    offset: 8,
+                    span: 16,
+                }}
+            >
+                <Button type="link" onClick={() => history.push("/signup")}>
+                    Sign up
+                </Button>
                 <Button type="link" onClick={() => history.push("/forgot-password")}>
                     Forgot pass
                 </Button>
