@@ -3,12 +3,13 @@ import { NavLink, Link, useHistory } from "react-router-dom"
 import { Row, Col } from "antd"
 import { IoSearchOutline } from "react-icons/io5"
 import { IoCartOutline } from "react-icons/io5"
-import { FaUser } from "react-icons/fa"
+import { FaUser, FaSignOutAlt } from "react-icons/fa"
 import { AiFillSetting } from "react-icons/ai"
 import logo from "../../assets/images/logo_300x.jpg"
 import CartItem from "../components/CartItem"
 import { ProductContext } from "../../../contexts/ProductContext"
 import useUserAuth from "../../../hooks/useUserAuth"
+import firebase from "../../../configs/firebase"
 function HeaderComponent() {
 	const productContext = useContext(ProductContext)
 	const {
@@ -30,6 +31,10 @@ function HeaderComponent() {
 			console.error(err)
 			alert(err.message)
 		}
+	}
+
+	const signout = () => {
+		firebase.auth().signOut()
 	}
 
 	const [isActive, setActive] = useState(false)
@@ -130,8 +135,8 @@ function HeaderComponent() {
 							<li className="account">
 								<FaUser />
 							</li>
-							<li className="my-account">
-								<AiFillSetting />
+							<li className="my-account cursor-pointer" onClick={signout}>
+								<FaSignOutAlt />
 							</li>
 						</ul>
 					</Col>
