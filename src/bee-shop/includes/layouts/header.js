@@ -1,22 +1,41 @@
 import React, { useEffect, useState, useContext } from "react"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useHistory } from "react-router-dom"
 import { Row, Col } from "antd"
 import { IoSearchOutline } from "react-icons/io5"
 import { IoCartOutline } from "react-icons/io5"
-import { FaUser } from "react-icons/fa"
+import { FaUser, FaSignOutAlt } from "react-icons/fa"
 import { AiFillSetting } from "react-icons/ai"
 import logo from "../../assets/images/logo_300x.jpg"
 import CartItem from "../components/CartItem"
 import { ProductContext } from "../../../contexts/ProductContext"
 import useUserAuth from "../../../hooks/useUserAuth"
+import firebase from "../../../configs/firebase"
 function HeaderComponent() {
 	const productContext = useContext(ProductContext)
 	const {
 		cartProducts,
 		getCartProducts,
 		cartTotal,
-		removeCart
+		removeCart,
+		sendEmail
 	} = productContext
+
+	const history = useHistory()
+
+	const checkout = async () => {
+		try {
+			await sendEmail()
+			alert("Checkout successfully. We will contact you soon")
+			history.push("/product")
+		} catch (err) {
+			console.error(err)
+			alert(err.message)
+		}
+	}
+
+	const signout = () => {
+		firebase.auth().signOut()
+	}
 
 	const [isActive, setActive] = useState(false)
 
@@ -105,8 +124,8 @@ function HeaderComponent() {
 											<div className="payment__button-viewcart">
 												<Link to="/cart">View Cart</Link>
 											</div>
-											<div className="payment__button-checkout">
-												<a href>Check out</a>
+											<div className="payment__button-checkout cursor-pointer" onClick={checkout}>
+												<span>Check out</span>
 											</div>
 										</div>
 									</div>
@@ -116,8 +135,8 @@ function HeaderComponent() {
 							<li className="account">
 								<FaUser />
 							</li>
-							<li className="my-account">
-								<AiFillSetting />
+							<li className="my-account cursor-pointer" onClick={signout}>
+								<FaSignOutAlt />
 							</li>
 						</ul>
 					</Col>

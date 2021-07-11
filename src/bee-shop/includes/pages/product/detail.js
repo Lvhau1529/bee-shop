@@ -1,14 +1,50 @@
-import React from "react";
-import { Row, Col, Rate, Radio, InputNumber } from "antd";
-import Layout from "../../layouts/index";
-import Breadcrumb from "../../components/breadcrumb";
-import Slider from "./slider";
+import React, { useEffect, useState, useContext } from "react"
+import { useParams } from "react-router-dom"
+import { Row, Col, Rate, Radio, InputNumber } from "antd"
+import Layout from "../../layouts/index"
+import Breadcrumb from "../../components/breadcrumb"
+import Slider from "./slider"
 
-function onChange(value) {
-	console.log("changed", value);
-}
+import { ProductContext } from "../../../../contexts/ProductContext"
+import { getProductById } from "../../../../services/firebaseService"
 
 function DeltailProduct() {
+	const context = useContext(ProductContext)
+	const { add } = context
+	const [data, setData] = useState({})
+	const { id } = useParams()
+	const [count, setCount] = useState(1)
+
+	const getData = async () => {
+		const product = await getProductById(id)
+		setData(product)
+	}
+
+	const onChange = value => setCount(value)
+
+	const onAdd = async () => {
+		try {
+			await add(id, count)()
+			setCount(1)
+		} catch (err) {
+			alert(err.response?.data || err.message)
+		}
+	}
+
+	useEffect(() => {
+		getData()
+	}, [id])
+
+	// utils
+	const shortenDescription = description => {
+		try {
+			if (description.length < 200) return description
+			return `${description.slice(0, 200)}...`
+		} catch {
+			return ""
+		}
+	}
+
 	return (
 		<>
 			<Layout>
@@ -31,10 +67,9 @@ function DeltailProduct() {
 							</Col>
 							<Col span={10}>
 								<div className="detail__product">
-									<div className="detail__product-name">Proin nulla dui</div>
+									<div className="detail__product-name">{data?.name}</div>
 									<div className="detail__product-desc">
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-										Aenean commodo ligula eget dolor. Aenean massa....
+										{shortenDescription(data.description)}
 									</div>
 									<div className="detail__product-status d-flex justify-content-between align-items-center">
 										<div className="status__rate">
@@ -43,10 +78,10 @@ function DeltailProduct() {
 										<div className="status__available">In-stock</div>
 									</div>
 									<div className="detail__product-price d-flex align-items-center">
-										<div className="price__main">$140.00</div>
-										<div className="price__sale">$280.00</div>
+										<div className="price__main">${data.price}</div>
+										{data.sale && <div className="price__sale">${data.sale}</div>}
 									</div>
-									<div className="detail__product-size">
+									{/* <div className="detail__product-size">
 										<p>Size: </p>
 										<Radio.Group defaultValue="a" buttonStyle="solid">
 											<Radio.Button value="a">50ml</Radio.Button>
@@ -54,16 +89,16 @@ function DeltailProduct() {
 											<Radio.Button value="c">150ml</Radio.Button>
 											<Radio.Button value="d">230ml</Radio.Button>
 										</Radio.Group>
-									</div>
+									</div> */}
 									<div className="detail__product-cart d-flex align-items-center">
 										<InputNumber
 											min={1}
 											max={10}
-											defaultValue={1}
+											value={count}
 											onChange={onChange}
 										/>
-										<div className="cart__button">
-											<a href>Add to Cart</a>
+										<div className="cart__button cursor-pointer" onClick={onAdd}>
+											<span>Add to Cart</span>
 										</div>
 									</div>
 								</div>
@@ -82,19 +117,7 @@ function DeltailProduct() {
 									</ul>
 									<div className="detail__tab-content">
 										<p>
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-											Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-											natoque penatibus et magnis dis parturient montes,
-											nascetur ridiculus mus. Donec quam felis, ultricies nec,
-											pellentesque New producteu, pretium quis, sem. Nulla
-											consequat massa quis enim. Donec pede justo, fringilla
-											vel, aliquet nec, vulputate eget, arcu.
-										</p>
-										<p>
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-											Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-											natoque penatibus et magnis dis parturient montes,
-											nascetur ridiculus mus.
+											{data.description}
 										</p>
 									</div>
 								</div>
@@ -104,7 +127,7 @@ function DeltailProduct() {
 				</div>
 			</Layout>
 		</>
-	);
+	)
 }
 
-export default React.memo(DeltailProduct);
+export default React.memo(DeltailProduct)

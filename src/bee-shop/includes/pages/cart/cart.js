@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import Breadcrumb from "../../components/breadcrumb"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { Row, Col, InputNumber, Input } from "antd"
 import { RiDeleteBinLine } from "react-icons/ri"
 
@@ -16,10 +16,24 @@ function Cart() {
 		cartTotal,
 		removeCart,
 		getCartProducts,
-		changeCountNumber
+		changeCountNumber,
+		sendEmail
 	} = productContext
 
+	const history = useHistory()
+
 	useUserAuth(getCartProducts, null)
+
+	const checkout = async () => {
+		try {
+			await sendEmail()
+			alert("Checkout successfully. We will contact you soon")
+			history.push("/product")
+		} catch (err) {
+			console.error(err)
+			alert(err.message)
+		}
+	}
 
 	const onChange = productId => value => {
 		changeCountNumber(productId)(value)
@@ -95,8 +109,8 @@ function Cart() {
 							<p>Shipping & taxes calculated at checkout</p>
 							<div className="check__button">
 								<Link to="/product">Continue Shopping</Link>
-								<Link to="">Update</Link>
-								<Link to="">Check out</Link>
+								{/* <Link to="">Update</Link> */}
+								<span className="cursor-pointer" onClick={checkout}>Check out</span>
 							</div>
 						</Col>
 					</Row>

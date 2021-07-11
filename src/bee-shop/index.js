@@ -26,11 +26,11 @@ function BeeShop() {
 							<CartComponent />
 						</Route>
 
-						<Route path="/product">
+						<Route path="/product" exact>
 							<ProductComponent />
 						</Route>
 
-						<Route path="/detail">
+						<Route path="/product/:id" exact>
 							<ProductDetail />
 						</Route>
 

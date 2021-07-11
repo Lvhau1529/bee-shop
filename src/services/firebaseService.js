@@ -5,6 +5,10 @@ const collections = {
     carts: "carts"
 }
 
+export const addProduct = async (data) => {
+    await firebase.firestore().collection(collections.products).add(data)
+}
+
 export const countProducts = async () => {
     const data = await firebase
         .firestore()
@@ -26,6 +30,16 @@ export const getProducts = async (offset, sortBy, sortOrder, limit) => {
         id: doc.id,
         ...doc.data()
     }))
+}
+
+export const getProductById = async (id) => {
+    const doc = await firebase
+        .firestore()
+        .collection(collections.products)
+        .doc(id)
+        .get()
+
+    return doc.data()
 }
 
 export const addToCart = async (productId, number, isAll = false) => {
@@ -107,6 +121,19 @@ export const removeProductInCart = async (productId) => {
         .collection(collections.carts)
         .where("userId", "==", userId)
     query = query.where("productId", "==", productId)
+
+    const snapshot = await query.get()
+    snapshot.forEach(doc => doc.ref.delete())
+}
+
+export const removeAllProductInCart = async () => {
+    const userId = firebase.auth().currentUser?.uid
+    if (!userId) return
+
+    let query = firebase
+        .firestore()
+        .collection(collections.carts)
+        .where("userId", "==", userId)
 
     const snapshot = await query.get()
     snapshot.forEach(doc => doc.ref.delete())

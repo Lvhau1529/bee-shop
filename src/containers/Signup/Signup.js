@@ -1,19 +1,19 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
-import { Form, Input, Button, Checkbox } from 'antd'
+import { Form, Input, Button } from 'antd'
 
 import firebase from "../../configs/firebase"
 import useUserAuth from "../../hooks/useUserAuth"
 
-const Login = () => {
+const Signup = () => {
     const history = useHistory()
 
     useUserAuth(() => history.push("/"))
 
-    const login = async values => {
+    const signup = async values => {
         try {
             const { email, password } = values
-            await firebase.auth().signInWithEmailAndPassword(email, password)
+            await firebase.auth().createUserWithEmailAndPassword(email, password)
             history.push("/")
         } catch (err) {
             alert(err.response?.data || err.message)
@@ -25,14 +25,14 @@ const Login = () => {
         alert(errorInfo)
     }
 
-    const loginStyle = {
+    const signupStyle = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         height: "100vh"
     }
 
-    return <div style={loginStyle}>
+    return <div style={signupStyle}>
         <Form
             name="basic"
             labelCol={{
@@ -43,13 +43,13 @@ const Login = () => {
             }}
             initialValues={{
                 email: "",
-                password: ""
+                password: "",
             }}
-            onFinish={login}
+            onFinish={signup}
             onFinishFailed={onFinishFailed}
         >
             <Form.Item
-                label="Your email"
+                label="Email"
                 name="email"
                 rules={[
                     {
@@ -81,24 +81,14 @@ const Login = () => {
                 }}
             >
                 <Button type="primary" htmlType="submit">
-                    Login
-                </Button>
-            </Form.Item>
-            <Form.Item
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
-                <Button type="link" onClick={() => history.push("/signup")}>
                     Sign up
                 </Button>
-                <Button type="link" onClick={() => history.push("/forgot-password")}>
-                    Forgot pass
+                <Button type="link" onClick={() => history.push("/login")}>
+                    Back to login
                 </Button>
             </Form.Item>
         </Form>
     </div>
 }
 
-export default Login
+export default Signup
