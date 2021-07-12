@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
 function ProductItem(props) {
 	return (
@@ -25,10 +25,17 @@ function ProductItem(props) {
 					<div className="product__cart cursor-pointer" onClick={props.add}>
 						<span>Add to Cart</span>
 					</div>
+					{props.percent === "" ? (
+						""
+					) : (
+						<div className="product__label d-flex justify-content-center">
+							<span>{props.percent}</span>
+						</div>
+					)}
 				</div>
 			</div>
 		</>
-	)
+	);
 }
 
-export default React.memo(ProductItem)
+export default React.memo(ProductItem);

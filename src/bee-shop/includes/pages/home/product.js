@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col } from "antd";
+import Slider from "react-slick";
 import TitleBlock from "../../components/home/center-title";
 import ProductItem from "../../components/product";
-import img from "../../../assets/images/4_507f6fba-f388-4083-9fb4-e2da9dfda4ee_425x.webp";
+import { ProductContext } from "../../../../contexts/ProductContext";
+import useUserAuth from "../../../../hooks/useUserAuth";
 
 function Product() {
+	const settings = {
+		dots: true,
+		infinite: true,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		autoplay: true,
+		speed: 1000,
+		autoplaySpeed: 4000,
+		initialSlide: 2,
+	};
+
+	const productContext = useContext(ProductContext);
+
+	const { products, get, add } = productContext;
+
+	useUserAuth(get, null);
+
+	console.log(products);
 	return (
 		<>
 			<div class="product__block">
@@ -15,42 +35,31 @@ function Product() {
 
 					{/* Product detail */}
 					<div className="product__detail">
-						<Row>
-							<Col span={6}>
-								<ProductItem
-									img={img}
-									name="Proin nulla dui"
-									price="$140.000"
-									sale="$280.000"
-								/>
-							</Col>
-
-							<Col span={6}>
-								<ProductItem
-									img={img}
-									name="Proin nulla dui"
-									price="$140.000"
-								/>
-							</Col>
-
-							<Col span={6}>
-								<ProductItem
-									img={img}
-									name="Proin nulla dui"
-									price="$140.000"
-									sale="$280.000"
-								/>
-							</Col>
-
-							<Col span={6}>
-								<ProductItem
-									img={img}
-									name="Proin nulla dui"
-									price="$140.000"
-									sale="$280.000"
-								/>
-							</Col>
-						</Row>
+						<Slider {...settings}>
+							{products.map((product) => (
+								<Row>
+									<Col span={24} key={product.id}>
+										<ProductItem
+											id={product.id}
+											img={product.img}
+											name={product.name}
+											price={`$${product.price}`}
+											sale={`$${product.sale}`}
+											add={add(product.id, 1)}
+											percent={
+												product.sale === 0
+													? ""
+													: `-${Math.trunc(
+															(parseInt(product.price) /
+																parseInt(product.sale)) *
+																100
+													  )}%`
+											}
+										/>
+									</Col>
+								</Row>
+							))}
+						</Slider>
 					</div>
 				</div>
 			</div>

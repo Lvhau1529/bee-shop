@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
-import { Row, Col, Rate, Radio, InputNumber } from "antd"
+import { Row, Col, Rate, InputNumber } from "antd"
 import Layout from "../../layouts/index"
 import Breadcrumb from "../../components/breadcrumb"
 import Slider from "./slider"
@@ -79,17 +79,9 @@ function DeltailProduct() {
 									</div>
 									<div className="detail__product-price d-flex align-items-center">
 										<div className="price__main">${data.price}</div>
-										{data.sale && <div className="price__sale">${data.sale}</div>}
+										{data.sale === 0 ? "" : <div className="price__sale">${data.sale}</div>}
+										{console.log(data.sale)}
 									</div>
-									{/* <div className="detail__product-size">
-										<p>Size: </p>
-										<Radio.Group defaultValue="a" buttonStyle="solid">
-											<Radio.Button value="a">50ml</Radio.Button>
-											<Radio.Button value="b">100ml</Radio.Button>
-											<Radio.Button value="c">150ml</Radio.Button>
-											<Radio.Button value="d">230ml</Radio.Button>
-										</Radio.Group>
-									</div> */}
 									<div className="detail__product-cart d-flex align-items-center">
 										<InputNumber
 											min={1}

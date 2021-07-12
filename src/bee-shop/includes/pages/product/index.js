@@ -1,15 +1,15 @@
-import React, { useEffect, useContext } from "react"
-import Layout from "../../layouts/index"
-import Breadcrumb from "../../components/breadcrumb"
-import ProductItem from "../../components/product"
-import { Row, Col, Select, Pagination } from "antd"
-import { FaThList } from "react-icons/fa"
-import { FaThLarge } from "react-icons/fa"
-import { ProductContext } from "../../../../contexts/ProductContext"
-import useUserAuth from "../../../../hooks/useUserAuth"
-const { Option } = Select
+import React, { useEffect, useContext } from "react";
+import Layout from "../../layouts/index";
+import Breadcrumb from "../../components/breadcrumb";
+import ProductItem from "../../components/product";
+import { Row, Col, Select, Pagination } from "antd";
+import { FaThList } from "react-icons/fa";
+import { FaThLarge } from "react-icons/fa";
+import { ProductContext } from "../../../../contexts/ProductContext";
+import useUserAuth from "../../../../hooks/useUserAuth";
+const { Option } = Select;
 function Products() {
-	const productContext = useContext(ProductContext)
+	const productContext = useContext(ProductContext);
 	const {
 		total,
 		limit,
@@ -21,33 +21,33 @@ function Products() {
 		get,
 		count,
 		add,
-		setSort
-	} = productContext
+		setSort,
+	} = productContext;
 
-	useUserAuth(get, null)
-
-	useEffect(() => {
-		get()
-	}, [sort, offset])
+	useUserAuth(get, null);
 
 	useEffect(() => {
-		count()
-	}, [])
+		get();
+	}, [sort, offset]);
+
+	useEffect(() => {
+		count();
+	}, []);
 
 	const onChangeFilter = (value) => {
 		switch (value) {
 			case "lowToHigh":
-				return setSort({ sortBy: "price", sortOrder: "asc" })
+				return setSort({ sortBy: "price", sortOrder: "asc" });
 			case "hightoLow":
-				return setSort({ sortBy: "price", sortOrder: "desc" })
+				return setSort({ sortBy: "price", sortOrder: "desc" });
 			case "nameAtoZ":
-				return setSort({ sortBy: "name", sortOrder: "asc" })
+				return setSort({ sortBy: "name", sortOrder: "asc" });
 			case "nameZtoA":
-				return setSort({ sortBy: "name", sortOrder: "desc" })
+				return setSort({ sortBy: "name", sortOrder: "desc" });
 			default:
-				return
+				return;
 		}
-	}
+	};
 
 	return (
 		<>
@@ -87,22 +87,38 @@ function Products() {
 						</Row>
 						<div className="product__items">
 							<Row>
-								{products.map(product => <Col span={6} key={product.id}>
-									<ProductItem
-										id={product.id}
-										img={product.img}
-										name={product.name}
-										price={`$${product.price}`}
-										sale={`$${product.sale}`}
-										add={add(product.id, 1)}
-									/>
-								</Col>)}
+								{products.map((product) => (
+									<Col span={6} key={product.id}>
+										<ProductItem
+											id={product.id}
+											img={product.img}
+											name={product.name}
+											price={`$${product.price}`}
+											sale={product.sale === 0 ? "" : `$${product.sale}`}
+											add={add(product.id, 1)}
+											percent={
+												product.sale === 0
+													? ""
+													: `-${Math.trunc(
+															(parseInt(product.price) /
+																parseInt(product.sale)) *
+																100
+													  )}%`
+											}
+										/>
+									</Col>
+								))}
 							</Row>
 						</div>
 						<div className="product__pagination">
 							<Row>
 								<Col span={24}>
-									<Pagination current={page} pageSize={limit} total={total} onChange={(page, pageSize) => setPage(page)} />
+									<Pagination
+										current={page}
+										pageSize={limit}
+										total={total}
+										onChange={(page, pageSize) => setPage(page)}
+									/>
 								</Col>
 							</Row>
 						</div>
@@ -110,7 +126,7 @@ function Products() {
 				</div>
 			</Layout>
 		</>
-	)
+	);
 }
 
-export default React.memo(Products)
+export default React.memo(Products);

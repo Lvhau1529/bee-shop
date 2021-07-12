@@ -58,9 +58,21 @@
     padding: 1rem 2rem;
     background-color: $main;
     color: black;
+    cursor: pointer;
     &:hover {
       background-color: black;
       color: $main;
     }
   }
+}
+.product__label {
+  position: absolute;
+  background-color: $main;
+  @include fontFamily(1.2rem, 700);
+  padding: 1rem 0.5rem;
+  max-width: 6rem;
+  top: 2%;
+  left: 2%;
+  border-radius: 0.3rem;
+  cursor: pointer;
 }

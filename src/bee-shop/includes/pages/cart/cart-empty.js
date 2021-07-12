@@ -1,17 +1,10 @@
 import React from "react";
 import { Row, Col } from "antd";
-import Breadcrumb from "../../components/breadcrumb";
+import { Link } from "react-router-dom";
 
 function CartEmpty() {
 	return (
 		<>
-			<Breadcrumb
-				title="Your Cart"
-				link1="/"
-				link2="/cart"
-				name1="Home"
-				name2="Your Cart"
-			/>
 			<div className="cart-empty">
 				<div className="container">
 					<Row>
@@ -31,9 +24,9 @@ function CartEmpty() {
 									</p>
 								</div>
 								<div className="cart-empty__content-button">
-									<a href className="button">
+									<Link to="/product" className="button">
 										Continue shopping
-									</a>
+									</Link>
 								</div>
 							</div>
 						</Col>
