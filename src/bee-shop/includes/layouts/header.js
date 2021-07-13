@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { NavLink, Link, useHistory } from "react-router-dom"
 import { Row, Col } from "antd"
-import { IoSearchOutline } from "react-icons/io5"
-import { IoCartOutline } from "react-icons/io5"
-import { FaUser, FaSignOutAlt } from "react-icons/fa"
-import { AiFillSetting } from "react-icons/ai"
+import { IoSearchOutline, IoCartOutline } from "react-icons/io5"
+import { FaRegUser } from "react-icons/fa"
+import {FiLogOut} from "react-icons/fi"
 import logo from "../../assets/images/logo_300x.jpg"
 import CartItem from "../components/CartItem"
 import { ProductContext } from "../../../contexts/ProductContext"
 import useUserAuth from "../../../hooks/useUserAuth"
 import firebase from "../../../configs/firebase"
+
 function HeaderComponent() {
 	const productContext = useContext(ProductContext)
 	const {
@@ -72,7 +72,7 @@ function HeaderComponent() {
 									</li>
 									<li className="list__item">
 										<NavLink className="list__item-link" to="#">
-											Page
+											About Us
 										</NavLink>
 									</li>
 									<li className="list__item">
@@ -133,10 +133,10 @@ function HeaderComponent() {
 							</li>
 							{/* ./Cart count  */}
 							<li className="account">
-								<FaUser />
+								<FaRegUser />
 							</li>
 							<li className="my-account cursor-pointer" onClick={signout}>
-								<FaSignOutAlt />
+								<FiLogOut />
 							</li>
 						</ul>
 					</Col>
