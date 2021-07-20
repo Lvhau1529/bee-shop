@@ -3,10 +3,11 @@ import Dashboard from "../Dashboard/Dashboard";
 import { Table, Popconfirm } from "antd";
 import { ProductContext } from "../../contexts/ProductContext";
 import useUserAuth from "../../hooks/useUserAuth";
+import { removeProduct } from "../../services/firebaseService";
 
 function RemoveProduct() {
 	const productContext = useContext(ProductContext);
-	const { products, offset, sort, get, removeProduct } = productContext;
+	const { products, offset, sort, get } = productContext;
 
 	useUserAuth(get, null);
 
@@ -14,9 +15,9 @@ function RemoveProduct() {
 		get();
 	}, [sort, offset]);
 
-	const nameProduct = products.map((product) => product.name);
+	// const nameProduct = products.map((product) => product.name);
 
-	console.log(nameProduct);
+	// console.log(nameProduct);
 
 	const columns = [
 		{
@@ -54,8 +55,8 @@ function RemoveProduct() {
 			render: () => (
 				<Popconfirm
 					title="Sure to delete?"
-					onConfirm={() => {
-						removeProduct("Trang");
+					onConfirm={(_, record) => {
+						console.log(record)
 					}}
 				>
 					<a href>Delete</a>
