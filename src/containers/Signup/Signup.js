@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button } from "antd";
+import AlertFunction from "../../bee-shop/includes/components/alert";
 
 import firebase from "../../configs/firebase";
 import useUserAuth from "../../hooks/useUserAuth";
 
-const Signup = () => {
+function Signup() {
+	const [hiddenAlert, setHiddenAlert] = useState("none");
+
 	const history = useHistory();
 
 	useUserAuth(() => history.push("/"));
@@ -16,17 +19,25 @@ const Signup = () => {
 			await firebase.auth().createUserWithEmailAndPassword(email, password);
 			history.push("/");
 		} catch (err) {
-			alert(err.response?.data || err.message);
-			console.error(err);
+			// alert(err.response?.data || err.message);
+			setHiddenAlert("");
+			console.error(
+				err,
+				"The email address is already in use by another account."
+			);
 		}
 	};
 
-	const onFinishFailed = (errorInfo) => {
-		alert(errorInfo);
-	};
+	// const onFinishFailed = (errorInfo) => {
+	// 	alert(errorInfo);
+	// };
 
 	return (
 		<div>
+			<AlertFunction
+				hidden={hiddenAlert}
+				description="The email address is already in use by another account."
+			/>
 			<h1 class="signup-heading">Create Account</h1>
 			<Form
 				name="basic"
@@ -36,7 +47,7 @@ const Signup = () => {
 					password: "",
 				}}
 				onFinish={signup}
-				onFinishFailed={onFinishFailed}
+				// onFinishFailed={onFinishFailed}
 			>
 				<Form.Item
 					label="Email"
@@ -77,6 +88,6 @@ const Signup = () => {
 			</p>
 		</div>
 	);
-};
+}
 
 export default Signup;

@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import Breadcrumb from "../../components/breadcrumb";
 import CartEmpty from "./cart-empty";
 import { Link, useHistory } from "react-router-dom";
-import { Row, Col, InputNumber, Input } from "antd";
+import { Row, Col, InputNumber, Input, notification } from "antd";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 import { ProductContext } from "../../../../contexts/ProductContext";
 import useUserAuth from "../../../../hooks/useUserAuth";
@@ -25,15 +27,41 @@ function Cart() {
 
 	useUserAuth(getCartProducts, null);
 
+	// Notification
+	const openNotificationCheckOut = (type) => {
+		notification[type]({
+			message: "Checkout successfully",
+			description:
+				"We will contact you soon",
+		});
+	};
+
+	// Checkout function
 	const checkout = async () => {
 		try {
 			await sendEmail();
-			alert("Checkout successfully. We will contact you soon");
+			openNotificationCheckOut('success');
+			// alert("Checkout successfully. We will contact you soon");
 			history.push("/product");
 		} catch (err) {
 			console.error(err);
 			alert(err.message);
 		}
+	};
+
+	// Modalbox checkout
+	const { confirm } = Modal;
+	const showConfirm = () => {
+		confirm({
+			title: "Do you Want to buy these products?",
+			icon: <ExclamationCircleOutlined />,
+			onOk() {
+				checkout();
+			},
+			onCancel() {
+				console.log("Cancel");
+			},
+		});
 	};
 
 	const onChange = (productId) => (value) => {
@@ -121,9 +149,7 @@ function Cart() {
 									<p>Shipping & taxes calculated at checkout</p>
 									<div className="check__button">
 										<Link to="/product">Continue Shopping</Link>
-										<span onClick={checkout}>
-											Check out
-										</span>
+										<span onClick={showConfirm}>Check out</span>
 									</div>
 								</Col>
 							</Row>

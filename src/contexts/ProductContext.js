@@ -8,6 +8,7 @@ import {
 	getCart,
 	removeProductInCart,
 	removeAllProductInCart,
+  removeProduct
 } from "../services/firebaseService";
 import firebase from "../configs/firebase";
 
@@ -152,6 +153,16 @@ export const ProductProvider = ({ children }) => {
 		}
 	};
 
+  const removeProduct = (productName) => async () => {
+		try {
+			await removeProduct(productName);
+			await products();
+		} catch (err) {
+			alert(err.response?.data || err.message);
+			console.error(err);
+		}
+	};
+
 	const values = {
 		limit,
 		total,
@@ -170,6 +181,7 @@ export const ProductProvider = ({ children }) => {
 		removeCart,
 		changeCountNumber,
 		sendEmail,
+    removeProduct
 	};
 
 	return (

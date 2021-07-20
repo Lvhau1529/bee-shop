@@ -1,49 +1,44 @@
-import React, { useState, useContext } from "react"
-import { NavLink, Link, useHistory } from "react-router-dom"
-import { Row, Col } from "antd"
-import { IoSearchOutline, IoCartOutline } from "react-icons/io5"
-import { FaRegUser } from "react-icons/fa"
-import {FiLogOut} from "react-icons/fi"
-import logo from "../../assets/images/logo_300x.jpg"
-import CartItem from "../components/CartItem"
-import { ProductContext } from "../../../contexts/ProductContext"
-import useUserAuth from "../../../hooks/useUserAuth"
-import firebase from "../../../configs/firebase"
+import React, { useState, useContext } from "react";
+import { NavLink, Link, useHistory } from "react-router-dom";
+import { Row, Col } from "antd";
+import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import logo from "../../assets/images/logo_300x.jpg";
+import CartItem from "../components/CartItem";
+import { ProductContext } from "../../../contexts/ProductContext";
+import useUserAuth from "../../../hooks/useUserAuth";
+import firebase from "../../../configs/firebase";
 
 function HeaderComponent() {
-	const productContext = useContext(ProductContext)
-	const {
-		cartProducts,
-		getCartProducts,
-		cartTotal,
-		removeCart,
-		sendEmail
-	} = productContext
+	const productContext = useContext(ProductContext);
+	const { cartProducts, getCartProducts, cartTotal, removeCart, sendEmail } =
+		productContext;
 
-	const history = useHistory()
+	const history = useHistory();
 
 	const checkout = async () => {
 		try {
-			await sendEmail()
-			alert("Checkout successfully. We will contact you soon")
-			history.push("/product")
+			await sendEmail();
+			alert("Checkout successfully. We will contact you soon");
+			history.push("/product");
 		} catch (err) {
-			console.error(err)
-			alert(err.message)
+			console.error(err);
+			alert(err.message);
 		}
-	}
+	};
 
 	const signout = () => {
-		firebase.auth().signOut()
-	}
+		firebase.auth().signOut();
+	};
 
-	const [isActive, setActive] = useState(false)
+	const [isActive, setActive] = useState(false);
 
 	const toggleClass = () => {
-		setActive(!isActive)
-	}
+		setActive(!isActive);
+	};
 
-	useUserAuth(getCartProducts, null)
+	useUserAuth(getCartProducts, null);
 
 	return (
 		<>
@@ -61,7 +56,11 @@ function HeaderComponent() {
 							<div className="nav__menu">
 								<ul className="nav__menu-list d-flex justify-content-center">
 									<li className="list__item">
-										<NavLink className="list__item-link" to="/" activeClassName="active">
+										<NavLink
+											className="list__item-link"
+											to="/"
+											activeClassName="active"
+										>
 											Home
 										</NavLink>
 									</li>
@@ -81,7 +80,10 @@ function HeaderComponent() {
 										</NavLink>
 									</li>
 									<li className="list__item">
-										<NavLink className="list__item-link" to="#">
+										<NavLink
+											className="list__item-link"
+											to="/dashboard/addProduct"
+										>
 											Contact
 										</NavLink>
 									</li>
@@ -100,7 +102,9 @@ function HeaderComponent() {
 								<a href>
 									<IoCartOutline />
 									<div className="cart__count">
-										<div className="cart__count-number">{cartProducts.length}</div>
+										<div className="cart__count-number">
+											{cartProducts.length}
+										</div>
 									</div>
 								</a>
 
@@ -109,11 +113,13 @@ function HeaderComponent() {
 										isActive ? "cart__quantity show" : "cart__quantity"
 									}
 								>
-									{cartProducts.map(product => <CartItem
-										key={product.id}
-										product={product}
-										onDelete={removeCart(product.id)}
-									/>)}
+									{cartProducts.map((product) => (
+										<CartItem
+											key={product.id}
+											product={product}
+											onDelete={removeCart(product.id)}
+										/>
+									))}
 									<div className="cart__quantity-payment">
 										<div className="payment__total d-flex">
 											<label htmlFor="">TOTAL:</label>
@@ -124,7 +130,10 @@ function HeaderComponent() {
 											<div className="payment__button-viewcart">
 												<Link to="/cart">View Cart</Link>
 											</div>
-											<div className="payment__button-checkout cursor-pointer" onClick={checkout}>
+											<div
+												className="payment__button-checkout cursor-pointer"
+												onClick={checkout}
+											>
 												<span>Check out</span>
 											</div>
 										</div>
@@ -143,7 +152,7 @@ function HeaderComponent() {
 				</Row>
 			</header>
 		</>
-	)
+	);
 }
 
-export default React.memo(HeaderComponent)
+export default React.memo(HeaderComponent);

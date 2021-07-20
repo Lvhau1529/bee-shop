@@ -111,6 +111,12 @@ button {
 	margin-bottom: 20px;
 	box-shadow: 0 10px 20px -5px rgba(253, 200, 38, 0.9);
 	outline: none;
+	&:active,
+	&:focus {
+		color: white;
+		background-color: #FF0000;
+		box-shadow: 0 10px 20px -5px rgba(255, 0, 0, 0.9);
+	}
 	&:hover {
 		color: #fdc826;
 		background-color: black;

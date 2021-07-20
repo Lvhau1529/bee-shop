@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button } from "antd";
+import AlertFunction from "../../bee-shop/includes/components/alert";
 
 import firebase from "../../configs/firebase";
 import useUserAuth from "../../hooks/useUserAuth";
 
-const Login = () => {
+function Login() {
+	const [hiddenAlert, setHiddenAlert] = useState("none");
+
 	const history = useHistory();
 
 	useUserAuth(() => history.push("/"));
@@ -16,19 +19,24 @@ const Login = () => {
 			await firebase.auth().signInWithEmailAndPassword(email, password);
 			history.push("/");
 		} catch (err) {
-			alert(err.response?.data || err.message);
+			// alert(err.response?.data || err.message);
+			setHiddenAlert("");
 			console.error(err);
 		}
 	};
 
-	const onFinishFailed = (errorInfo) => {
-		alert(errorInfo);
-	};
+	// const onFinishFailed = (errorInfo) => {
+	// 	alert(errorInfo);
+	// };
 
 	return (
 		<>
 			<div>
-				<h1 class="signup-heading">Log in</h1>
+				<AlertFunction
+					hidden={hiddenAlert}
+					description="The password is invalid or the user does not have a password."
+				/>
+				;<h1 class="signup-heading">Log in</h1>
 				<Form
 					name="basic"
 					initialValues={{
@@ -37,7 +45,7 @@ const Login = () => {
 					}}
 					layout="vertical"
 					onFinish={login}
-					onFinishFailed={onFinishFailed}
+					// onFinishFailed={onFinishFailed}
 				>
 					<Form.Item
 						label="Email"
@@ -85,6 +93,6 @@ const Login = () => {
 			</div>
 		</>
 	);
-};
+}
 
 export default Login;
