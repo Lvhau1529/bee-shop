@@ -5,21 +5,19 @@ const collections = {
 	carts: "carts",
 };
 
+// Database features
 export const addProduct = async (data) => {
 	await firebase.firestore().collection(collections.products).add(data);
 };
 
 export const removeProduct = async (productName) => {
-	const userId = firebase.auth().currentUser?.uid;
-	if (!userId) return;
-
-	let query = firebase
-		.firestore()
-		.collection(collections.products)
+  let query = firebase.firestore().collection(collections.products);
 	query = query.where("name", "==", productName);
 
 	const snapshot = await query.get();
 	snapshot.forEach((doc) => doc.ref.delete());
+
+	alert("Product is removed");
 };
 
 export const countProducts = async () => {
@@ -55,6 +53,7 @@ export const getProductById = async (id) => {
 	return doc.data();
 };
 
+// Cart features
 export const addToCart = async (productId, number, isAll = false) => {
 	const userId = firebase.auth().currentUser?.uid;
 	if (!userId) return;

@@ -28,7 +28,7 @@ const destroyNotification = (time) => {
 	}, secondsToGo * 1000);
 };
 
-const addedFromCart = (type) => {
+const addedNotification = (type) => {
 	notification["success"]({
 		message: "Product is added to cart",
 		description: "Please check your cart.",
@@ -36,7 +36,7 @@ const addedFromCart = (type) => {
 	destroyNotification(3);
 };
 
-const removedFromCart = (type) => {
+const removedNotification = (type) => {
 	notification["warning"]({
 		message: "Product is removed from cart",
 	});
@@ -47,6 +47,7 @@ const removedFromCart = (type) => {
 // Create Reducer
 export const ProductContext = React.createContext();
 
+//Create Provider
 export const ProductProvider = ({ children }) => {
 	const limit = 8;
 	const [total, setTotal] = useState(0);
@@ -54,6 +55,7 @@ export const ProductProvider = ({ children }) => {
 	const [page, setPage] = useState(1);
 	const [cartProducts, setCartProducts] = useState([]);
 
+	// Send mail
 	const sendEmail = async () => {
 		await emailjs.send(
 			serviceId,
@@ -64,17 +66,6 @@ export const ProductProvider = ({ children }) => {
 		await removeAllCart();
 	};
 
-	const getCartProducts = async () => {
-		try {
-			const data = await getCart();
-			setCartProducts(data);
-		} catch (err) {
-			alert(err.response?.data || err.message);
-			console.error("Error get cart", err);
-		}
-	};
-
-	// Send mail
 	const generateOrderMessage = () => {
 		const user = firebase.auth().currentUser;
 		if (!user) return "";
@@ -84,6 +75,16 @@ export const ProductProvider = ({ children }) => {
 			.join(", ");
 
 		return `Customer with email ${email} has ordered ${productInformations}. Total bill is $${cartTotal}`;
+	};
+
+	const getCartProducts = async () => {
+		try {
+			const data = await getCart();
+			setCartProducts(data);
+		} catch (err) {
+			alert(err.response?.data || err.message);
+			console.error("Error get cart", err);
+		}
 	};
 
 	const cartTotal = useMemo(() => {
@@ -115,7 +116,7 @@ export const ProductProvider = ({ children }) => {
 		try {
 			await addToCart(productId, number);
 			await getCartProducts();
-			addedFromCart();
+			addedNotification();
 		} catch (err) {
 			alert(err.response?.data || err.message);
 			console.error(err);
@@ -136,7 +137,7 @@ export const ProductProvider = ({ children }) => {
 		try {
 			await removeProductInCart(productId);
 			await getCartProducts();
-			removedFromCart();
+			removedNotification();
 		} catch (err) {
 			alert(err.response?.data || err.message);
 			console.error(err);

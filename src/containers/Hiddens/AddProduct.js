@@ -48,8 +48,8 @@ const products = [
 	},
 	{
 		name: "Morbi viverra hend",
-		price: 88,
-		sale: 19,
+		price: 19,
+		sale: 88,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/12_600x.jpg?alt=media&token=64acd3e6-b253-45bc-8924-5aa355717589",
 		description:
 			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",

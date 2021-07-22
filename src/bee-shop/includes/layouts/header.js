@@ -82,7 +82,7 @@ function HeaderComponent() {
 									<li className="list__item">
 										<NavLink
 											className="list__item-link"
-											to="/dashboard/addProduct"
+											to="#"
 										>
 											Contact
 										</NavLink>
@@ -142,7 +142,9 @@ function HeaderComponent() {
 							</li>
 							{/* ./Cart count  */}
 							<li className="account">
-								<FaRegUser />
+								<Link to="/dashboard/addProduct">
+									<FaRegUser />
+								</Link>
 							</li>
 							<li className="my-account cursor-pointer" onClick={signout}>
 								<FiLogOut />

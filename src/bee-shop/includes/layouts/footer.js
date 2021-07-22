@@ -31,8 +31,16 @@ function Footer() {
 											Stay updated on sales, new items and more
 										</div>
 										<div class="footer__mail">
-											<input type="email" placeholder="Your Email Adress" />
-											<button type="submit"></button>
+											{/* <input type="email" placeholder="Your Email Adress" />
+											<button type="submit"></button> */}
+											<div className="subscribe-form">
+												<input
+													type="email"
+													class="subscribe-form-input"
+													placeholder="Enter your email"
+												/>
+												<button class="subscribe-form-button">Subscribe</button>
+											</div>
 										</div>
 									</div>
 								</div>
