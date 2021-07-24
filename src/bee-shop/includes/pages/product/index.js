@@ -1,16 +1,18 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useRef } from "react"
 import Layout from "../../layouts/index"
 import Breadcrumb from "../../components/breadcrumb"
 import ProductItem from "../../components/product"
-import { Row, Col, Select, Pagination } from "antd"
+import { Row, Col, Select, Pagination, Input } from "antd"
 import { FaTags, FaThList } from "react-icons/fa"
 import { FaThLarge } from "react-icons/fa"
 import { ProductContext } from "../../../../contexts/ProductContext"
 import useUserAuth from "../../../../hooks/useUserAuth"
 const { Option } = Select
 function Products() {
+	const timeout = useRef(null)
 	const productContext = useContext(ProductContext)
 	const {
+		search,
 		tag,
 		allTags,
 		total,
@@ -25,14 +27,27 @@ function Products() {
 		add,
 		setSort,
 		setTag,
-		getAllTags
+		getAllTags,
+		setSearch
 	} = productContext
 
 	useUserAuth(get, null)
 
 	useEffect(() => {
 		get()
-	}, [sort, offset, tag])
+	}, [sort, offset])
+
+	useEffect(() => {
+		get(true)
+	}, [tag])
+
+	useEffect(() => {
+		if (timeout.current) {
+			clearTimeout(timeout.current)
+			timeout.current = null
+		}
+		timeout.current = setTimeout(() => get(true), 500)
+	}, [search])
 
 	useEffect(() => {
 		count()
@@ -76,6 +91,13 @@ function Products() {
 										<a href>
 											<FaThLarge />
 										</a>
+									</div>
+									<div>
+										<Input
+											value={search}
+											placeholder="Search"
+											onChange={e => setSearch(e.target.value)}
+										/>
 									</div>
 									<div>
 										<Select

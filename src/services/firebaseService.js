@@ -48,7 +48,7 @@ export const countProducts = async () => {
 	return data.size
 }
 
-export const getProducts = async (offset, sortBy, sortOrder, limit, tag, setTotal) => {
+export const getProducts = async (offset, sortBy, sortOrder, limit, tag, search, setTotal) => {
 	let query = firebase
 		.firestore()
 		.collection(collections.products)
@@ -56,6 +56,10 @@ export const getProducts = async (offset, sortBy, sortOrder, limit, tag, setTota
 
 	const data = await query.get()
 	let docs = data.docs
+
+	if (search) {
+		docs = docs.filter(item => item.data().name && item.data().name.toLowerCase().includes(search.toLowerCase().trim()))
+	}
 
 	if (tag) {
 		docs = docs.filter(item => item.data().tags && item.data().tags.includes(`,${tag},`))

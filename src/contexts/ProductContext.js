@@ -96,6 +96,7 @@ export const ProductProvider = ({ children }) => {
 
 	const [allTags, setAllTags] = useState([])
 	const [tag, setTag] = useState(null)
+	const [search, setSearch] = useState("")
 	const [sort, setSort] = useState({
 		sortBy: "price",
 		sortOrder: "asc",
@@ -110,8 +111,8 @@ export const ProductProvider = ({ children }) => {
 		setAllTags(data)
 	}
 
-	const get = async () => {
-		const data = await getProducts(offset, sort.sortBy, sort.sortOrder, limit, tag, setTotal)
+	const get = async (noOffset) => {
+		const data = await getProducts(noOffset ? 0 : offset, sort.sortBy, sort.sortOrder, limit, tag, search, setTotal)
 		setProducts(data)
 	}
 
@@ -162,6 +163,7 @@ export const ProductProvider = ({ children }) => {
 	}
 
 	const values = {
+		search,
 		tag,
 		allTags,
 		limit,
@@ -172,6 +174,7 @@ export const ProductProvider = ({ children }) => {
 		sort,
 		cartProducts,
 		cartTotal,
+		setSearch,
 		getCartProducts,
 		setPage,
 		get,
