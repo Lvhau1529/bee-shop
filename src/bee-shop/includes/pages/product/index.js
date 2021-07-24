@@ -1,16 +1,18 @@
-import React, { useEffect, useContext } from "react";
-import Layout from "../../layouts/index";
-import Breadcrumb from "../../components/breadcrumb";
-import ProductItem from "../../components/product";
-import { Row, Col, Select, Pagination } from "antd";
-import { FaThList } from "react-icons/fa";
-import { FaThLarge } from "react-icons/fa";
-import { ProductContext } from "../../../../contexts/ProductContext";
-import useUserAuth from "../../../../hooks/useUserAuth";
-const { Option } = Select;
+import React, { useEffect, useContext } from "react"
+import Layout from "../../layouts/index"
+import Breadcrumb from "../../components/breadcrumb"
+import ProductItem from "../../components/product"
+import { Row, Col, Select, Pagination } from "antd"
+import { FaTags, FaThList } from "react-icons/fa"
+import { FaThLarge } from "react-icons/fa"
+import { ProductContext } from "../../../../contexts/ProductContext"
+import useUserAuth from "../../../../hooks/useUserAuth"
+const { Option } = Select
 function Products() {
-	const productContext = useContext(ProductContext);
+	const productContext = useContext(ProductContext)
 	const {
+		tag,
+		allTags,
 		total,
 		limit,
 		products,
@@ -22,32 +24,35 @@ function Products() {
 		count,
 		add,
 		setSort,
-	} = productContext;
+		setTag,
+		getAllTags
+	} = productContext
 
-	useUserAuth(get, null);
-
-	useEffect(() => {
-		get();
-	}, [sort, offset]);
+	useUserAuth(get, null)
 
 	useEffect(() => {
-		count();
-	}, []);
+		get()
+	}, [sort, offset, tag])
+
+	useEffect(() => {
+		count()
+		getAllTags()
+	}, [])
 
 	const onChangeFilter = (value) => {
 		switch (value) {
 			case "lowToHigh":
-				return setSort({ sortBy: "price", sortOrder: "asc" });
+				return setSort({ sortBy: "price", sortOrder: "asc" })
 			case "hightoLow":
-				return setSort({ sortBy: "price", sortOrder: "desc" });
+				return setSort({ sortBy: "price", sortOrder: "desc" })
 			case "nameAtoZ":
-				return setSort({ sortBy: "name", sortOrder: "asc" });
+				return setSort({ sortBy: "name", sortOrder: "asc" })
 			case "nameZtoA":
-				return setSort({ sortBy: "name", sortOrder: "desc" });
+				return setSort({ sortBy: "name", sortOrder: "desc" })
 			default:
-				return;
+				return
 		}
-	};
+	}
 
 	return (
 		<>
@@ -72,16 +77,27 @@ function Products() {
 											<FaThLarge />
 										</a>
 									</div>
-									<Select
-										defaultValue="Price, low to high"
-										style={{ width: 200 }}
-										onChange={onChangeFilter}
-									>
-										<Option value="lowToHigh">Price, low to high</Option>
-										<Option value="hightoLow">Price, high to low</Option>
-										<Option value="nameAtoZ">name, A-Z</Option>
-										<Option value="nameZtoA">name, Z-A</Option>
-									</Select>
+									<div>
+										<Select
+											value={tag}
+											style={{ width: "200px" }}
+											onChange={value => setTag(value)}
+											placeholder="Filter by tags"
+											allowClear
+										>
+											{allTags.map(item => <Option key={item} value={item}>{item}</Option>)}
+										</Select>
+										<Select
+											defaultValue="Price, low to high"
+											style={{ width: 200 }}
+											onChange={onChangeFilter}
+										>
+											<Option value="lowToHigh">Price, low to high</Option>
+											<Option value="hightoLow">Price, high to low</Option>
+											<Option value="nameAtoZ">name, A-Z</Option>
+											<Option value="nameZtoA">name, Z-A</Option>
+										</Select>
+									</div>
 								</div>
 							</Col>
 						</Row>
@@ -100,10 +116,10 @@ function Products() {
 												product.sale === 0
 													? ""
 													: `-${Math.trunc(
-															(parseInt(product.price) /
-																parseInt(product.sale)) *
-																100
-													  )}%`
+														(parseInt(product.price) /
+															parseInt(product.sale)) *
+														100
+													)}%`
 											}
 										/>
 									</Col>
@@ -126,7 +142,7 @@ function Products() {
 				</div>
 			</Layout>
 		</>
-	);
+	)
 }
 
-export default React.memo(Products);
+export default React.memo(Products)

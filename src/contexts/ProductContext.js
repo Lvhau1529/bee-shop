@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
-import emailjs from "emailjs-com";
-import { notification } from "antd";
+import React, { useState, useMemo } from "react"
+import emailjs from "emailjs-com"
+import { notification } from "antd"
 import {
 	getProducts,
 	countProducts,
@@ -8,52 +8,53 @@ import {
 	getCart,
 	removeProductInCart,
 	removeAllProductInCart,
-} from "../services/firebaseService";
-import firebase from "../configs/firebase";
+	getTags
+} from "../services/firebaseService"
+import firebase from "../configs/firebase"
 
 // Mail JS settings
-const serviceId = "service_jl2dsgm";
-const templateId = "template_z5mz581";
-const userId = "user_5kh5d9GNrNyJjNHAPwGnD";
+const serviceId = "service_jl2dsgm"
+const templateId = "template_z5mz581"
+const userId = "user_5kh5d9GNrNyJjNHAPwGnD"
 
 // Notification
 const destroyNotification = (time) => {
-	let secondsToGo = time;
+	let secondsToGo = time
 	const timer = setInterval(() => {
-		secondsToGo -= 1;
-	}, 1000);
+		secondsToGo -= 1
+	}, 1000)
 	setTimeout(() => {
-		clearInterval(timer);
-		notification.destroy();
-	}, secondsToGo * 1000);
-};
+		clearInterval(timer)
+		notification.destroy()
+	}, secondsToGo * 1000)
+}
 
 const addedNotification = (type) => {
 	notification["success"]({
 		message: "Product is added to cart",
 		description: "Please check your cart.",
-	});
-	destroyNotification(3);
-};
+	})
+	destroyNotification(3)
+}
 
 const removedNotification = (type) => {
 	notification["warning"]({
 		message: "Product is removed from cart",
-	});
-	destroyNotification(3);
-};
+	})
+	destroyNotification(3)
+}
 // ./Notification
 
 // Create Reducer
-export const ProductContext = React.createContext();
+export const ProductContext = React.createContext()
 
 //Create Provider
 export const ProductProvider = ({ children }) => {
-	const limit = 8;
-	const [total, setTotal] = useState(0);
-	const [products, setProducts] = useState([]);
-	const [page, setPage] = useState(1);
-	const [cartProducts, setCartProducts] = useState([]);
+	const limit = 8
+	const [total, setTotal] = useState(0)
+	const [products, setProducts] = useState([])
+	const [page, setPage] = useState(1)
+	const [cartProducts, setCartProducts] = useState([])
 
 	// Send mail
 	const sendEmail = async () => {
@@ -62,98 +63,107 @@ export const ProductProvider = ({ children }) => {
 			templateId,
 			{ message: generateOrderMessage() },
 			userId
-		);
-		await removeAllCart();
-	};
+		)
+		await removeAllCart()
+	}
 
 	const generateOrderMessage = () => {
-		const user = firebase.auth().currentUser;
-		if (!user) return "";
-		const { email } = user;
+		const user = firebase.auth().currentUser
+		if (!user) return ""
+		const { email } = user
 		const productInformations = cartProducts
 			.map((item) => `${item.count} ${item.name}`)
-			.join(", ");
+			.join(", ")
 
-		return `Customer with email ${email} has ordered ${productInformations}. Total bill is $${cartTotal}`;
-	};
+		return `Customer with email ${email} has ordered ${productInformations}. Total bill is $${cartTotal}`
+	}
 
 	const getCartProducts = async () => {
 		try {
-			const data = await getCart();
-			setCartProducts(data);
+			const data = await getCart()
+			setCartProducts(data)
 		} catch (err) {
-			alert(err.response?.data || err.message);
-			console.error("Error get cart", err);
+			alert(err.response?.data || err.message)
+			console.error("Error get cart", err)
 		}
-	};
+	}
 
 	const cartTotal = useMemo(() => {
 		return (cartProducts || []).reduce((total, product) => {
-			return total + product.price * product.count;
-		}, 0);
-	}, [cartProducts]);
+			return total + product.price * product.count
+		}, 0)
+	}, [cartProducts])
 
+	const [allTags, setAllTags] = useState([])
+	const [tag, setTag] = useState(null)
 	const [sort, setSort] = useState({
 		sortBy: "price",
 		sortOrder: "asc",
-	});
+	})
 
 	const offset = useMemo(() => {
-		return (page - 1) * limit;
-	}, [page]);
+		return (page - 1) * limit
+	}, [page])
+
+	const getAllTags = async () => {
+		const data = await getTags()
+		setAllTags(data)
+	}
 
 	const get = async () => {
-		const data = await getProducts(offset, sort.sortBy, sort.sortOrder, limit);
-		setProducts(data);
-	};
+		const data = await getProducts(offset, sort.sortBy, sort.sortOrder, limit, tag, setTotal)
+		setProducts(data)
+	}
 
 	const count = async () => {
-		const data = await countProducts();
-		setTotal(data);
-	};
+		const data = await countProducts()
+		setTotal(data)
+	}
 
 	const add = (productId, number) => async () => {
 		try {
-			await addToCart(productId, number);
-			await getCartProducts();
-			addedNotification();
+			await addToCart(productId, number)
+			await getCartProducts()
+			addedNotification()
 		} catch (err) {
-			alert(err.response?.data || err.message);
-			console.error(err);
+			alert(err.response?.data || err.message)
+			console.error(err)
 		}
-	};
+	}
 
 	const changeCountNumber = (productId) => async (number) => {
 		try {
-			await addToCart(productId, number, true);
-			await getCartProducts();
+			await addToCart(productId, number, true)
+			await getCartProducts()
 		} catch (err) {
-			alert(err.response?.data || err.message);
-			console.error(err);
+			alert(err.response?.data || err.message)
+			console.error(err)
 		}
-	};
+	}
 
 	const removeCart = (productId) => async () => {
 		try {
-			await removeProductInCart(productId);
-			await getCartProducts();
-			removedNotification();
+			await removeProductInCart(productId)
+			await getCartProducts()
+			removedNotification()
 		} catch (err) {
-			alert(err.response?.data || err.message);
-			console.error(err);
+			alert(err.response?.data || err.message)
+			console.error(err)
 		}
-	};
+	}
 
 	const removeAllCart = async () => {
 		try {
-			await removeAllProductInCart();
-			await getCartProducts();
+			await removeAllProductInCart()
+			await getCartProducts()
 		} catch (err) {
-			alert(err.response?.data || err.message);
+			alert(err.response?.data || err.message)
 		}
-	};
+	}
 
 	const values = {
+		tag,
+		allTags,
 		limit,
 		total,
 		products,
@@ -171,9 +181,11 @@ export const ProductProvider = ({ children }) => {
 		removeCart,
 		changeCountNumber,
 		sendEmail,
-	};
+		getAllTags,
+		setTag
+	}
 
 	return (
 		<ProductContext.Provider value={values}>{children}</ProductContext.Provider>
-	);
-};
+	)
+}

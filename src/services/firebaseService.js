@@ -11,13 +11,17 @@ export const addProduct = async (data) => {
 	await firebase.firestore().collection(collections.products).add(data)
 }
 
-export const addTags = async (tags) => {
+export const getTags = async () => {
 	const query = await firebase
 		.firestore()
 		.collection(collections.tags)
 		.get()
 
-	const allTags = query.docs.map(doc => doc.data().name)
+	return query.docs.map(doc => doc.data().name)
+}
+
+export const addTags = async (tags) => {
+	const allTags = await getTags()
 
 	for (const tag of tags) {
 		if (allTags.includes(tag)) continue
@@ -44,15 +48,22 @@ export const countProducts = async () => {
 	return data.size
 }
 
-export const getProducts = async (offset, sortBy, sortOrder, limit) => {
+export const getProducts = async (offset, sortBy, sortOrder, limit, tag, setTotal) => {
 	let query = firebase
 		.firestore()
 		.collection(collections.products)
 		.orderBy(sortBy, sortOrder)
 
 	const data = await query.get()
+	let docs = data.docs
 
-	return data.docs.slice(offset, offset + limit).map((doc) => ({
+	if (tag) {
+		docs = docs.filter(item => item.data().tags && item.data().tags.includes(`,${tag},`))
+	}
+
+	setTotal(docs.length)
+
+	return docs.slice(offset, offset + limit).map((doc) => ({
 		id: doc.id,
 		...doc.data(),
 	}))

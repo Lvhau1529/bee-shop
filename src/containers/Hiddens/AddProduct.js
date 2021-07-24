@@ -131,13 +131,13 @@ const AddProduct = () => {
 			const { name, price, img, description, tags } = product
 			if ([name, price, img, description].some((value) => !value))
 				throw new Error("Invalid data")
+			const productTags = tags.split(",").map(tag => tag.trim())
 			if (tags && tags.trim()) {
-				const productTags = tags.split(",").map(tag => tag.trim())
 				await addTags(productTags)
 			}
 			await addProduct({
 				...product,
-				tags: `,${tags},`
+				tags: `,${productTags.join(",")},`
 			})
 			alert("Add product successfully")
 		} catch (err) {
