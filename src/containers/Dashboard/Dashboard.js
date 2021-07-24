@@ -32,21 +32,21 @@ function Dashboard(props) {
 								defaultOpenKeys={["sub1"]}
 								style={{ height: "100%" }}
 							>
-								<SubMenu key="sub1" icon={<PieChartOutlined />} title="Product">
+								<SubMenu key="sub1" icon={<PieChartOutlined />} title="Sản phẩm">
 									<Menu.Item key="1">
-										<Link to="/dashboard/addProduct">Add Product</Link>
+										<Link to="/dashboard/addProduct">Thêm sản phẩm</Link>
 									</Menu.Item>
 									<Menu.Item key="2">
-										<Link to="/dashboard/removeProduct">Remove Product</Link>
+										<Link to="/dashboard/removeProduct">Xoá sản phẩm</Link>
 									</Menu.Item>
 									{/* <Menu.Item key="3">option3</Menu.Item> */}
 								</SubMenu>
-								<SubMenu key="sub2" icon={<UserOutlined />} title="User">
+								{/* <SubMenu key="sub2" icon={<UserOutlined />} title="User">
 									<Menu.Item key="5">option5</Menu.Item>
 									<Menu.Item key="6">option6</Menu.Item>
 									<Menu.Item key="7">option7</Menu.Item>
 									<Menu.Item key="8">option8</Menu.Item>
-								</SubMenu>
+								</SubMenu> */}
 							</Menu>
 						</Sider>
 						<Content style={{ padding: "0 24px", minHeight: 280 }}>

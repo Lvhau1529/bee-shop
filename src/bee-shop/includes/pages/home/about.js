@@ -11,7 +11,7 @@ function About() {
 			<div class="about__block">
 				<div class="container">
 					{/* <!-- Title --> */}
-					<Title title="Natural Honey" main="Why Choose Us" />
+					<Title title="Mật ong tự nhiên" main="Tại sao chọn chúng tôi" />
 					{/* <!-- ./Title --> */}
 					{/* <!-- About-content --> */}
 					<div class="about__bottom row">
@@ -28,7 +28,7 @@ function About() {
 											<img src={img2} alt="" />
 										</div>
 										<div class="box-content__about">
-											<div class="box-content--title">100% Naturally</div>
+											<div class="box-content--title">100% tự nhiên</div>
 											<div class="box-content--desc">
 												<p>
 													Lorem ipsum dolor sit amet, cons ectetur adipisicing
@@ -42,7 +42,7 @@ function About() {
 											<img src={img2} alt="" />
 										</div>
 										<div class="box-content__about">
-											<div class="box-content--title">100% Naturally</div>
+											<div class="box-content--title">Bán hàng trực tuyến 24/7</div>
 											<div class="box-content--desc">
 												<p>
 													Lorem ipsum dolor sit amet, cons ectetur adipisicing
@@ -56,7 +56,7 @@ function About() {
 											<img src={img2} alt="" />
 										</div>
 										<div class="box-content__about">
-											<div class="box-content--title">100% Naturally</div>
+											<div class="box-content--title">Giao hàng tận nhà</div>
 											<div class="box-content--desc">
 												<p>
 													Lorem ipsum dolor sit amet, cons ectetur adipisicing
@@ -71,7 +71,7 @@ function About() {
 										</div>
 										<div class="box-content__about">
 											<div class="box-content--title">
-												Best Quality in the Market
+												Chất lượng sản phẩm tốt nhất
 											</div>
 											<div class="box-content--desc">
 												<p>

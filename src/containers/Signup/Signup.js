@@ -23,7 +23,7 @@ function Signup() {
 			setHiddenAlert("");
 			console.error(
 				err,
-				"The email address is already in use by another account."
+				"Địa chỉ email này đã được sử dụng. Vui lòng sử dụng email khác."
 			);
 		}
 	};
@@ -36,9 +36,9 @@ function Signup() {
 		<div>
 			<AlertFunction
 				hidden={hiddenAlert}
-				description="The email address is already in use by another account."
+				description="Địa chỉ email này đã được sử dụng. Vui lòng sử dụng email khác."
 			/>
-			<h1 class="signup-heading">Create Account</h1>
+			<h1 class="signup-heading">Tạo tài khoản mới</h1>
 			<Form
 				name="basic"
 				layout="vertical"
@@ -55,7 +55,7 @@ function Signup() {
 					rules={[
 						{
 							required: true,
-							message: "Please input your email!",
+							message: "Nhập email của bạn!",
 						},
 					]}
 				>
@@ -63,12 +63,12 @@ function Signup() {
 				</Form.Item>
 
 				<Form.Item
-					label="Password"
+					label="Mật khẩu"
 					name="password"
 					rules={[
 						{
 							required: true,
-							message: "Please input your password!",
+							message: "Nhập mật khẩu của bạn!",
 						},
 					]}
 				>
@@ -77,13 +77,13 @@ function Signup() {
 
 				<Form.Item>
 					<Button className="form-submit" type="primary" htmlType="submit">
-						Sign up
+						Đăng ký
 					</Button>
 				</Form.Item>
 			</Form>
 			<p class="signup-already">
 				<a href onClick={() => history.push("/login")}>
-					Back to log in
+					Quay lại trang đăng nhập
 				</a>
 			</p>
 		</div>

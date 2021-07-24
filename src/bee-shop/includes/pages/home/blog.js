@@ -10,7 +10,7 @@ function Blog() {
 			<div class="blog__block">
 				<div class="container">
 					{/* <!-- Title --> */}
-					<Title title="Newest" main="From Our Blog"/>
+					<Title title="Tin tức" main="Blog của chúng tôi"/>
 					{/* <!-- ./Title --> */}
 					<div class="blog row">
 						<Row>
@@ -31,11 +31,11 @@ function Blog() {
 											</div>
 										</div>
 										<div class="blog__icon--more">
-											<a href>Read More</a>
+											<a href>Đọc thêm</a>
 										</div>
 									</div>
 									<div class="blog__title">
-										<a href>Although we worry, honey bees are built to last</a>
+										<a href>Những điều có thể bạn chưa biết về mật ong</a>
 									</div>
 								</div>
 							</Col>
@@ -57,7 +57,7 @@ function Blog() {
 											</div>
 										</div>
 										<div class="blog__icon--more">
-											<a href>Read More</a>
+											<a href>Đọc thêm</a>
 										</div>
 									</div>
 									<div class="blog__title">

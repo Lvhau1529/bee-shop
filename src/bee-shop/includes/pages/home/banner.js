@@ -24,10 +24,10 @@ function Banner() {
 							<img alt="banner" src={img} />
 							<div class="content animate__animated">
 								<div class="content__title animate__animated animate__fadeInRight">
-									<p>Honey Yoghurt</p>
+									<p>Sữa chua mật ong</p>
 								</div>
 								<div class="content__sub animate__animated animate__fadeInUp">
-									<p>Hot trending</p>
+									<p>Sản phẩm hot</p>
 								</div>
 								<div class="content__desc  animate__fadeInUp">
 									<p>
@@ -39,7 +39,7 @@ function Banner() {
 								</div>
 								<Button
 									className="animate__animated animate__slideInDown"
-									title="Buy Now"
+									title="Mua ngay"
 									link="/product"
 								/>
 							</div>
@@ -51,10 +51,10 @@ function Banner() {
 							<img alt="banner" src={img2} />
 							<div class="content--2">
 								<div class="content__title animate__animated animate__bounceInDown">
-									<p>Honey Yoghurt</p>
+									<p>Mật ong hữu cơ</p>
 								</div>
 								<div class="content__sub animate__animated animate__flipInX">
-									<p>Hot trending</p>
+									<p>Sản phẩm sắp ra mắt</p>
 								</div>
 								<div class="content__desc animate__animated animate__fadeInDown">
 									<p>
@@ -66,7 +66,7 @@ function Banner() {
 								</div>
 								<Button
 									className="animate__animated animate__lightSpeedInRight"
-									title="Buy Now"
+									title="Mua ngay"
 									link="/product"
 								/>
 							</div>

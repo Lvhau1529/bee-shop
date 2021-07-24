@@ -1,16 +1,16 @@
-import React, { useEffect, useContext, useRef } from "react"
-import Layout from "../../layouts/index"
-import Breadcrumb from "../../components/breadcrumb"
-import ProductItem from "../../components/product"
-import { Row, Col, Select, Pagination, Input } from "antd"
-import { FaTags, FaThList } from "react-icons/fa"
-import { FaThLarge } from "react-icons/fa"
-import { ProductContext } from "../../../../contexts/ProductContext"
-import useUserAuth from "../../../../hooks/useUserAuth"
-const { Option } = Select
+import React, { useEffect, useContext, useRef } from "react";
+import Layout from "../../layouts/index";
+import Breadcrumb from "../../components/breadcrumb";
+import ProductItem from "../../components/product";
+import { Row, Col, Select, Pagination, Input } from "antd";
+// import { FaTags, FaThList } from "react-icons/fa";
+// import { FaThLarge } from "react-icons/fa";
+import { ProductContext } from "../../../../contexts/ProductContext";
+import useUserAuth from "../../../../hooks/useUserAuth";
+const { Option } = Select;
 function Products() {
-	const timeout = useRef(null)
-	const productContext = useContext(ProductContext)
+	const timeout = useRef(null);
+	const productContext = useContext(ProductContext);
 	const {
 		search,
 		tag,
@@ -28,96 +28,100 @@ function Products() {
 		setSort,
 		setTag,
 		getAllTags,
-		setSearch
-	} = productContext
+		setSearch,
+	} = productContext;
 
-	useUserAuth(get, null)
-
-	useEffect(() => {
-		get()
-	}, [sort, offset])
+	useUserAuth(get, null);
 
 	useEffect(() => {
-		get(true)
-	}, [tag])
+		get();
+	}, [sort, offset]);
+
+	useEffect(() => {
+		get(true);
+	}, [tag]);
 
 	useEffect(() => {
 		if (timeout.current) {
-			clearTimeout(timeout.current)
-			timeout.current = null
+			clearTimeout(timeout.current);
+			timeout.current = null;
 		}
-		timeout.current = setTimeout(() => get(true), 500)
-	}, [search])
+		timeout.current = setTimeout(() => get(true), 500);
+	}, [search]);
 
 	useEffect(() => {
-		count()
-		getAllTags()
-	}, [])
+		count();
+		getAllTags();
+	}, []);
 
 	const onChangeFilter = (value) => {
 		switch (value) {
 			case "lowToHigh":
-				return setSort({ sortBy: "price", sortOrder: "asc" })
+				return setSort({ sortBy: "price", sortOrder: "asc" });
 			case "hightoLow":
-				return setSort({ sortBy: "price", sortOrder: "desc" })
+				return setSort({ sortBy: "price", sortOrder: "desc" });
 			case "nameAtoZ":
-				return setSort({ sortBy: "name", sortOrder: "asc" })
+				return setSort({ sortBy: "name", sortOrder: "asc" });
 			case "nameZtoA":
-				return setSort({ sortBy: "name", sortOrder: "desc" })
+				return setSort({ sortBy: "name", sortOrder: "desc" });
 			default:
-				return
+				return;
 		}
-	}
+	};
 
 	return (
 		<>
 			<Layout>
 				<Breadcrumb
-					title="Products"
+					title="Cửa hàng"
 					link1="/"
 					link2="/product"
-					name1="Home"
-					name2="Product"
+					name1="Trang chủ"
+					name2="Cửa hàng"
 				/>
 				<div className="product">
 					<div className="container">
 						<Row>
 							<Col span={24}>
 								<div className="product__sort">
-									<div className="product__sort-view">
+									{/* <div className="product__sort-view">
 										<a href>
 											<FaThList />
 										</a>
 										<a href>
 											<FaThLarge />
 										</a>
-									</div>
+									</div> */}
 									<div>
-										<Input
+										<Input style={{ borderRadius: "0", padding: "1rem"}}
 											value={search}
-											placeholder="Search"
-											onChange={e => setSearch(e.target.value)}
+											placeholder="Tìm kiếm sản phẩm"
+											onChange={(e) => setSearch(e.target.value)}
 										/>
 									</div>
 									<div>
 										<Select
 											value={tag}
 											style={{ width: "200px" }}
-											onChange={value => setTag(value)}
-											placeholder="Filter by tags"
+											onChange={(value) => setTag(value)}
+											placeholder="Lọc theo nhãn"
 											allowClear
 										>
-											{allTags.map(item => <Option key={item} value={item}>{item}</Option>)}
+											{allTags.map((item) => (
+												<Option key={item} value={item}>
+													{item}
+												</Option>
+											))}
 										</Select>
 										<Select
-											defaultValue="Price, low to high"
+											defaultValue="Sắp xếp sản phẩm"
 											style={{ width: 200 }}
 											onChange={onChangeFilter}
 										>
-											<Option value="lowToHigh">Price, low to high</Option>
-											<Option value="hightoLow">Price, high to low</Option>
-											<Option value="nameAtoZ">name, A-Z</Option>
-											<Option value="nameZtoA">name, Z-A</Option>
+											<Option value="lowToHigh">Giá, thấp đến cao</Option>
+											<Option value="hightoLow">Giá, cao xuống thấp</Option>
+											<Option value="nameAtoZ">Tên, A-Z</Option>
+											<Option value="nameZtoA">Tên, Z-A</Option>
 										</Select>
 									</div>
 								</div>
@@ -138,10 +142,10 @@ function Products() {
 												product.sale === 0
 													? ""
 													: `-${Math.trunc(
-														(parseInt(product.price) /
-															parseInt(product.sale)) *
-														100
-													)}%`
+															(parseInt(product.price) /
+																parseInt(product.sale)) *
+																100
+													  )}%`
 											}
 										/>
 									</Col>
@@ -164,7 +168,7 @@ function Products() {
 				</div>
 			</Layout>
 		</>
-	)
+	);
 }
 
-export default React.memo(Products)
+export default React.memo(Products);

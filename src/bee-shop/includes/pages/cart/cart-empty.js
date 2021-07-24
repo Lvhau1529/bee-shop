@@ -11,21 +11,21 @@ function CartEmpty() {
 						<Col span={24}>
 							<div className="cart-empty__content text-center">
 								<div className="cart-empty__content-title">
-									Your cart is currently empty.
+									Không có sản phẩm trong giỏ hàng.
 								</div>
 								<div className="cart-empty__content-desc">
 									<p>
-										Before proceeding to checkout you must add some products to
-										your shopping cart.
+										Trước khi tiến hành thanh toán, bạn phải thêm một số sản
+										phẩm vào giỏ hàng của mình.
 									</p>
 									<p>
-										You will find a lot of interesting products on our "Shop"
-										page.
+										Bạn sẽ tìm thấy rất nhiều sản phẩm tốt trên trang "Cửa hàng"
+										của chúng tôi.
 									</p>
 								</div>
 								<div className="cart-empty__content-button">
 									<Link to="/product" className="button">
-										Continue shopping
+										Tiếp tục mua sắm
 									</Link>
 								</div>
 							</div>

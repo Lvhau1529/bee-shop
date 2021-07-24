@@ -5,8 +5,8 @@ function AlertFunction(props) {
 	return (
 		<Alert
 			style={{ display: props.hidden }}
-			message={props.message || "Error"}
-			description={props.description || "Don't have description"}
+			message={props.message || "Lỗi"}
+			description={props.description || "Không có miêu tả"}
 			type={props.type || "error"}
 			showIcon
 			closable

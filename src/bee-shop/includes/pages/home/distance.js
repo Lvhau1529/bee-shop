@@ -10,22 +10,22 @@ function Distance() {
 		<>
 			<div class="block">
 				<div class="distance container">
-					<TitleBlock title="Welcome to" main="Our Natural Honey" />
+					<TitleBlock title="Welcome to" main="Mật ong tự nhiên" />
 					<Row className="distance__bottom">
 						<Col span={10}>
 							<NumberContent
 								number="01"
-								title="Naturally Sweet"
+								title="Vị ngọt từ thiên nhiên"
 								desc="Nullam molestie augue neque, vel lobortis ante ornare in. Aenean ultricies elementum augue, sit amet ornare lacus lacinia non."
 							/>
 							<NumberContent
 								number="02"
-								title="Naturally Sweet"
+								title="Tốt cho sức khoẻ"
 								desc="Nullam molestie augue neque, vel lobortis ante ornare in. Aenean ultricies elementum augue, sit amet ornare lacus lacinia non."
 							/>
 							<NumberContent
 								number="03"
-								title="Naturally Sweet"
+								title="Không chất bảo quản"
 								desc="Nullam molestie augue neque, vel lobortis ante ornare in. Aenean ultricies elementum augue, sit amet ornare lacus lacinia non."
 							/>
 						</Col>

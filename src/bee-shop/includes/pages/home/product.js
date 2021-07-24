@@ -30,7 +30,7 @@ function Product() {
 			<div class="product__block">
 				<div class="product container">
 					{/* <!-- Title --> */}
-					<TitleBlock title="Our Store" main="Featured Products" />
+					<TitleBlock title="Cửa hàng" main="Sản phẩm nổi bật" />
 					{/* <!-- ./Title --> */}
 
 					{/* Product detail */}
@@ -53,7 +53,7 @@ function Product() {
 															(parseInt(product.price) /
 																parseInt(product.sale)) *
 																100
-													  )}%`
+													)}%`
 											}
 										/>
 									</Col>

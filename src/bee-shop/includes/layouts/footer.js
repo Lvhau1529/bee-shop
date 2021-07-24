@@ -26,9 +26,9 @@ function Footer() {
 							<Col>
 								<div class="footer__top col-md-12">
 									<div class="footer__content">
-										<div class="footer__title">Join Newsletter Now</div>
+										<div class="footer__title">Tham gia cùng chúng tôi</div>
 										<div class="footer__sub-title">
-											Stay updated on sales, new items and more
+											Nhận thông tin về sản phẩm mới, khuyến mãi
 										</div>
 										<div class="footer__mail">
 											{/* <input type="email" placeholder="Your Email Adress" />
@@ -37,9 +37,9 @@ function Footer() {
 												<input
 													type="email"
 													class="subscribe-form-input"
-													placeholder="Enter your email"
+													placeholder="Nhập địa chỉ email"
 												/>
-												<button class="subscribe-form-button">Subscribe</button>
+												<button class="subscribe-form-button">Đăng ký</button>
 											</div>
 										</div>
 									</div>

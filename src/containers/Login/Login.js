@@ -34,9 +34,9 @@ function Login() {
 			<div>
 				<AlertFunction
 					hidden={hiddenAlert}
-					description="The password is invalid or the user does not have a password."
+					description="Tài khoản hoặc mật khẩu không chính xác."
 				/>
-				;<h1 class="signup-heading">Log in</h1>
+				;<h1 class="signup-heading">Đăng nhập</h1>
 				<Form
 					name="basic"
 					initialValues={{
@@ -53,7 +53,7 @@ function Login() {
 						rules={[
 							{
 								required: true,
-								message: "Please input your email!",
+								message: "Vui lòng nhập email của bạn!",
 							},
 						]}
 					>
@@ -61,12 +61,12 @@ function Login() {
 					</Form.Item>
 
 					<Form.Item
-						label="Password"
+						label="Mật khẩu"
 						name="password"
 						rules={[
 							{
 								required: true,
-								message: "Please input your password!",
+								message: "Vui lòng nhập mật khẩu của bạn!",
 							},
 						]}
 					>
@@ -75,19 +75,19 @@ function Login() {
 
 					<Form.Item>
 						<Button className="form-submit" type="primary" htmlType="submit">
-							Sign in
+							Đăng nhập
 						</Button>
 					</Form.Item>
 				</Form>
 				<p class="signup-already">
-					Don't have an account ?{" "}
+					Tạo tài khoản ?{" "}
 					<a href onClick={() => history.push("/signup")}>
-						Sign up
+						Đăng ký
 					</a>
 				</p>
 				<p class="signup-already">
 					<a href onClick={() => history.push("/forgot-password")}>
-						Forgot your password ?
+						Quên mật khẩu ?
 					</a>
 				</p>
 			</div>

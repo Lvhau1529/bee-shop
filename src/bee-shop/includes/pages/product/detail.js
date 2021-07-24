@@ -49,11 +49,11 @@ function DeltailProduct() {
 		<>
 			<Layout>
 				<Breadcrumb
-					title="Products"
+					title="Chi tiết sản phẩm"
 					link1="/"
 					link2="/detail"
-					name1="Home"
-					name2="Detail"
+					name1="Trang chủ"
+					name2="Chi tiết sản phẩm"
 				/>
 				<div className="detail">
 					<div className="container">
@@ -75,7 +75,7 @@ function DeltailProduct() {
 										<div className="status__rate">
 											<Rate allowHalf defaultValue={5} />
 										</div>
-										<div className="status__available">In-stock</div>
+										<div className="status__available">Còn hàng</div>
 									</div>
 									<div className="detail__product-price d-flex align-items-center">
 										<div className="price__main">${data.price}</div>
@@ -90,7 +90,7 @@ function DeltailProduct() {
 											onChange={onChange}
 										/>
 										<div className="cart__button cursor-pointer" onClick={onAdd}>
-											<span>Add to Cart</span>
+											<span>Mua hàng</span>
 										</div>
 									</div>
 								</div>
@@ -101,10 +101,10 @@ function DeltailProduct() {
 								<div className="detail__tab">
 									<ul className="detail__tab-list d-flex">
 										<li className="list__item">
-											<a href>Description</a>
+											<a href>Miêu tả</a>
 										</li>
 										<li className="list__item">
-											<a href>Reviews</a>
+											<a href>Nhận xét</a>
 										</li>
 									</ul>
 									<div className="detail__tab-content">

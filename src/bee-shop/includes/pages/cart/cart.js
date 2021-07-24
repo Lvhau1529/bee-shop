@@ -30,9 +30,9 @@ function Cart() {
 	// Notification
 	const openNotificationCheckOut = (type) => {
 		notification[type]({
-			message: "Checkout successfully",
+			message: "Thanh toán thành công",
 			description:
-				"We will contact you soon",
+				"Chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng",
 		});
 	};
 
@@ -53,13 +53,13 @@ function Cart() {
 	const { confirm } = Modal;
 	const showConfirm = () => {
 		confirm({
-			title: "Do you Want to buy these products?",
+			title: "Bạn chắc chắn muốn đặt hàng?",
 			icon: <ExclamationCircleOutlined />,
 			onOk() {
 				checkout();
 			},
 			onCancel() {
-				console.log("Cancel");
+				console.log("Huỷ bỏ");
 			},
 		});
 	};
@@ -71,11 +71,11 @@ function Cart() {
 	return (
 		<>
 			<Breadcrumb
-				title="Your Cart"
+				title="Giỏ hàng"
 				link1="/"
 				link2="/cart"
-				name1="Home"
-				name2="Your Cart"
+				name1="Trang chủ"
+				name2="Giỏ hàng"
 			/>
 			<div className="cart">
 				<div className="container">
@@ -89,10 +89,10 @@ function Cart() {
 										<form action="" className="control-form">
 											<table>
 												<tr>
-													<th>Product</th>
-													<th>Price</th>
-													<th>Quantity</th>
-													<th>Total</th>
+													<th>Sản phẩm</th>
+													<th>Giá</th>
+													<th>Số lượng</th>
+													<th>Tổng</th>
 												</tr>
 												{cartProducts.map((product) => (
 													<tr
@@ -143,13 +143,13 @@ function Cart() {
 								</Col>
 								<Col span={12} className="cart__footer-check">
 									<div className="check__total d-flex justify-content-end">
-										<div className="check__total-title">Total:</div>
+										<div className="check__total-title">Tổng hoá đơn:</div>
 										<div className="check__total-price">${cartTotal}</div>
 									</div>
-									<p>Shipping & taxes calculated at checkout</p>
+									<p>Phí giao hàng & thuế được tính khi thanh toán</p>
 									<div className="check__button">
-										<Link to="/product">Continue Shopping</Link>
-										<span onClick={showConfirm}>Check out</span>
+										<Link to="/product">Tiếp tục mua sắm</Link>
+										<span onClick={showConfirm}>Đặt hàng</span>
 									</div>
 								</Col>
 							</Row>

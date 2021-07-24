@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import { Row, Col } from "antd";
-import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
-import logo from "../../assets/images/logo_300x.jpg";
-import CartItem from "../components/CartItem";
 import { ProductContext } from "../../../contexts/ProductContext";
 import useUserAuth from "../../../hooks/useUserAuth";
 import firebase from "../../../configs/firebase";
+import CartItem from "../components/CartItem";
+import { IoCartOutline } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import logo from "../../assets/images/logo_300x.jpg";
 
 function HeaderComponent() {
 	const productContext = useContext(ProductContext);
@@ -20,7 +20,7 @@ function HeaderComponent() {
 	const checkout = async () => {
 		try {
 			await sendEmail();
-			alert("Checkout successfully. We will contact you soon");
+			alert("Đặt hàng thành công. Chúng tôi sẽ liên hệ với bạn sớm.");
 			history.push("/product");
 		} catch (err) {
 			console.error(err);
@@ -61,17 +61,17 @@ function HeaderComponent() {
 											to="/"
 											activeClassName="active"
 										>
-											Home
+											Trang chủ
 										</NavLink>
 									</li>
 									<li className="list__item">
 										<NavLink className="list__item-link" to="/product">
-											Shop
+											Cửa hàng
 										</NavLink>
 									</li>
 									<li className="list__item">
 										<NavLink className="list__item-link" to="#">
-											About Us
+											Về chúng tôi
 										</NavLink>
 									</li>
 									<li className="list__item">
@@ -80,11 +80,8 @@ function HeaderComponent() {
 										</NavLink>
 									</li>
 									<li className="list__item">
-										<NavLink
-											className="list__item-link"
-											to="#"
-										>
-											Contact
+										<NavLink className="list__item-link" to="#">
+											Liên hệ
 										</NavLink>
 									</li>
 								</ul>
@@ -93,10 +90,10 @@ function HeaderComponent() {
 					</Col>
 					<Col span={6}>
 						<ul className="nav__search d-flex justify-content-end align-items-center">
-							<li className="search">
+							{/* <li className="search">
 								<IoSearchOutline />
 								<div className="search__form"></div>
-							</li>
+							</li> */}
 							{/* Cart count */}
 							<li className="nav__cart" onClick={toggleClass}>
 								<a href>
@@ -122,19 +119,19 @@ function HeaderComponent() {
 									))}
 									<div className="cart__quantity-payment">
 										<div className="payment__total d-flex">
-											<label htmlFor="">TOTAL:</label>
+											<label htmlFor="">Tổng:</label>
 											<span>${cartTotal}</span>
 										</div>
-										<p>Shipping & taxes calculated at checkout</p>
+										<p>Phí giao hàng & thuế được tính khi thanh toán</p>
 										<div className="payment__button d-flex justify-content-center">
 											<div className="payment__button-viewcart">
-												<Link to="/cart">View Cart</Link>
+												<Link to="/cart">Giỏ hàng</Link>
 											</div>
 											<div
 												className="payment__button-checkout cursor-pointer"
 												onClick={checkout}
 											>
-												<span>Check out</span>
+												<span>Đặt hàng</span>
 											</div>
 										</div>
 									</div>

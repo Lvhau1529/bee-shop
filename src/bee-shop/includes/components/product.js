@@ -23,7 +23,7 @@ function ProductItem(props) {
 						</div>
 					</div>
 					<div className="product__cart cursor-pointer" onClick={props.add}>
-						<span>Add to Cart</span>
+						<span>Mua hàng</span>
 					</div>
 					{props.percent === "" ? (
 						""

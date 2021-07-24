@@ -32,7 +32,7 @@ function RemoveProduct() {
 					// ref={(node) => {
 					// 	const searchInput = node;
 					// }}
-					placeholder={`Search ${dataIndex}`}
+					placeholder={`Tìm kiếm sản phẩm`}
 					value={selectedKeys[0]}
 					onChange={(e) =>
 						setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -50,18 +50,18 @@ function RemoveProduct() {
 					<Button
 						type="primary"
 						onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-						icon={<SearchOutlined />}
+						// icon={<SearchOutlined />}
 						size="small"
 						style={{ width: 90 }}
 					>
-						Search
+						Tìm kiếm
 					</Button>
 					<Button
 						onClick={() => handleReset(clearFilters)}
 						size="small"
 						style={{ width: 90 }}
 					>
-						Reset
+						Đặt lại
 					</Button>
 					{/* <Button
 						type="link"
@@ -119,7 +119,7 @@ function RemoveProduct() {
 	// Table info
 	const columns = [
 		{
-			title: "Name",
+			title: "Tên sản phẩm",
 			dataIndex: "name",
 			key: "name",
 			...getColumnSearchProps("name"),
@@ -130,32 +130,32 @@ function RemoveProduct() {
 			key: "id",
 		},
 		{
-			title: "Sale",
+			title: "Giá khuyến mãi",
 			dataIndex: "sale",
 			key: "sale",
 			// defaultSortOrder: "descend",
 			sorter: (a, b) => a.sale - b.sale,
 		},
 		{
-			title: "Price",
+			title: "Giá bán",
 			dataIndex: "price",
 			key: "price",
 			// defaultSortOrder: "descend",
 			sorter: (a, b) => a.price - b.price,
 		},
-		{ title: "Image", dataIndex: "image", key: "image" },
+		{ title: "URL ảnh", dataIndex: "image", key: "image" },
 		{
-			title: "Action",
+			title: "",
 			dataIndex: "action",
 			key: "x",
 			render: (_, record) => (
 				<Popconfirm
-					title="Sure to delete?"
+					title="Bạn muốn xoá?"
 					onConfirm={() => {
 						removeProduct(record.name);
 					}}
 				>
-					<a href>Delete</a>
+					<a href>Xoá</a>
 				</Popconfirm>
 			),
 		},

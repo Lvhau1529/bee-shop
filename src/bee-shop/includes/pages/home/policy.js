@@ -15,7 +15,7 @@ function Policy() {
 						<Row>
 							<NumberPolicy
 								img={img1}
-								title="Shipping Fast & Free Delivery"
+								title="Giao hàng nhanh"
 								decs="Nam liber tempor cum soluta nobiseleifend option congue."
 								number="01"
 							/>
@@ -27,7 +27,7 @@ function Policy() {
 									</div>
 									<div class="policy__info">
 										<div class="policy__info--title">
-											Shipping Fast & Free Delivery
+											Hoàn lại tiền
 										</div>
 										<div class="policy__info--decs">
 											Nam liber tempor cum soluta nobiseleifend option congue.
@@ -38,7 +38,7 @@ function Policy() {
 
 							<NumberPolicy
 								img={img3}
-								title="Online Support 24/7"
+								title="Hỗ trợ 24/7"
 								decs="Nam liber tempor cum soluta nobiseleifend option congue."
 								number="03"
 							/>

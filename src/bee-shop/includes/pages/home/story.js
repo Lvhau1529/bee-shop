@@ -14,9 +14,9 @@ function Story() {
 							<Col span={12}>
 								<div class="story__left col-md-6">
 									<div class="story__content">
-										<div class="story__content--title">Our Story</div>
+										<div class="story__content--title">Câu chuyện của chúng tôi</div>
 										<div class="story__content--sub-title">
-											“ Natural honey is a very good food for health. ”
+											“ Mật ong thiên nhiên rất tốt cho sức khoẻ. ”
 										</div>
 										<div class="story__content--desc">
 											Interdum et malesuada fames ac ante ipsum primis in

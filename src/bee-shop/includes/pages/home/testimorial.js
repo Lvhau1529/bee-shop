@@ -31,7 +31,7 @@ function Testimorial() {
 								<Col span={24}>
 									<div class="testimonial__content col-md-12">
 										<div class="testimonial__content--name">
-											<strong>Simon Holmes</strong> - Businessman
+											<strong>Simon Holmes</strong> - Doanh nhân
 										</div>
 										<div class="testimonial__content--decs">
 											<p>
@@ -54,7 +54,7 @@ function Testimorial() {
 								<Col span={24}>
 									<div class="testimonial__content col-md-12">
 										<div class="testimonial__content--name">
-											<strong>Robin Parks</strong> - Employee
+											<strong>Robin Parks</strong> - Nhân viên văn phòng
 										</div>
 										<div class="testimonial__content--decs">
 											<p>
@@ -77,7 +77,7 @@ function Testimorial() {
 								<Col span={24}>
 									<div class="testimonial__content col-md-12">
 										<div class="testimonial__content--name">
-											<strong>Susan French</strong> - Farmer
+											<strong>Susan French</strong> - Nông dân
 										</div>
 										<div class="testimonial__content--decs">
 											<p>

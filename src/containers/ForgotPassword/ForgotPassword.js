@@ -42,17 +42,18 @@ function ForgotPassword() {
 				<AlertFunction
 					hidden={hiddenAlert}
 					message="Success"
-					description="Please check your email to reset your password."
+					description="Vui lòng kiểm tra email chúng tôi đã gửi mail đặt lại mật khẩu."
 					type="success"
 				/>
 			) : (
 				<AlertFunction
 					hidden={hiddenAlert}
-					description="There is no user record corresponding to this identifier. The user may have been deleted."
+          description="Chúng tôi tìm thấy địa chỉ email của bạn. Vui lòng nhập lại email."
+					// description="There is no user record corresponding to this identifier. The user may have been deleted."
 				/>
 			)}
 
-			<h1 className="signup-heading">Reset Password</h1>
+			<h1 className="signup-heading">Đặt lại mật khẩu</h1>
 			<Form
 				name="basic"
 				initialValues={{
@@ -63,12 +64,12 @@ function ForgotPassword() {
 				// onFinishFailed={onFinishFailed}
 			>
 				<Form.Item
-					label="Your email"
+					label="Email"
 					name="email"
 					rules={[
 						{
 							required: true,
-							message: "Please input your email!",
+							message: "Vui lòng nhập email!",
 						},
 					]}
 				>
@@ -77,13 +78,13 @@ function ForgotPassword() {
 
 				<Form.Item>
 					<Button className="form-submit" type="primary" htmlType="submit">
-						Reset
+						Đặt lại
 					</Button>
 				</Form.Item>
 			</Form>
 			<p class="signup-already">
 				<a href onClick={() => history.push("/login")}>
-					Back to log in
+					Quay lại trang đăng nhập
 				</a>
 			</p>
 		</div>
