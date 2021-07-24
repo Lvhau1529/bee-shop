@@ -1,6 +1,6 @@
 # Link demo
 
-https://bee-shop-qjlmdy0ks-lvhau1529.vercel.app/
+https://bee-shop.vercel.app/
 
 # Set up Firebase
 
