@@ -1,0 +1,22 @@
+.aboutUs {
+  margin-bottom: 13rem;
+	.aboutUs__img {
+		margin-right: 2rem;
+    img {
+      width: 100%;
+    }
+	}
+	.aboutUs__content {
+    margin-left: 2rem;
+		.aboutUs__title {
+			text-transform: uppercase;
+			@include fontFamily(25px, 700);
+		}
+    .aboutUs__description {
+      text-align: justify;
+      @include fontFamily(14px);
+      line-height: 22px;
+      margin-top: 2rem;
+    }
+	}
+}

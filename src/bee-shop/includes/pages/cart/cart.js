@@ -30,7 +30,7 @@ function Cart() {
 	// Notification
 	const openNotificationCheckOut = (type) => {
 		notification[type]({
-			message: "Thanh toán thành công",
+			message: "Đặt hàng thành công",
 			description:
 				"Chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng",
 		});

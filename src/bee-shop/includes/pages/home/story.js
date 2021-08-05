@@ -19,16 +19,9 @@ function Story() {
 											“ Mật ong thiên nhiên rất tốt cho sức khoẻ. ”
 										</div>
 										<div class="story__content--desc">
-											Interdum et malesuada fames ac ante ipsum primis in
-											faucibus. Vestibulum laoreet est orci, eu placerat est
-											posuere in. Sed malesuada magna vitae pulvinar varius.
-											Orci varius nato que penatibus et magnis dis parturient
-											montes, nascetur ridiculus mus. Integer vel nisi lorem.
-											Donec dignissim non est ut pulvinar. Duis lobortis metus
-											in libero commodo rhon cus. Nullam a nunc libero. Donec
-											non arcu arcu.
+                    BleBee là đơn vị hàng đầu phân phối mật ong nguyên chất. Với sản phẩm 100% thiên nhiên, nguyên chất 100%,không chất bảo quản,không pha tạp chất luôn mang đến cho người tiêu dùng lựa chọn an toàn, chất lượng tốt nhất!
 										</div>
-										<Button title="Read More" />
+										<Button title="Đọc thêm" />
 									</div>
 								</div>
 							</Col>

@@ -1,24 +1,25 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dashboard from "../Dashboard/Dashboard";
 import { Table, Input, Button, Space, Popconfirm } from "antd";
+import format from "date-fns/format";
 import Highlighter from "react-highlight-words";
-import Parse from "html-react-parser"
 import { SearchOutlined } from "@ant-design/icons";
 import { ProductContext } from "../../contexts/ProductContext";
-import useUserAuth from "../../hooks/useUserAuth";
 
-function RemoveProduct() {
+const DATE_FORMAT = "dd/MM HH:mm";
+
+const RemoveComment = () => {
 	const productContext = useContext(ProductContext);
-	const { products, get, removeProduct } = productContext;
+	const { comments, getComments, removeComment } = productContext;
 
 	const [searchText, setSearchText] = useState("");
 	const [searchedColumn, setSearchedColumn] = useState("");
 
-	useUserAuth(get, null);
-
 	useEffect(() => {
-		get();
+		getComments();
 	}, []);
+
+  console.log(comments)
 
 	const getColumnSearchProps = (dataIndex) => ({
 		filterDropdown: ({
@@ -29,10 +30,7 @@ function RemoveProduct() {
 		}) => (
 			<div style={{ padding: 8 }}>
 				<Input
-					// ref={(node) => {
-					// 	const searchInput = node;
-					// }}
-					placeholder={`Tìm kiếm sản phẩm`}
+					placeholder={`Tìm kiếm bình luận`}
 					value={selectedKeys[0]}
 					onChange={(e) =>
 						setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -43,7 +41,7 @@ function RemoveProduct() {
 						borderRadius: "0",
 						marginBottom: "0.8rem",
 						display: "block",
-            fontSize: "1.4rem"
+						fontSize: "1.4rem",
 					}}
 				/>
 				<Space>
@@ -89,15 +87,6 @@ function RemoveProduct() {
 			),
 	});
 
-  const checkString = (description) => {
-    try {
-      if (description.length !== 0) return description;
-      return "";
-    } catch {
-      return "";
-    }
-  }
-
 	const handleSearch = (selectedKeys, confirm, dataIndex) => {
 		confirm();
 		setSearchText(selectedKeys[0]);
@@ -111,11 +100,16 @@ function RemoveProduct() {
 
 	// Table info
 	const columns = [
-		{
-			title: "Tên sản phẩm",
-			dataIndex: "name",
-			key: "name",
-			...getColumnSearchProps("name"),
+		// {
+		// 	title: "Sản phẩm",
+		// 	dataIndex: "name",
+		// 	key: "name",
+		// 	...getColumnSearchProps("name"),
+		// },
+    {
+			title: "Khách hàng",
+			dataIndex: "customer",
+			key: "customer",
 		},
 		{
 			title: "Id",
@@ -123,20 +117,15 @@ function RemoveProduct() {
 			key: "id",
 		},
 		{
-			title: "Giá khuyến mãi",
-			dataIndex: "sale",
-			key: "sale",
-			// defaultSortOrder: "descend",
-			sorter: (a, b) => a.sale - b.sale,
+			title: "Bình luận",
+			dataIndex: "comment",
+			key: "comment",
 		},
 		{
-			title: "Giá bán",
-			dataIndex: "price",
-			key: "price",
-			// defaultSortOrder: "descend",
-			sorter: (a, b) => a.price - b.price,
+			title: "Ngày",
+			dataIndex: "date",
+			key: "date",
 		},
-		{ title: "URL ảnh", dataIndex: "image", key: "image", width: 100 },
 		{
 			title: "",
 			dataIndex: "action",
@@ -145,7 +134,7 @@ function RemoveProduct() {
 				<Popconfirm
 					title="Bạn muốn xoá?"
 					onConfirm={() => {
-						removeProduct(record.name);
+						removeComment(record.comment);
 					}}
 				>
 					<a href>Xoá</a>
@@ -154,14 +143,13 @@ function RemoveProduct() {
 		},
 	];
 
-	const dataTable = products.map((product) => ({
-		key: product.id,
-		id: product.id,
-		name: product.name,
-		sale: product.sale,
-		price: product.price,
-		image: product.img,
-		description: product.description,
+	const dataTable = comments.map((comment) => ({
+		key: comment.id,
+    customer: comment.userEmail,
+		id: comment.productId,
+		name: comment.name,
+		comment: comment.value,
+		date: format(new Date(comment.time), DATE_FORMAT),
 	}));
 
 	return (
@@ -169,18 +157,11 @@ function RemoveProduct() {
 			<Dashboard>
 				<Table
 					columns={columns}
-					// pagination={{position: "none"}}
-					expandable={{
-						expandedRowRender: (record) => (
-							<p style={{ margin: 0 }}>{Parse(checkString(record.description))}</p>            
-						),
-						rowExpandable: (record) => record.name !== "Not Expandable",
-					}}
 					dataSource={dataTable}
 				/>
 			</Dashboard>
 		</>
 	);
-}
+};
 
-export default React.memo(RemoveProduct);
+export default React.memo(RemoveComment);

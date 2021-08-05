@@ -10,9 +10,9 @@ function Banner() {
 		dots: true,
 		infinite: false,
 		slidesToShow: 1,
-		slidesToScroll: 2,
-		autoplay: true,
-		speed: 1000,
+		slidesToScroll: 1,
+		autoplay: false,
+		speed: 500,
 		autoplaySpeed: 2000,
 	};
 	return (
@@ -31,10 +31,7 @@ function Banner() {
 								</div>
 								<div class="content__desc  animate__fadeInUp">
 									<p>
-										Maecenas varius urna et diam ultrices luctus. Sed lobortis,
-										nulla viverra hendrerit auctor, ipsum est feugiat nisi, eget
-										bibendum arcu orci ac risus. Ut egestas vitae lectus eu
-										pretium.
+										Một sự kết hợp tuyệt vời giữa mật ong tự nhiên cùng với những loại sữa chua truyền thống nổi tiếng có chất lượng tốt nhất của Hy Lạp.
 									</p>
 								</div>
 								<Button
@@ -58,10 +55,7 @@ function Banner() {
 								</div>
 								<div class="content__desc animate__animated animate__fadeInDown">
 									<p>
-										Maecenas varius urna et diam ultrices luctus. Sed lobortis,
-										nulla viverra hendrerit auctor, ipsum est feugiat nisi, eget
-										bibendum arcu orci ac risus. Ut egestas vitae lectus eu
-										pretium.
+										Dòng sản phẩm sắp ra mắt hy vọng sẽ tạo nên một xu hướng tiêu dùng mới.
 									</p>
 								</div>
 								<Button

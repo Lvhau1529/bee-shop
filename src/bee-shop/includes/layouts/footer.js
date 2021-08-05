@@ -52,39 +52,26 @@ function Footer() {
 						<div class="container">
 							<Row class="footer__menu row">
 								<FooterMenu
-									title="Information"
-									link_1="About Us"
-									link_2="Careers"
-									link_3="Delivery Information"
-									link_4="Privacy Policy"
-									link_5="Terms & Condition"
+									title="Thông tin"
+									link_1="Về chúng tôi"
+									link_2="Tuyển dụng"
+									link_3="Thông tin vận chuyển"
+									link_4="Chính sách bảo mật"
+									link_5="Điều khoản & điều kiện"
 								/>
-
 								<FooterMenu
-									title="Information"
-									link_1="About Us"
-									link_2="Careers"
-									link_3="Delivery Information"
-									link_4="Privacy Policy"
-									link_5="Terms & Condition"
+									title="Tài khoản"
+									link_1="Đặt hàng"
+
 								/>
-
 								<FooterMenu
-									title="Information"
-									link_1="About Us"
-									link_2="Careers"
-									link_3="Delivery Information"
-									link_4="Privacy Policy"
-									link_5="Terms & Condition"
+									title="Dịch vụ khách hàng"
+									link_1="Giỏ hàng"
 								/>
-
 								<FooterMenu
-									title="Information"
-									link_1="About Us"
-									link_2="Careers"
-									link_3="Delivery Information"
-									link_4="Privacy Policy"
-									link_5="Terms & Condition"
+									title="Liên hệ"
+									link_1="Địa chỉ: Học viện Nông Nghiệp Việt Nam"
+									link_2="Email: lvhau1529@gmail.com"
 								/>
 							</Row>
 						</div>
@@ -95,12 +82,12 @@ function Footer() {
 							<div class="footer__logo">
 								<img src={logo} alt="" />
 							</div>
-							<div class="footer__decs">
+							{/* <div class="footer__decs">
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
 									accumsan turpis rhoncus sapien gravida finibus.
 								</p>
-							</div>
+							</div> */}
 							<div class="footer__icon">
 								<div class="icon__nav"></div>
 							</div>

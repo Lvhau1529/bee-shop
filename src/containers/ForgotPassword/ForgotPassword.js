@@ -41,8 +41,8 @@ function ForgotPassword() {
 			{checked ? (
 				<AlertFunction
 					hidden={hiddenAlert}
-					message="Success"
-					description="Vui lòng kiểm tra email chúng tôi đã gửi mail đặt lại mật khẩu."
+					message="Yều cầu thành công"
+					description="Vui lòng kiểm tra email. Chúng tôi đã gửi cho bạn mail đặt lại mật khẩu."
 					type="success"
 				/>
 			) : (

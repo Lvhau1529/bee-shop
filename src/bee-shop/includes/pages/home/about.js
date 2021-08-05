@@ -4,6 +4,9 @@ import Title from "../../components/home/center-title";
 // import "assets/styles/pages/home/about.css"
 import img from "../../../assets/images/5_850x.jpg";
 import img2 from "../../../assets/images/5_90x.png";
+import img3 from "../../../assets/images/6_90x.webp";
+import img4 from "../../../assets/images/7_90x.webp";
+import img5 from "../../../assets/images/8_90x.png";
 
 function About() {
 	return (
@@ -31,43 +34,40 @@ function About() {
 											<div class="box-content--title">100% tự nhiên</div>
 											<div class="box-content--desc">
 												<p>
-													Lorem ipsum dolor sit amet, cons ectetur adipisicing
-													elit, sed do.
+													Không sử dụng bất cứ phụ da thực phẩm nào cho sản phẩm.
 												</p>
 											</div>
 										</div>
 									</div>
 									<div class="about__box-content">
 										<div class="box-content__icon">
-											<img src={img2} alt="" />
+											<img src={img3} alt="" />
 										</div>
 										<div class="box-content__about">
 											<div class="box-content--title">Bán hàng trực tuyến 24/7</div>
 											<div class="box-content--desc">
 												<p>
-													Lorem ipsum dolor sit amet, cons ectetur adipisicing
-													elit, sed do.
+													Đặt hàng và chúng tôi sẽ liên hệ với bạn ngay.
 												</p>
 											</div>
 										</div>
 									</div>
 									<div class="about__box-content">
 										<div class="box-content__icon">
-											<img src={img2} alt="" />
+											<img src={img4} alt="" />
 										</div>
 										<div class="box-content__about">
 											<div class="box-content--title">Giao hàng tận nhà</div>
 											<div class="box-content--desc">
 												<p>
-													Lorem ipsum dolor sit amet, cons ectetur adipisicing
-													elit, sed do.
+													Dịch vụ giao hàng nhanh chóng. Thanh toán khi nhận hàng.
 												</p>
 											</div>
 										</div>
 									</div>
 									<div class="about__box-content last">
 										<div class="box-content__icon">
-											<img src={img2} alt="" />
+											<img src={img5} alt="" />
 										</div>
 										<div class="box-content__about">
 											<div class="box-content--title">
@@ -75,8 +75,7 @@ function About() {
 											</div>
 											<div class="box-content--desc">
 												<p>
-													Lorem ipsum dolor sit amet, cons ectetur adipisicing
-													elit, sed do.
+													Cam kết sản phẩm có giấy chứng nhận, kiểm nghiệm.
 												</p>
 											</div>
 										</div>

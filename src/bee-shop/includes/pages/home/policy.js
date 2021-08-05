@@ -1,10 +1,9 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Row } from "antd";
 import img1 from "../../../assets/images/9_72x.webp";
 import img2 from "../../../assets/images/10_72x.webp";
 import img3 from "../../../assets/images/11_72x.webp";
 import NumberPolicy from "../../components/home/number-policy";
-// import "../styles/layouts/policy.css";
 
 function Policy() {
 	return (
@@ -16,30 +15,21 @@ function Policy() {
 							<NumberPolicy
 								img={img1}
 								title="Giao hàng nhanh"
-								decs="Nam liber tempor cum soluta nobiseleifend option congue."
+								decs="Đặt đơn giao hàng nhanh chóng, tiết kiệm thời gian tối đa."
 								number="01"
 							/>
-							<Col span={8}>
-								<div class="policy__content col-md-4 col-sm-12">
-									<div class="policy__number">02</div>
-									<div class="policy__img">
-										<img src={img2} alt="" />
-									</div>
-									<div class="policy__info">
-										<div class="policy__info--title">
-											Hoàn lại tiền
-										</div>
-										<div class="policy__info--decs">
-											Nam liber tempor cum soluta nobiseleifend option congue.
-										</div>
-									</div>
-								</div>
-							</Col>
 
+							<NumberPolicy
+								img={img2}
+								title="Hoàn lại tiền"
+								decs="Chúng tôi sẽ hoàn lại tiền nếu bạn phát hiện sản phẩm kém chất lượng."
+								number="02"
+							/>
+              
 							<NumberPolicy
 								img={img3}
 								title="Hỗ trợ 24/7"
-								decs="Nam liber tempor cum soluta nobiseleifend option congue."
+								decs="Bạn có thể yêu cầu hỗ trợ bằng nhiều hình thức như qua hotline, email."
 								number="03"
 							/>
 						</Row>

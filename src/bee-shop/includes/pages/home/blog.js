@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Row, Col } from "antd";
 import Title from "../../components/home/center-title";
-import img from "../../../assets/images/1_570x.png"
-// import "../styles/layouts/blog.css";
+import img from "../../../assets/images/1_570x.png";
+import img1 from "../../../assets/images/2_570x.png";
 
 function Blog() {
 	return (
@@ -10,7 +11,7 @@ function Blog() {
 			<div class="blog__block">
 				<div class="container">
 					{/* <!-- Title --> */}
-					<Title title="Tin tức" main="Blog của chúng tôi"/>
+					<Title title="Tin tức" main="Blog của chúng tôi" />
 					{/* <!-- ./Title --> */}
 					<div class="blog row">
 						<Row>
@@ -27,23 +28,25 @@ function Blog() {
 											</div>
 											<div class="article__author">
 												<i class="icon-account"></i>
-												<span>Le Van Hau</span>
+												<span>Admin</span>
 											</div>
 										</div>
 										<div class="blog__icon--more">
-											<a href>Đọc thêm</a>
+											<Link to="/news/detail">Đọc thêm</Link>
 										</div>
 									</div>
 									<div class="blog__title">
-										<a href>Những điều có thể bạn chưa biết về mật ong</a>
+										<Link to="/news/detail">
+											Những điều có thể bạn chưa biết về mật ong
+										</Link>
 									</div>
 								</div>
 							</Col>
 
-              <Col span={12}>
+							<Col span={12}>
 								<div class="block__content col-md-6">
 									<div class="block__image">
-										<img src={img} alt="" />
+										<img src={img1} alt="" />
 									</div>
 									<div class="blog__icon">
 										<div class="blog__icon--info">
@@ -53,15 +56,17 @@ function Blog() {
 											</div>
 											<div class="article__author">
 												<i class="icon-account"></i>
-												<span>Le Van Hau</span>
+												<span>Admin</span>
 											</div>
 										</div>
 										<div class="blog__icon--more">
-											<a href>Đọc thêm</a>
+											<Link to="/news/detail">Đọc thêm</Link>
 										</div>
 									</div>
 									<div class="blog__title">
-										<a href>Although we worry, honey bees are built to last</a>
+										<Link to="/news/detail">
+											Công dụng tuyệt vời của sữa ong chúa
+										</Link>
 									</div>
 								</div>
 							</Col>

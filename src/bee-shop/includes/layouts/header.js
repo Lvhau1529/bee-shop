@@ -44,14 +44,14 @@ function HeaderComponent() {
 		<>
 			<header className="header">
 				<Row className="d-flex justify-content-center align-items-center">
-					<Col span={6}>
+					<Col span={5}>
 						<div className="logo">
 							<NavLink to="/">
 								<img src={logo} alt="logo" />
 							</NavLink>
 						</div>
 					</Col>
-					<Col span={10}>
+					<Col span={11}>
 						<nav className="nav">
 							<div className="nav__menu">
 								<ul className="nav__menu-list d-flex justify-content-center">
@@ -70,17 +70,17 @@ function HeaderComponent() {
 										</NavLink>
 									</li>
 									<li className="list__item">
-										<NavLink className="list__item-link" to="#">
+										<NavLink className="list__item-link" to="/about_us">
 											Về chúng tôi
 										</NavLink>
 									</li>
 									<li className="list__item">
-										<NavLink className="list__item-link" to="#">
-											Blog
+										<NavLink className="list__item-link" to="/news">
+											Tin tức
 										</NavLink>
 									</li>
 									<li className="list__item">
-										<NavLink className="list__item-link" to="#">
+										<NavLink className="list__item-link" to="/contact">
 											Liên hệ
 										</NavLink>
 									</li>
@@ -90,11 +90,6 @@ function HeaderComponent() {
 					</Col>
 					<Col span={6}>
 						<ul className="nav__search d-flex justify-content-end align-items-center">
-							{/* <li className="search">
-								<IoSearchOutline />
-								<div className="search__form"></div>
-							</li> */}
-							{/* Cart count */}
 							<li className="nav__cart" onClick={toggleClass}>
 								<a href>
 									<IoCartOutline />

@@ -25,20 +25,19 @@ function Testimorial() {
 							<Row>
 								<Col span={24}>
 									<div class="testimonial__img col-md-12">
-										<img src={img13} alt="avt" />
+										<img src={img14} alt="avt" />
 									</div>
 								</Col>
 								<Col span={24}>
 									<div class="testimonial__content col-md-12">
 										<div class="testimonial__content--name">
-											<strong>Simon Holmes</strong> - Doanh nhân
+											<strong>Nguyễn Huyền Trang</strong> - Doanh nhân
 										</div>
 										<div class="testimonial__content--decs">
 											<p>
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-												Curabitur eros libero, varius id sodales a, convallis id
-												sem. Morbi ipsum sem, vestibulum a sollicitudin
-												accumsan, pulvinar eget ligula.
+												Thay vì sử dụng mỹ phẩm chăm sóc da, mình lựa chọn mật
+												ong làm mặt nạ và uống kết hợp với cà rốt và trứng để
+												làm đẹp. Mình rất ưng chất lượng mật ong của BleBee
 											</p>
 										</div>
 									</div>
@@ -48,20 +47,19 @@ function Testimorial() {
 							<Row>
 								<Col span={24}>
 									<div class="testimonial__img col-md-12">
-										<img src={img14} alt="avt" />
+										<img src={img13} alt="avt" />
 									</div>
 								</Col>
 								<Col span={24}>
 									<div class="testimonial__content col-md-12">
 										<div class="testimonial__content--name">
-											<strong>Robin Parks</strong> - Nhân viên văn phòng
+											<strong>Vũ Tuấn</strong> - Nhân viên văn phòng
 										</div>
 										<div class="testimonial__content--decs">
 											<p>
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-												Curabitur eros libero, varius id sodales a, convallis id
-												sem. Morbi ipsum sem, vestibulum a sollicitudin
-												accumsan, pulvinar eget ligula.
+												Mình thường làm việc rất khuya, mình tin tưởng sử dụng
+												sản phẩm của BleBee sau những giờ làm việc vất vả để có
+												1 giấc ngủ ngon
 											</p>
 										</div>
 									</div>
@@ -77,14 +75,11 @@ function Testimorial() {
 								<Col span={24}>
 									<div class="testimonial__content col-md-12">
 										<div class="testimonial__content--name">
-											<strong>Susan French</strong> - Nông dân
+											<strong>Nguyễn Toàn</strong> - Nông dân
 										</div>
 										<div class="testimonial__content--decs">
 											<p>
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-												Curabitur eros libero, varius id sodales a, convallis id
-												sem. Morbi ipsum sem, vestibulum a sollicitudin
-												accumsan, pulvinar eget ligula.
+                      Đợt tôi bị viêm họng mãi không khỏi nên muốn dùng mật ong tốt tôi nhớ ngay đến BleBee. Tôi mua mật ong về uống thấy khá ok. Chất lượng và giá cả hợp lý đáng tin cậy
 											</p>
 										</div>
 									</div>

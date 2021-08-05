@@ -24,7 +24,6 @@ function Product() {
 
 	useUserAuth(get, null);
 
-	console.log(products);
 	return (
 		<>
 			<div class="product__block">

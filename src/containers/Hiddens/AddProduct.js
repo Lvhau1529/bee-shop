@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col } from "antd";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { addProduct, addTags } from "../../services/firebaseService";
 import "./AddProduct.scss";
 import Dashboard from "../Dashboard/Dashboard";
@@ -12,7 +14,7 @@ const products = [
 		sale: 280,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/1_ef8f0db1-9878-4d5c-9421-984054e785a5_600x.jpg?alt=media&token=8554785c-6280-4c7f-bc08-a33ed3c8a3d2",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
 		tags: "tag1,tag2",
 	},
 	{
@@ -21,7 +23,7 @@ const products = [
 		sale: 300,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/2_bede556b-ba58-485a-a85d-8756d110b5df_900x900.jpg?alt=media&token=8832722e-aa0f-49f9-a3bb-ac57f3eb5f50",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
 		tags: "tag1,tag3",
 	},
 	{
@@ -30,8 +32,8 @@ const products = [
 		sale: 220,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/3_ec7e2813-6fbc-40ce-a776-c9da15ec9022_425x.jpg?alt=media&token=f77d0275-06ab-4aac-9943-2a20bba349a3",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-		tags: "tag3,tag4",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
+		tags: "tag2,tag4",
 	},
 	{
 		name: "Aenean commodo",
@@ -39,8 +41,8 @@ const products = [
 		sale: 124,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/4_507f6fba-f388-4083-9fb4-e2da9dfda4ee_425x.webp?alt=media&token=42f6bf39-ddb3-4f16-b5dd-ba093eded36e",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-		tags: "tag2,tag3",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
+		tags: "tag2,tag5",
 	},
 	{
 		name: "Nulla consequat ma",
@@ -48,8 +50,8 @@ const products = [
 		sale: 120,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/11_600x.jpg?alt=media&token=6601a271-9146-490e-abd0-6f2e58eeace4",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-		tags: "tag4,tag5",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
+		tags: "tag1,tag5",
 	},
 	{
 		name: "Morbi viverra hend",
@@ -57,7 +59,7 @@ const products = [
 		sale: 88,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/12_600x.jpg?alt=media&token=64acd3e6-b253-45bc-8924-5aa355717589",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
 		tags: "tag3,tag6",
 	},
 	{
@@ -66,7 +68,7 @@ const products = [
 		sale: 0,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/5_600x.jpg?alt=media&token=96cf3483-c2b6-4b0c-a6e4-02399e977abd",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
 		tags: "tag3,tag6",
 	},
 	{
@@ -75,7 +77,7 @@ const products = [
 		sale: 200,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/6_c18dfaa8-37e0-44ad-bc5b-31f0c5b06c41_600x.jpg?alt=media&token=ab26e714-d826-4f39-9eaa-dc687cc6397d",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
 		tags: "tag3,tag6",
 	},
 	{
@@ -84,8 +86,8 @@ const products = [
 		sale: 480,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/7_f96edd11-989e-46e3-9f2e-c0bc8480df7e_600x.jpg?alt=media&token=9a299733-b6f0-489f-974d-475e878f3fdf",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-		tags: "tag3,tag6",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
+		tags: "tag2,tag4",
 	},
 	{
 		name: "Cras fringilla et",
@@ -93,7 +95,7 @@ const products = [
 		sale: 0,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/8_669ffe79-f0f9-451b-a870-684415525cb5_600x.jpg?alt=media&token=eb79447b-d463-4fcc-9ccf-2a85af174df6",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
 		tags: "tag3,tag6",
 	},
 	{
@@ -102,8 +104,8 @@ const products = [
 		sale: 0,
 		img: "https://firebasestorage.googleapis.com/v0/b/test-df518.appspot.com/o/9_e1d315f2-9c92-4d8e-92d5-817b7bebbc2e_600x.jpg?alt=media&token=53c6dca2-3e47-477d-bb47-8df2520913a2",
 		description:
-			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque New producteu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-		tags: "tag3,tag6",
+			"<p>Thành phần: 100% Mật ong nguyên chất</p><p>Cách dùng:<br>-&nbsp;Uống trực tiếp hoặc dùng để chế biến món ăn, đồ uống.<br>- Mật ong BleBee là gia vị không thể thiếu trong việc chế biến thực phẩm như: Nướng gà, Kho thịt, Quay vịt, nướng thịt cá, chế biến bánh kẹo, đồ uống như: Nước cam, nước chanh, sinh tố, sữa chua.<br>- Bảo quản:&nbsp;Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời,&nbsp;không cần để trong tủ lạnh.</p><p>Ghi chú:<br>-&nbsp;Mật ong có thể bị đóng băng hay kết tinh do lạnh. Để trở về trạng thái ban đầu, ngâm vào nước nóng trong 20 - 30 phút rồi lắc đều.<br>- Thực phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</p>",
+		tags: "tag1,tag5",
 	},
 ];
 
@@ -216,7 +218,7 @@ const AddProduct = () => {
 						<Col span={11}>
 							<div class="form-group">
 								<label for="price" class="form-label">
-									 URL ảnh
+									URL ảnh
 								</label>
 								<input
 									className="form-input"
@@ -230,12 +232,14 @@ const AddProduct = () => {
 								<label for="price" class="form-label">
 									Mô tả sản phẩm
 								</label>
-								<input
-									className="form-input"
+								<CKEditor
+									editor={ClassicEditor}
+									onChange={(e, editor) => {
+										const data = editor.getData();
+										changeData({ description: data });
+									}}
 									value={data.description}
-									onChange={(e) => changeData({ description: e.target.value })}
-									placeholder="Điền mô tả sản phẩm"
-								/>
+								></CKEditor>
 							</div>
 						</Col>
 					</Row>

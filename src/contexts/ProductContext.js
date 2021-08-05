@@ -3,12 +3,15 @@ import emailjs from "emailjs-com";
 import { notification } from "antd";
 import {
 	getProducts,
+	removeProductInDb,
 	countProducts,
 	addToCart,
 	getCart,
 	removeProductInCart,
 	removeAllProductInCart,
 	getTags,
+	getAllComments,
+	removeCommentInDb,
 } from "../services/firebaseService";
 import firebase from "../configs/firebase";
 
@@ -55,6 +58,7 @@ export const ProductProvider = ({ children }) => {
 	const [products, setProducts] = useState([]);
 	const [page, setPage] = useState(1);
 	const [cartProducts, setCartProducts] = useState([]);
+	const [comments, setComments] = useState([]);
 
 	// Send mail
 	const sendEmail = async () => {
@@ -72,7 +76,7 @@ export const ProductProvider = ({ children }) => {
 		if (!user) return "";
 		const { email } = user;
 		const productInformations = cartProducts
-			.map((item) => `${item.count} ${item.name}`)
+			.map((item) => `${item.name} số lượng ${item.count}`)
 			.join(", ");
 
 		return `Khách hàng với ${email} đã đặt ${productInformations}. Tổng thanh toán $${cartTotal}`;
@@ -140,6 +144,16 @@ export const ProductProvider = ({ children }) => {
 		}
 	};
 
+	const removeProduct = async (productName) => {
+		try {
+			await removeProductInDb(productName);
+			await get();
+			alert("Xoá sản phẩm thành công");
+		} catch (err) {
+			console.error(err.response?.data || err.message);
+		}
+	};
+
 	const changeCountNumber = (productId) => async (number) => {
 		try {
 			await addToCart(productId, number, true);
@@ -170,6 +184,25 @@ export const ProductProvider = ({ children }) => {
 		}
 	};
 
+	const getComments = async () => {
+		try {
+			const data = await getAllComments();
+			setComments(data);
+		} catch (err) {
+			alert(err.response?.data || err.message);
+		}
+	};
+
+	const removeComment = async (value) => {
+		try {
+			await removeCommentInDb(value);
+			await getComments();
+			alert("Xoá bình luận thành công");
+		} catch (err) {
+			alert(err.response?.data || err.message);
+		}
+	};
+
 	const values = {
 		search,
 		tag,
@@ -194,6 +227,10 @@ export const ProductProvider = ({ children }) => {
 		sendEmail,
 		getAllTags,
 		setTag,
+		getComments,
+		comments,
+    removeComment,
+    removeProduct
 	};
 
 	return (

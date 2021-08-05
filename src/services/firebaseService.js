@@ -4,6 +4,8 @@ const collections = {
 	products: "products",
 	carts: "carts",
 	tags: "tags",
+	comments: "comments",
+	ratings: "ratings",
 };
 
 // Database features
@@ -11,29 +13,12 @@ export const addProduct = async (data) => {
 	await firebase.firestore().collection(collections.products).add(data);
 };
 
-export const getTags = async () => {
-	const query = await firebase.firestore().collection(collections.tags).get();
-
-	return query.docs.map((doc) => doc.data().name);
-};
-
-export const addTags = async (tags) => {
-	const allTags = await getTags();
-
-	for (const tag of tags) {
-		if (allTags.includes(tag)) continue;
-		await firebase.firestore().collection(collections.tags).add({ name: tag });
-	}
-};
-
-export const removeProduct = async (productName) => {
+export const removeProductInDb = async (productName) => {
 	let query = firebase.firestore().collection(collections.products);
 	query = query.where("name", "==", productName);
 
 	const snapshot = await query.get();
 	snapshot.forEach((doc) => doc.ref.delete());
-
-	alert("Product is removed");
 };
 
 export const countProducts = async () => {
@@ -92,6 +77,21 @@ export const getProductById = async (id) => {
 		.get();
 
 	return doc.data();
+};
+
+export const getTags = async () => {
+	const query = await firebase.firestore().collection(collections.tags).get();
+
+	return query.docs.map((doc) => doc.data().name);
+};
+
+export const addTags = async (tags) => {
+	const allTags = await getTags();
+
+	for (const tag of tags) {
+		if (allTags.includes(tag)) continue;
+		await firebase.firestore().collection(collections.tags).add({ name: tag });
+	}
 };
 
 // Cart features
@@ -188,4 +188,103 @@ export const removeAllProductInCart = async () => {
 
 	const snapshot = await query.get();
 	snapshot.forEach((doc) => doc.ref.delete());
+};
+
+// comments
+export const getComments = async (productId) => {
+	const query = firebase
+		.firestore()
+		.collection(collections.comments)
+		.where("productId", "==", productId)
+		.orderBy("time", "desc");
+
+	const data = await query.get();
+	return data.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data(),
+	}));
+};
+
+export const getAllComments = async () => {
+	const query = firebase.firestore().collection(collections.comments);
+
+	const data = await query.get();
+	return data.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data(),
+	}));
+};
+
+export const createComments = async (productId, value) => {
+	const userId = firebase.auth().currentUser?.uid;
+	if (!userId) return;
+	const userEmail = firebase.auth().currentUser?.email;
+	const time = Date.now();
+
+	await firebase.firestore().collection(collections.comments).add({
+		productId,
+		userId,
+		userEmail,
+		time,
+		value,
+	});
+};
+
+export const removeCommentInDb = async (value) => {
+	let query = firebase.firestore().collection(collections.comments);
+	query = query.where("value", "==", value);
+
+	const snapshot = await query.get();
+	snapshot.forEach((doc) => doc.ref.delete());
+};
+
+// ratings
+export const getRatings = async (productId) => {
+	const userId = firebase.auth().currentUser?.uid;
+	if (!userId) return;
+	const query = firebase
+		.firestore()
+		.collection(collections.ratings)
+		.where("productId", "==", productId)
+		.orderBy("time", "desc");
+
+	const data = await query.get();
+	const ratings = data.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data(),
+	}));
+
+	const numberOfRatings = ratings.length;
+	const totalRatings = ratings.reduce(
+		(total, rating) => total + rating.value,
+		0
+	);
+	const average = numberOfRatings ? totalRatings / numberOfRatings : 0;
+
+	const yourRating = ratings.find((rating) => rating.userId === userId);
+
+	return { numberOfRatings, average, yourRating };
+};
+
+export const editRating = async (ratingId, value) => {
+	await firebase
+		.firestore()
+		.collection(collections.ratings)
+		.doc(ratingId)
+		.update({ value });
+};
+
+export const createRatings = async (productId, value) => {
+	const userId = firebase.auth().currentUser?.uid;
+	if (!userId) return;
+	const userEmail = firebase.auth().currentUser?.email;
+	const time = Date.now();
+
+	await firebase.firestore().collection(collections.ratings).add({
+		productId,
+		userId,
+		userEmail,
+		time,
+		value,
+	});
 };

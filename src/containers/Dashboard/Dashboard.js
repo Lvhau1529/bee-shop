@@ -1,10 +1,7 @@
 import React from "react";
-import { Link, useLocation  } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import {
-	PieChartOutlined,
-	UserOutlined,
-} from "@ant-design/icons";
+import { PieChartOutlined, UserOutlined } from "@ant-design/icons";
 import "./Dashboard.scss";
 
 const { Header, Content, Sider } = Layout;
@@ -32,20 +29,22 @@ function Dashboard(props) {
 								defaultOpenKeys={["sub1"]}
 								style={{ height: "100%" }}
 							>
-								<SubMenu key="sub1" icon={<PieChartOutlined />} title="Sản phẩm">
+								<SubMenu
+									key="sub1"
+									icon={<PieChartOutlined />}
+									title="Sản phẩm"
+								>
 									<Menu.Item key="1">
 										<Link to="/dashboard/addProduct">Thêm sản phẩm</Link>
 									</Menu.Item>
 									<Menu.Item key="2">
 										<Link to="/dashboard/removeProduct">Xoá sản phẩm</Link>
 									</Menu.Item>
-									{/* <Menu.Item key="3">option3</Menu.Item> */}
+									<Menu.Item key="5">
+										<Link to="/dashboard/removeComment">Bình luận</Link>
+									</Menu.Item>
 								</SubMenu>
 								{/* <SubMenu key="sub2" icon={<UserOutlined />} title="User">
-									<Menu.Item key="5">option5</Menu.Item>
-									<Menu.Item key="6">option6</Menu.Item>
-									<Menu.Item key="7">option7</Menu.Item>
-									<Menu.Item key="8">option8</Menu.Item>
 								</SubMenu> */}
 							</Menu>
 						</Sider>
@@ -59,4 +58,4 @@ function Dashboard(props) {
 	);
 }
 
-export default Dashboard;
+export default React.memo(Dashboard);

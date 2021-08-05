@@ -14,8 +14,14 @@ const HomeComponent = lazy(() => import("./includes/pages/home/index"));
 const CartComponent = lazy(() => import("./includes/pages/cart/index"));
 const ProductComponent = lazy(() => import("./includes/pages/product/index"));
 const ProductDetail = lazy(() => import("./includes/pages/product/detail"));
+const BlogComponent = lazy(() => import("./includes/pages/blog/index"));
+const AboutUsComponent = lazy(() => import("./includes/pages/about_us/index"))
+const ContactComponent = lazy(() => import("./includes/pages/contact/index"))
+const NewsComponent = lazy(() => import("./includes/pages/blog/detail"))
+
 const AddProduct = lazy(() => import("../containers/Hiddens/AddProduct"));
 const RemoveProduct = lazy(() => import("../containers/Hiddens/RemoveProduct"));
+const RemoveComment = lazy(() => import("../containers/Hiddens/RemoveComment"));
 
 function BeeShop() {
 	const history = useHistory();
@@ -38,12 +44,32 @@ function BeeShop() {
 							<ProductComponent />
 						</Route>
 
+						<Route path="/news" exact>
+							<BlogComponent />
+						</Route>
+						
+            <Route path="/news/detail">
+							<NewsComponent />
+						</Route>
+
+            <Route path="/about_us">
+              <AboutUsComponent />
+            </Route>
+            
+            <Route path="/contact">
+              <ContactComponent />
+            </Route>
+
 						<Route path="/dashboard/addProduct">
 							<AddProduct />
 						</Route>
 
 						<Route path="/dashboard/removeProduct">
 							<RemoveProduct />
+						</Route>
+						
+            <Route path="/dashboard/removeComment">
+							<RemoveComment />
 						</Route>
 
 						<Route path="/product/:id" exact>
