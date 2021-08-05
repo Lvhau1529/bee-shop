@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+a {
+	text-decoration: none;
+	&:hover {
+		color: #c59a17;
+	}
+}
+
+input,
+button,
+textarea,
+select {
+	font-size: 1.4rem;
+	font-weight: 300;
+	outline: none;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+.signup,
+.ant-form {
+	padding: 0px 20px;
+	background-color: white;
+	border-radius: 30px;
+	width: 40%;
+	margin: 0 auto;
+}
+.signup-heading {
+	text-align: center;
+	font-weight: 600;
+	color: #363a40;
+	font-size: 35px;
+	padding-top: 55px;
+	margin-bottom: 35px;
+}
+
+.signup-already {
+	text-align: center;
+	color: #363a40;
+	font-size: 13px;
+}
+
+.signup-already-link {
+	color: #4c6ef4;
+	text-decoration: none;
+}
+
+.form-group,
+.ant-row.ant-form-item {
+	margin-bottom: 25px;
+}
+
+.form-label {
+	display: inline-block;
+	cursor: pointer;
+	color: #363a40;
+	margin-bottom: 15px;
+	font-size: 13px;
+}
+
+.form-input,
+.ant-input {
+	display: block;
+	width: 100%;
+	padding: 20px;
+	border-radius: 15px;
+	border: 0;
+	outline: none;
+	font-family: "Poppins", sans-serif;
+	background-color: #f2f3f5;
+	color: #363a40;
+	font-size: 16px;
+}
+.ant-input-password {
+	width: 100%;
+	padding: 20px;
+	border-radius: 15px;
+	border: 0;
+	outline: none;
+	font-family: "Poppins", sans-serif;
+	background-color: #f2f3f5;
+	color: #363a40;
+	font-size: 16px;
+}
+.form-input::-webkit-input-placeholder {
+	color: #b4bdc1;
+}
+
+.form-submit {
+	display: block;
+	margin-top: 45px;
+	width: 100%;
+	padding: 20px;
+	color: black;
+	text-align: center;
+	cursor: pointer;
+	border: 0;
+	border-radius: 15px;
+	background-color: #fdc826;
+	font-size: 16px;
+	font-weight: 500;
+	font-family: "Poppins", sans-serif;
+	margin-bottom: 20px;
+	box-shadow: 0 10px 20px -5px rgba(253, 200, 38, 0.9);
+	outline: none;
+	&:active,
+	&:focus {
+		color: white;
+		background-color: #FF0000;
+		box-shadow: 0 10px 20px -5px rgba(255, 0, 0, 0.9);
+	}
+	&:hover {
+		color: #fdc826;
+		background-color: black;
+		box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.9);
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.signup {
+		padding: 30px 20px;
+	}
+}
+
+.ant-btn {
+	height: 100%;
+}
+.ant-form-item-required label {
+	display: inline-block;
+	cursor: pointer;
+	color: #363a40;
+	margin-bottom: 15px;
+	font-size: 13px;
+}

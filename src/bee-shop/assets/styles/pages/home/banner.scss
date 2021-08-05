@@ -1,0 +1,50 @@
+.slick-dots {
+	bottom: 2rem;
+}
+.banner__content {
+	max-height: 60rem;
+}
+.banner__bg img {
+	position: relative;
+	width: 100%;
+	height: 60rem;
+	z-index: 1;
+}
+.content {
+	position: absolute;
+	top: 25%;
+	left: 27%;
+	height: auto;
+	z-index: 2;
+  max-width: 47rem;
+}
+.content .animate__animated {
+  max-width: 47rem;
+}
+.content__title {
+	font-size: 5rem;
+	font-weight: 600;
+}
+.content__sub {
+	font-size: 2.4rem;
+	font-weight: 600;
+	margin: 2rem 0;
+}
+.content__desc p {
+	line-height: 2rem;
+	margin-bottom: 6rem;
+}
+.banner__bg--2 img {
+	position: relative;
+	width: 100%;
+	height: 60rem;
+	z-index: 1;
+}
+.content--2 {
+	position: absolute;
+	top: 25%;
+	left: 55%;
+	max-width: 43rem;
+	height: auto;
+	z-index: 2;
+}

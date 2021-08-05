@@ -1,0 +1,27 @@
+.product {
+  padding-bottom: 15rem;
+	&__sort {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+    margin-bottom: 6rem;
+		&-view {
+			display: flex;
+      a {
+        padding: 1rem;
+        background-color: $main;
+        margin-right: 1rem;
+        border-radius: 0.8rem;
+      }
+		}
+	}
+  &__items {
+    margin-bottom: 8.8rem 0;
+  }
+  &__pagination {
+    text-align: center;
+    margin-top: 4rem;
+  }
+}
+
+@import "./detail.scss";

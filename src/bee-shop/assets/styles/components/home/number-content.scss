@@ -1,0 +1,29 @@
+.distance__left {
+	max-height: 50rem;
+}
+.content__number {
+	display: flex;
+	align-items: center;
+	max-width: 10rem;
+	padding: 2rem 3.1rem;
+	margin-right: 3rem;
+	font-size: 4rem;
+	font-weight: 600;
+	background: linear-gradient(to right, #fdc826 0%, #fdfc9b 100%);
+}
+.distance__content {
+	display: flex;
+	margin-bottom: 6rem;
+}
+/* .content__about {
+	max-width: 2rem;
+} */
+.content__about--title {
+	font-size: 1.8rem;
+	font-weight: 600;
+	margin-bottom: 1.3rem;
+}
+.content__about--desc {
+	line-height: 2.4rem;
+	max-width: 32rem;
+}
