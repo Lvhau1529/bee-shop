@@ -11,7 +11,7 @@ function Distance() {
 				<div class="distance container">
 					<TitleBlock title="Welcome to" main="Mật ong tự nhiên" />
 					<Row className="distance__bottom">
-						<Col span={10}>
+						<Col span={10} className="wow animate__animated animate__bounceInLeft">
 							<NumberContent
 								number="01"
 								title="Vị ngọt từ thiên nhiên"
@@ -28,7 +28,7 @@ function Distance() {
 								desc="Chúng tôi nói không với việc sử dụng các chất bảo quản, chất tạo màu. Sản phẩm của chúng tôi giữ lại 100% hương vị tự nhiên "
 							/>
 						</Col>
-						<Col span={12}>
+						<Col span={12} className="wow animate__animated animate__bounceInRight">
 							<img src={Images} alt="" />
 						</Col>
 					</Row>

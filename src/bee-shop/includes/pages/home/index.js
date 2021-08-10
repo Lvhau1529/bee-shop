@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import WOW from "wowjs";
 import Layout from "../../layouts/index";
 import BannerComponent from "./banner";
 import DistanceComponent from "./distance";
@@ -10,6 +11,11 @@ import Testimorial from "./testimorial";
 import Blog from "./blog";
 
 function HomePage() {
+	useEffect(() => {
+		const wow = new WOW.WOW();
+		wow.init();
+	});
+	
 	return (
 		<>
 			<Layout>

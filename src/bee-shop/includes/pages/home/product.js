@@ -33,7 +33,7 @@ function Product() {
 					{/* <!-- ./Title --> */}
 
 					{/* Product detail */}
-					<div className="product__detail">
+					<div className="product__detail wow animate__animated animate__zoomIn">
 						<Slider {...settings}>
 							{products.map((product) => (
 								<Row>
